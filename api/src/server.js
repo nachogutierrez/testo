@@ -1,11 +1,7 @@
-const PORT = process.env.PORT || 8080
 const express = require('express')
 const bodyParser = require('body-parser')
 
-// const { MemoryStorage } = require('./results')
-// const resultService = new MemoryStorage()
-
-const Server = function(resultService) {
+const Server = function({ resultService }) {
     const app = express()
     app.use(bodyParser.json())
 
@@ -18,10 +14,11 @@ const Server = function(resultService) {
     })
 
     app.post('/create/workload', async (req, res) => {
+        // console.log('creating workload');
         try {
             res.json(await resultService.createWorkloads(req.body))
         } catch(e) {
-            res.status(400).json({ message: 'error creating workloads', exception: e })
+            res.status(400).json({ message: 'error creating workloads', exception: e.message })
         }
     })
 
@@ -30,12 +27,11 @@ const Server = function(resultService) {
     })
 
     app.post('/create/result', async (req, res) => {
+        // console.log('creating results');
         res.json(await resultService.createResults(req.body))
     })
 
-    return {
-        app
-    }
+    return app
 }
 
 module.exports = {

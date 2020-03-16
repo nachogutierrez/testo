@@ -1,14 +1,9 @@
-
-// app.get('/healthz', async (req, res) => {
-//     try {
-//       await sequelize.authenticate();
-//       res.json({ status: 'ok' })
-//     } catch (error) {
-//       res.status(503).json({ status: 'db not ready' })
-//     }
-// })
-
-
+const PORT = process.env.PORT || 8080
+const { Server } = require('./server')
+const { MemoryStorage } = require('./results')
+const app = Server({
+    resultService: MemoryStorage()
+})
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`);

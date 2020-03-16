@@ -1,0 +1,13 @@
+{
+  "name": "generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "seedrandom": "^3.0.5"
+  }
+}

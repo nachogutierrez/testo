@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 7003:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage:

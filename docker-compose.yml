@@ -1,9 +1,9 @@
 version: "3.7"
 services:
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
+  # api:
+  #   build:
+  #     context: ./api
+  #     dockerfile: Dockerfile
   db:
     image: postgres
     restart: always
@@ -15,6 +15,9 @@ services:
       - 7003:3000
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini
+    depends_on:
+      - db
 
 volumes:
   grafana-storage:

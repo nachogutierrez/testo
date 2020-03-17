@@ -3,7 +3,7 @@
   "seed": "uih21i3h12ui3hiu12hu312i3",
   "totalWorkloads": [5000, 5001],
   "workloadKinds": [5, 10],
-  "resultsPerWorkload": [1000, 1001],
+  "resultsPerWorkload": [150, 151],
   "workloadMetadataLabels": [3, 6],
   "workloadMetadata": {
     "browser": [

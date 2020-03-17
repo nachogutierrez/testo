@@ -1,23 +1,25 @@
 version: "3.7"
 services:
-  # api:
-  #   build:
-  #     context: ./api
-  #     dockerfile: Dockerfile
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      - METRICS_DB_URI=postgresql://postgres:postgres@db:5432/metrics
+    ports:
+      - 8080:8080
   db:
     image: postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:5.4.5
     ports:
-      - 7003:3000
+      - 8081:3000
     volumes:
-      - grafana-storage:/var/lib/grafana
       - ./grafana.ini:/etc/grafana/grafana.ini
     depends_on:
       - db
-
-volumes:
-  grafana-storage:

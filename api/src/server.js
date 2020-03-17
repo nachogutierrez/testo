@@ -1,24 +1,34 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const Server = function({ resultService }) {
+const Server = function({ resultService, metricsService }) {
     const app = express()
     app.use(bodyParser.json())
 
+    const { measureMax, pushCounterMetric } = metricsService
+
     app.post('/query/workload', async (req, res) => {
         try {
-            res.json(await resultService.getWorkloads(req.body))
+            await measureMax('query-workload-time', async () => {
+                res.json(await resultService.getWorkloads(req.body))
+            })
         } catch(e) {
-            res.status(400).json({ message: 'error fetching workloads', exception: e })
+            res.status(400).json({ message: 'error fetching workloads', exception: e.message })
+        } finally {
+            pushCounterMetric('query-workload-rps')
         }
     })
 
     app.post('/create/workload', async (req, res) => {
-        // console.log('creating workload');
         try {
-            res.json(await resultService.createWorkloads(req.body))
+            await measureMax('create-workload-time', async () => {
+                const data = await resultService.createWorkloads(req.body)
+                res.json(data)
+            })
         } catch(e) {
             res.status(400).json({ message: 'error creating workloads', exception: e.message })
+        } finally {
+            pushCounterMetric('count-create-workload-rps')
         }
     })
 

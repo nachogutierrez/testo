@@ -111,7 +111,7 @@ async function main(config) {
             ))
 
             // create results
-            await retry(20, () => (
+            await retry(15, () => (
                 axios.post(`${config.api}/create/result`, results)
             ))
 

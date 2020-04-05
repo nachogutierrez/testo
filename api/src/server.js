@@ -1,11 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const Server = function({ resultService, metricsService }) {
+const Server = function({ resultService, metricService }) {
     const app = express()
     app.use(bodyParser.json())
 
-    const { measureMax, pushCounterMetric } = metricsService
+    const { measureMax, pushCounterMetric } = metricService
 
     app.post('/query/workload', async (req, res) => {
         try {

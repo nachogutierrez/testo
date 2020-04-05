@@ -1,6 +1,6 @@
 const { v4: generateUuid } = require('uuid')
 
-const MemoryStorage = function() {
+const MemoryResultService = function() {
 
     let workloads = {}
     let results = {}
@@ -59,6 +59,6 @@ const passesFilter = (filter = {}) => (obj = {}) => {
 }
 
 module.exports = {
-    MemoryStorage,
+    MemoryResultService,
     passesFilter
 }

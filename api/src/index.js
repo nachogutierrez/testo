@@ -1,12 +1,12 @@
 const PORT = process.env.PORT || 8080
 
 const { Server } = require('./server')
-const { MemoryStorage } = require('./results')
-const { Metrics } = require('./metrics/metricService')
+const { MemoryResultService, PostgresResultService } = require('./results')
+const { PostgresMetricService } = require('./metrics/postgresMetricService')
 
 const app = Server({
-    resultService: MemoryStorage(),
-    metricsService: Metrics({ uri: process.env.METRICS_DB_URI })
+    resultService: PostgresResultService({ uri: process.env.TESTO_DB_URI || 'postgresql://postgres:postgres@localhost:8888/testo' }),
+    metricService: PostgresMetricService({ uri: process.env.METRICS_DB_URI })
 })
 
 app.listen(PORT, () => {

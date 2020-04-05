@@ -8,6 +8,7 @@ services:
       - db
     environment:
       - METRICS_DB_URI=postgresql://postgres:postgres@db:5432/metrics
+      - TESTO_DB_URI=postgresql://postgres:postgres@db:5432/testo
     ports:
       - 8080:8080
   db:
@@ -15,6 +16,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - my-postgres:/var/lib/postgresql/data
   grafana:
     image: grafana/grafana:5.4.5
     ports:
@@ -23,3 +26,6 @@ services:
       - ./grafana.ini:/etc/grafana/grafana.ini
     depends_on:
       - db
+
+volumes:
+  my-postgres:

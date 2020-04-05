@@ -1,3 +1,4 @@
 module.exports = {
-    MemoryStorage: require('./memory/memoryResultStorage').MemoryStorage
+    MemoryResultService: require('./memory/memoryResultService').MemoryResultService,
+    PostgresResultService: require('./sql/postgresResultService').PostgresResultService
 }

@@ -1,4 +1,4 @@
-const { passesFilter } = require('./memoryResultStorage')
+const { passesFilter } = require('./memoryResultService')
 
 test('passesFilter', () => {
     const filter = passesFilter({ metadata: { browser: "chrome" } })

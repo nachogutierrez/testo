@@ -1,18 +1,9 @@
-const { Pool, Client } = require('pg')
-
-const query = async (pool, statement) => new Promise((resolve, reject) => {
-    pool.query(statement, (err, res) => {
-        if (err) {
-            return reject(err)
-        }
-
-        resolve(res)
-    })
-})
+const { Pool } = require('pg')
+const { query } = require('../util')
 
 const sleep = millis => new Promise((resolve, reject) => setTimeout(resolve, millis))
 
-const Metrics = function({ uri, pushInterval=1000 }) {
+const PostgresMetricService = function({ uri, pushInterval=1000 }) {
 
     let pool
     let stopped = false
@@ -122,5 +113,5 @@ const Metrics = function({ uri, pushInterval=1000 }) {
 }
 
 module.exports = {
-    Metrics
+    PostgresMetricService
 }

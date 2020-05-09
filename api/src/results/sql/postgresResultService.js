@@ -105,13 +105,15 @@ const PostgresResultService = function({ uri }) {
 
     async function createResults(opts = []) {
 
+        // console.log(opts)
+
         // TODO: add results to response
         const results = []
 
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
             const { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
-            const response = await query(pool, `insert into result (workload_id, kind, status, duration) values (${workloadId}, '${kind}', '${status}', ${duration}) returning *`)
+            const response = await query(pool, `insert into result (workload_id, kind, status, duration) values ($1, $2, $3, $4) returning *`, [workloadId, kind, status, duration])
             const resultId = response.rows[0].id
             const keys = Object.keys(metadata)
             const result = {
@@ -124,7 +126,7 @@ const PostgresResultService = function({ uri }) {
             const m = {}
             for (let j = 0; j < keys.length; j++) {
                 const [key, value] = [keys[j], metadata[keys[j]]]
-                const metadataResponse = await query(pool, `insert into result_metadata (result_id, key, value) values (${resultId}, '${key}', '${value}') returning *`)
+                const metadataResponse = await query(pool, `insert into result_metadata (result_id, key, value) values ($1, $2, $3) returning *`, [resultId, key, value])
                 const pair = metadataResponse.rows[0]
                 m[pair.key] = pair.value
             }

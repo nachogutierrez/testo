@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "template": "node src/template.js",
+    "generate": "node src/generate.js",
+    "pub": "node src/publish.js",
+    "clean": "rm results/*"
   },
   "dependencies": {
     "axios": "^0.19.2",

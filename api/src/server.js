@@ -14,8 +14,9 @@ const Server = function({ resultService, metricService }) {
             })
         } catch(e) {
             res.status(400).json({ message: 'error fetching workloads', exception: e.message })
+            pushCounterMetric('query-workload-failed')
         } finally {
-            pushCounterMetric('query-workload-rps')
+            pushCounterMetric('query-workload')
         }
     })
 
@@ -27,8 +28,9 @@ const Server = function({ resultService, metricService }) {
             })
         } catch(e) {
             res.status(400).json({ message: 'error creating workloads', exception: e.message })
+            pushCounterMetric('create-workload-failed')
         } finally {
-            pushCounterMetric('count-create-workload-rps')
+            pushCounterMetric('create-workload')
         }
     })
 
@@ -37,7 +39,6 @@ const Server = function({ resultService, metricService }) {
     })
 
     app.post('/create/result', async (req, res) => {
-        // console.log('creating results');
         res.json(await resultService.createResults(req.body))
     })
 

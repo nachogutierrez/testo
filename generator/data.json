@@ -1,0 +1,54 @@
+{
+  "subjects": [
+      "apples",
+      "people that smoke",
+      "hitler",
+      "captains",
+      "dogs",
+      "cats",
+      "birds",
+      "that feeling of soggyness in the mornings",
+      "the realization that we are going to die",
+      "computers",
+      "scientists",
+      "a spartan warrior",
+      "the unstoppable marching of time"
+  ],
+  "connectors": [
+      "should",
+      "must",
+      "shouldn't be able to",
+      "can",
+      "can't"
+  ],
+  "qualities": [
+      "be red",
+      "get along with squirrels",
+      "smoke",
+      "kill nazis",
+      "write clean code",
+      "think about the future",
+      "cook pasta",
+      "watch youtube videos",
+      "start a war",
+      "run for president",
+      "wear sandals",
+      "go shopping",
+      "take a bath",
+      "do cardio",
+      "explore the galaxy",
+      "start a revolution",
+      "befriend a star",
+      "earn millions a year",
+      "take medicine",
+      "achieve world peace",
+      "conquer europe",
+      "kick ass"
+  ],
+  "metadata": {
+      "browser": ["chrome", "ie", "firefox", "safari"],
+      "jdk": ["jdk8", "jdk11"],
+      "selenium": ["v1", "v2", "v3"],
+      "datacenter": ["denver", "sc4"]
+  }
+}

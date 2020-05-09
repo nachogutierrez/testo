@@ -1,0 +1,48 @@
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table tr td {
+  padding: 8px;
+}
+
+#workloads-table {
+  /* width: 100%; */
+}
+
+.max-width-large { max-width: 256px; }
+
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-align-center { align-items: center; }
+.flex-space-between { justify-content: space-between;}
+
+/* COLORS */
+.brown { background-color: #ff9966; }
+.fail { background-color: #FFB5A5; }
+.pass { background-color: #ACFFA5; }
+
+.tag {
+  border-radius: 16px;
+  padding: 5px;
+  background: #6699ff;
+  color: white;
+  margin: 2px;
+  font-size: 14px;
+}
+
+.delete-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: red;
+  transition: all 0.15s ease;
+}
+
+.delete-btn:hover {
+  opacity: 0.7;
+}

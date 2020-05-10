@@ -1,22 +1,24 @@
-table {
-  border-collapse: collapse;
-}
-
 table, th, td {
   border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 table tr td {
   padding: 8px;
 }
 
-#workloads-table {
-  /* width: 100%; */
-}
-
+/* MISC */
 .max-width-large { max-width: 256px; }
+.oneline { white-space: nowrap; }
 
+/* FLEX */
 .flex { display: flex; }
+.flex-column { flex-direction: column;; }
 .flex-wrap { flex-wrap: wrap; }
 .flex-align-center { align-items: center; }
 .flex-space-between { justify-content: space-between;}
@@ -45,4 +47,11 @@ table tr td {
 
 .delete-btn:hover {
   opacity: 0.7;
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid black;
+  margin: 4px;
+  padding: 4px;
 }

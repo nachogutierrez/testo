@@ -4,6 +4,10 @@ create table workload (
   id serial,
   kind varchar(128) not null,
   created_at timestamp default current_timestamp,
+  pass integer default 0,
+  fail integer default 0,
+  skip integer default 0,
+  error integer default 0,
   primary key (id)
 );
 

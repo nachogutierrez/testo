@@ -1,0 +1,74 @@
+{
+    "metadata": {
+        "jdk": "jdk11",
+        "datacenter": "denver",
+        "browser": "ie"
+    },
+    "results": [
+        {
+            "name": "people that smoke should get along with squirrels",
+            "isSuccess": true,
+            "duration": 1853
+        },
+        {
+            "name": "computers should earn millions a year",
+            "isSuccess": true,
+            "duration": 1023
+        },
+        {
+            "name": "captains shouldn't be able to start a revolution",
+            "isSuccess": true,
+            "duration": 801
+        },
+        {
+            "name": "cats must write clean code",
+            "isSuccess": true,
+            "duration": 1488
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to kill nazis",
+            "isSuccess": true,
+            "duration": 259
+        },
+        {
+            "name": "a spartan warrior should earn millions a year",
+            "isSuccess": true,
+            "duration": 450
+        },
+        {
+            "name": "the unstoppable marching of time must do cardio",
+            "isSuccess": true,
+            "duration": 2484
+        },
+        {
+            "name": "people that smoke can write clean code",
+            "isSuccess": true,
+            "duration": 1443
+        },
+        {
+            "name": "a spartan warrior should explore the galaxy",
+            "isSuccess": true,
+            "duration": 591
+        },
+        {
+            "name": "captains can start a war",
+            "isSuccess": true,
+            "duration": 1989
+        },
+        {
+            "name": "scientists must wear sandals",
+            "isSuccess": true,
+            "duration": 2380
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should be red",
+            "isSuccess": true,
+            "duration": 1796
+        },
+        {
+            "name": "the unstoppable marching of time must smoke",
+            "isSuccess": true,
+            "duration": 1036
+        }
+    ]
+}

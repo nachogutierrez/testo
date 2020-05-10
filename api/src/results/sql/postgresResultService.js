@@ -2,7 +2,7 @@ const { Pool } = require('pg')
 const { query } = require('../../util')
 
 const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0, since, until }) => (`
-    select workload.id, workload.kind, workload.created_at from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
+    select workload.id, workload.kind, workload.created_at, workload.pass, workload.fail, workload.skip, workload.error from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
     ${renderClause('where', joinConditions([where('workload.kind', '=', kind), where('workload.created_at', '>', since), where('workload.created_at', '<', until)]))}
     group by workload.id
     ${renderClause('having', Object.keys(metadata).map(k => havingKeyValue(k, metadata[k], 'workload_metadata')).join(' and '))}
@@ -105,8 +105,6 @@ const PostgresResultService = function({ uri }) {
 
     async function createResults(opts = []) {
 
-        // console.log(opts)
-
         // TODO: add results to response
         const results = []
 
@@ -114,6 +112,7 @@ const PostgresResultService = function({ uri }) {
             const r = opts[i]
             const { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
             const response = await query(pool, `insert into result (workload_id, kind, status, duration) values ($1, $2, $3, $4) returning *`, [workloadId, kind, status, duration])
+            await query(pool, `update workload set ${status} = ${status} + 1 where id = ${workloadId}`)
             const resultId = response.rows[0].id
             const keys = Object.keys(metadata)
             const result = {

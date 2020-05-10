@@ -14,9 +14,6 @@ async function main() {
     for (let i = 0; i < resultFiles.length; i++) {
         let { metadata, results } = require(`${resultsDir()}/${resultFiles[i]}`)
         metadata.name = workloadName
-        metadata.total = results.length
-        metadata.pass = results.filter(r => r.isSuccess).length
-        metadata.fail = metadata.total - metadata.pass
 
         // creates workload
         const response = await axios.post(`${config.api}/create/workload`, [

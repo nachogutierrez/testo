@@ -1,0 +1,13 @@
+{
+  "name": "testo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "db": "docker-compose --file db.yml up",
+    "connect": "docker exec -it --user postgres testo_db_1 /bin/bash -c 'psql'",
+    "start": "docker-compose up --build"
+  },
+  "repository": "git@github.com:nachogutierrez/testo.git",
+  "author": "nachogutierrez <nachogutierrezibanez@gmail.com>",
+  "license": "MIT"
+}

@@ -7,7 +7,8 @@
     "template": "node src/template.js",
     "generate": "node src/generate.js",
     "pub": "node src/publish.js",
-    "clean": "rm results/*"
+    "clean": "rm results/*",
+    "wclean": "del /F /Q results\\*"
   },
   "dependencies": {
     "axios": "^0.19.2",

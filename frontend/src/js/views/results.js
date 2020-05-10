@@ -24,7 +24,7 @@ const Results = (function() {
         page: 1,
         results: [],
         columns: [],
-        workloadId: new URL(window.location.href).searchParams.get('workload')
+        workloadId: UrlParameters.get('workload')
     })
 
     const bind = () => ({

@@ -17,6 +17,7 @@ table tr td {
 .oneline { white-space: nowrap; }
 .clickable { cursor: pointer; transition: box-shadow 0.15s ease;}
 .clickable:hover { box-shadow: 0 0 8px black; }
+.hidden { display: none; }
 
 /* FLEX */
 .flex { display: flex; }

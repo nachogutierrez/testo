@@ -14,7 +14,7 @@ const Workloads = (function() {
 
         initState(state, bindings)
         await fetchWorkloads()
-        syncState(state, bindings)
+        syncState()
     }
 
     const createBaseState = () => ({
@@ -36,17 +36,29 @@ const Workloads = (function() {
             workloads: state.workloads,
             columns: state.columns,
             onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
-            onNewColumnPress: "Workloads.onNewColumnPress(event)"
+            onNewColumnPress: "Workloads.onNewColumnPress(event)",
+            onCheckboxClick: "Workloads.syncState()",
+            hiddenColumns: {}
         })
     }
 
-    function syncState(state, bindings) {
+    function syncState() {
+        console.log('qweqwe');
+        const hiddenColumns = {}
+        const asd = document.querySelectorAll('input.column-hider').forEach(el => {
+            if (el.checked) {
+                hiddenColumns[el.getAttribute('data-target')] = true
+            }
+        })
+
         bindings.workloadsTable.querySelector('thead').innerHTML = Components.WorkloadsTableHead({
             columns: state.columns,
-            onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`
+            hiddenColumns,
+            onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
         })
         bindings.workloadsTable.querySelector('tbody').innerHTML = Components.WorkloadsTableBody({
             columns: state.columns,
+            hiddenColumns,
             workloads: state.workloads,
             onMetadataClick: 'Workloads.onMetadataClick(event)'
         })
@@ -59,14 +71,18 @@ const Workloads = (function() {
             dropspot.classList.remove('colorful')
           },
           onDropspotUsed: (dropspot, target) => {
-            console.log('moved to dropspot!')
+              const key = target.getAttribute('data-key')
+              if (!state.columns.includes(key)) {
+                  state.columns.push(key)
+                  syncState()
+              }
           }
         })
     }
 
     function onDeleteColumn(name) {
         state.columns = state.columns.filter(c => c !== name)
-        syncState(state, bindings)
+        syncState()
     }
 
     function onNewColumnPress(e) {
@@ -75,7 +91,7 @@ const Workloads = (function() {
             if (value) {
                 e.target.value = ''
                 state.columns.push(value)
-                syncState(state, bindings)
+                syncState()
             }
         }
     }
@@ -88,7 +104,8 @@ const Workloads = (function() {
         start,
         onDeleteColumn,
         onNewColumnPress,
-        onMetadataClick
+        onMetadataClick,
+        syncState
     }
 })()
 

@@ -1,19 +1,35 @@
+function filterObject(obj, f) {
+    return Object.keys(obj).filter(key => f(key, obj[key])).reduce((o, key) => ({ [key]: obj[key], ...o }), {})
+}
+
 const Components = (function() {
 
     const WorkloadsTable = props => (`
-        <div class="flex">
-          <table>
-            <thead class="brown">
-                ${WorkloadsTableHead(props)}
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <div>
+            <div>
+                <label>Hide kind</label><input class='column-hider' data-target=kind type="checkbox" onclick=${props.onCheckboxClick} />
 
-          <div>
+            </div>
+            <div>
+                <label>Hide metadata</label><input class='column-hider' data-target=metadata type="checkbox" onclick=${props.onCheckboxClick} />
+            </div>
+            <div class="flex">
+              <table>
+                <thead class="brown">
+                    ${WorkloadsTableHead(props)}
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
 
-            <div class="card dropspot">
-              <p>Drag metadata to create new columns</p></div>
+              <div>
+
+                <div class="card dropspot flex flex-column flex-align-center">
+                  <p>Drag metadata to create new columns</p>
+                  <i class="far fa-plus-square fa-2x"></i>
+                </div>
+
+              </div>
             </div>
         </div>
     `)
@@ -22,8 +38,8 @@ const Components = (function() {
         <tr>
             <td>id</td>
             <td>summary</td>
-            <td>kind</td>
-            <td>metadata</td>
+            <td ${props.hiddenColumns['kind'] ? "class='hidden'" : ""}>kind</td>
+            <td ${props.hiddenColumns['metadata'] ? "class='hidden'" : ""}>metadata</td>
             ${props.columns.map(name => NewColumn({ name, onDeleteColumnClicker: props.onDeleteColumnClicker })).join('')}
         </tr>
     `)
@@ -37,14 +53,23 @@ const Components = (function() {
         </td>
     `)
 
-    const WorkloadsTableBody = props => props.workloads.map(workload => WorkloadsTableBodyRow({ workload, columns: props.columns, onMetadataClick: props.onMetadataClick })).join('')
+    const WorkloadsTableBody = props => (
+        props.workloads.map(workload => WorkloadsTableBodyRow({
+            workload,
+            columns: props.columns,
+            onMetadataClick: props.onMetadataClick,
+            hiddenColumns: props.hiddenColumns
+        })).join('')
+    )
 
     const WorkloadsTableBodyRow = props => (`
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
             <td><a href="results?workload=${props.workload.id}">${props.workload.id}</a></td>
             <td>${Summary(props.workload)}</td>
-            <td>${props.workload.kind}</td>
-            <td>${MetadataList({ metadata: props.workload.metadata, onClick: props.onMetadataClick })}</td>
+            <td ${props.hiddenColumns['kind'] ? "class='hidden'" : ""}>${props.workload.kind}</td>
+            <td ${props.hiddenColumns['metadata'] ? "class='hidden'" : ""}>
+                ${MetadataList({ metadata: filterObject(props.workload.metadata, key => !props.columns.includes(key)), onClick: props.onMetadataClick })}
+            </td>
             ${props.columns.map(key => Td(props.workload.metadata[key] || '')).join('')}
         </tr>
     `)
@@ -64,7 +89,11 @@ const Components = (function() {
           ${Object.keys(props.metadata).map(key => Metadata({ key, value: props.metadata[key], onClick: props.onClick })).join('')}
         </div>
     `)
-    const Metadata = props => (`<span class='tag noselect draggable clickable' onclick=${props.onClick}><strong class='noclick'>${props.key}</strong>=${props.value}</span>`)
+    const Metadata = props => (`
+        <span class='tag noselect draggable clickable' onclick=${props.onClick} data-key='${props.key}' data-value='${props.value}'>
+            <strong class='noclick'>${props.key}</strong>=${props.value}
+        </span>
+    `)
 
     const ResultsTable = props => (`
         <div class="flex">

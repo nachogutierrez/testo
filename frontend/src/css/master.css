@@ -59,6 +59,14 @@ table tr td {
   padding: 4px;
 }
 
+.card-dotted {
+  border-radius: 4px;
+  border: 1px dashed black;
+  margin: 4px;
+  padding: 16px;
+  color: gray;
+}
+
 .noclick {
    pointer-events: none;
 }
@@ -84,12 +92,12 @@ table tr td {
 
 @keyframes colorful {
   0%   {
-    background: rgba(0,255,0,0.5);
+    background: rgba(255,255,255,0);
   }
   50%  {
-    background: rgba(0,0,255,0.5);
+    background: rgba(0,0,255,0.25);
   }
   100% {
-    background: rgba(0,255,0,0.5);
+    background: rgba(255,255,255,0);
   }
 }

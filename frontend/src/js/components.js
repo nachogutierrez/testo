@@ -1,17 +1,20 @@
-function filterObject(obj, f) {
-    return Object.keys(obj).filter(key => f(key, obj[key])).reduce((o, key) => ({ [key]: obj[key], ...o }), {})
-}
 
 const Components = (function() {
 
+    function filterObject(obj, f) {
+        return Object.keys(obj).filter(key => f(key, obj[key])).reduce((o, key) => ({ [key]: obj[key], ...o }), {})
+    }
+
+    const o = f => f() || ''
+
     const WorkloadsTable = props => (`
         <div>
+            <div class='filters'></div>
             <div>
-                <label>Hide kind</label><input class='column-hider' data-target=kind type="checkbox" onclick=${props.onCheckboxClick} />
-
+                <label>Hide kind</label><input class='column-hider' data-target=kind type="checkbox" onclick='${props.onCheckboxClick}' />
             </div>
             <div>
-                <label>Hide metadata</label><input class='column-hider' data-target=metadata type="checkbox" onclick=${props.onCheckboxClick} />
+                <label>Hide metadata</label><input class='column-hider' data-target=metadata type="checkbox" onclick='${props.onCheckboxClick}' />
             </div>
             <div class="flex">
               <table>
@@ -24,13 +27,28 @@ const Components = (function() {
 
               <div>
 
-                <div class="card dropspot flex flex-column flex-align-center">
-                  <p>Drag metadata to create new columns</p>
-                  <i class="far fa-plus-square fa-2x"></i>
+                <div class="card-dotted dropspot flex flex-align-center">
+                  <p class='oneline'><i class="fas fa-plus"></i> Drag metadata</p>
                 </div>
 
               </div>
             </div>
+        </div>
+    `)
+
+    const WorkloadFilters = props => (`
+        <div>
+            <h2>Filters</h2>
+            ${o(() => {
+                if (props.filters && props.filters.kind) {
+                    return MetadataList({ metadata: { Kind: props.filters.kind }, onClick: props.onKindClick })
+                }
+            })}
+            ${o(() => {
+                if (props.filters && props.filters.metadata && Object.keys(props.filters.metadata).length > 0) {
+                    return MetadataList({ metadata: props.filters.metadata, onClick: props.onMetadataClick })
+                }
+            })}
         </div>
     `)
 
@@ -40,7 +58,7 @@ const Components = (function() {
             <td>summary</td>
             <td ${props.hiddenColumns['kind'] ? "class='hidden'" : ""}>kind</td>
             <td ${props.hiddenColumns['metadata'] ? "class='hidden'" : ""}>metadata</td>
-            ${props.columns.map(name => NewColumn({ name, onDeleteColumnClicker: props.onDeleteColumnClicker })).join('')}
+            ${props.columns.sort().map(name => NewColumn({ name, onDeleteColumnClicker: props.onDeleteColumnClicker })).join('')}
         </tr>
     `)
 
@@ -58,6 +76,7 @@ const Components = (function() {
             workload,
             columns: props.columns,
             onMetadataClick: props.onMetadataClick,
+            onKindClick: props.onKindClick,
             hiddenColumns: props.hiddenColumns
         })).join('')
     )
@@ -66,10 +85,22 @@ const Components = (function() {
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
             <td><a href="results?workload=${props.workload.id}">${props.workload.id}</a></td>
             <td>${Summary(props.workload)}</td>
-            <td ${props.hiddenColumns['kind'] ? "class='hidden'" : ""}>${props.workload.kind}</td>
-            <td ${props.hiddenColumns['metadata'] ? "class='hidden'" : ""}>
-                ${MetadataList({ metadata: filterObject(props.workload.metadata, key => !props.columns.includes(key)), onClick: props.onMetadataClick })}
-            </td>
+            ${o(() => {
+                if (!props.hiddenColumns['kind']) {
+                    return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.workload.kind}</a></td>`
+                }
+            })}
+            ${o(() => {
+                if (!props.hiddenColumns['metadata']) {
+                    const ml = MetadataList({
+                        // metadata: filterObject(props.workload.metadata, key => !props.columns.includes(key)),
+                        metadata: props.workload.metadata,
+                        onClick: props.onMetadataClick
+                    })
+                    return `<td>${ml}</td>`
+                }
+            })}
+
             ${props.columns.map(key => Td(props.workload.metadata[key] || '')).join('')}
         </tr>
     `)
@@ -86,7 +117,7 @@ const Components = (function() {
 
     const MetadataList = props => (`
         <div class="flex flex-wrap">
-          ${Object.keys(props.metadata).map(key => Metadata({ key, value: props.metadata[key], onClick: props.onClick })).join('')}
+          ${Object.keys(props.metadata).sort().map(key => Metadata({ key, value: props.metadata[key], onClick: props.onClick })).join('')}
         </div>
     `)
     const Metadata = props => (`
@@ -164,6 +195,7 @@ const Components = (function() {
         ResultsTable,
         ResultsTableHead,
         ResultsTableBody,
-        WorkloadDetail
+        WorkloadDetail,
+        WorkloadFilters
     }
 })()

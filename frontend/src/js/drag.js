@@ -37,7 +37,7 @@ const Drag = (function() {
 
   function onMouseUp(e) {
     for (let i = 0; i < dropspots.length; i++) {
-      if (isContained(dropspots[i], e.clientX, e.clientY)) {
+      if (dragTarget && isContained(dropspots[i], e.clientX, e.clientY)) {
         usedHandler(dropspots[i], dragTarget)
       }
       hoverOutHandler(dropspots[i], dragShadow)

@@ -43,7 +43,6 @@ const Workloads = (function() {
     }
 
     function syncState() {
-        console.log('qweqwe');
         const hiddenColumns = {}
         const asd = document.querySelectorAll('input.column-hider').forEach(el => {
             if (el.checked) {

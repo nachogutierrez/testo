@@ -15,6 +15,8 @@ table tr td {
 /* MISC */
 .max-width-large { max-width: 256px; }
 .oneline { white-space: nowrap; }
+.clickable { cursor: pointer; transition: box-shadow 0.15s ease;}
+.clickable:hover { box-shadow: 0 0 8px black; }
 
 /* FLEX */
 .flex { display: flex; }
@@ -54,4 +56,39 @@ table tr td {
   border: 1px solid black;
   margin: 4px;
   padding: 4px;
+}
+
+.noclick {
+   pointer-events: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.drag-shadow {
+  position: absolute;
+  opacity: 0.8;
+}
+
+.colorful {
+  animation: colorful 3s infinite;
+}
+
+@keyframes colorful {
+  0%   {
+    background: rgba(0,255,0,0.5);
+  }
+  50%  {
+    background: rgba(0,0,255,0.5);
+  }
+  100% {
+    background: rgba(0,255,0,0.5);
+  }
 }

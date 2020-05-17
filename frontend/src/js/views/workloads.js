@@ -47,7 +47,20 @@ const Workloads = (function() {
         })
         bindings.workloadsTable.querySelector('tbody').innerHTML = Components.WorkloadsTableBody({
             columns: state.columns,
-            workloads: state.workloads
+            workloads: state.workloads,
+            onMetadataClick: 'Workloads.onMetadataClick(event)'
+        })
+
+        Drag.init({
+          onDropspotHoverIn: (dropspot, shadow) => {
+            dropspot.classList.add('colorful')
+          },
+          onDropspotHoverOut: (dropspot, shadow) => {
+            dropspot.classList.remove('colorful')
+          },
+          onDropspotUsed: (dropspot, target) => {
+            console.log('moved to dropspot!')
+          }
         })
     }
 
@@ -67,10 +80,15 @@ const Workloads = (function() {
         }
     }
 
+    function onMetadataClick(e) {
+      console.log(e.target);
+    }
+
     return {
         start,
         onDeleteColumn,
-        onNewColumnPress
+        onNewColumnPress,
+        onMetadataClick
     }
 })()
 

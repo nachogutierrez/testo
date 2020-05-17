@@ -11,8 +11,10 @@ const Components = (function() {
           </table>
 
           <div>
-            <input type="text" placeholder="Column name" onkeypress=${props.onNewColumnPress}>
-          </div>
+
+            <div class="card dropspot">
+              <p>Drag metadata to create new columns</p></div>
+            </div>
         </div>
     `)
 
@@ -35,14 +37,14 @@ const Components = (function() {
         </td>
     `)
 
-    const WorkloadsTableBody = props => props.workloads.map(workload => WorkloadsTableBodyRow({ workload, columns: props.columns })).join('')
+    const WorkloadsTableBody = props => props.workloads.map(workload => WorkloadsTableBodyRow({ workload, columns: props.columns, onMetadataClick: props.onMetadataClick })).join('')
 
     const WorkloadsTableBodyRow = props => (`
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
             <td><a href="results?workload=${props.workload.id}">${props.workload.id}</a></td>
             <td>${Summary(props.workload)}</td>
             <td>${props.workload.kind}</td>
-            <td>${MetadataList({ metadata: props.workload.metadata })}</td>
+            <td>${MetadataList({ metadata: props.workload.metadata, onClick: props.onMetadataClick })}</td>
             ${props.columns.map(key => Td(props.workload.metadata[key] || '')).join('')}
         </tr>
     `)
@@ -59,10 +61,10 @@ const Components = (function() {
 
     const MetadataList = props => (`
         <div class="flex flex-wrap">
-          ${Object.keys(props.metadata).map(key => Metadata({ key, value: props.metadata[key] })).join('')}
+          ${Object.keys(props.metadata).map(key => Metadata({ key, value: props.metadata[key], onClick: props.onClick })).join('')}
         </div>
     `)
-    const Metadata = props => (`<span class='tag'><strong>${props.key}</strong>=${props.value}</span>`)
+    const Metadata = props => (`<span class='tag noselect draggable clickable' onclick=${props.onClick}><strong class='noclick'>${props.key}</strong>=${props.value}</span>`)
 
     const ResultsTable = props => (`
         <div class="flex">

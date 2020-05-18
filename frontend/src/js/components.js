@@ -16,6 +16,7 @@ const Components = (function() {
             <div>
                 <label>Hide metadata</label><input class='column-hider' data-target=metadata type="checkbox" onclick='${props.onCheckboxClick}' />
             </div>
+
             <div class="flex">
               <table>
                 <thead class="brown">
@@ -93,7 +94,6 @@ const Components = (function() {
             ${o(() => {
                 if (!props.hiddenColumns['metadata']) {
                     const ml = MetadataList({
-                        // metadata: filterObject(props.workload.metadata, key => !props.columns.includes(key)),
                         metadata: props.workload.metadata,
                         onClick: props.onMetadataClick
                     })
@@ -127,24 +127,55 @@ const Components = (function() {
     `)
 
     const ResultsTable = props => (`
-        <div class="flex">
-          <table>
-            <thead class="brown">
-                ${ResultsTableHead(props)}
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
 
-          <div>
-            <input type="text" placeholder="Column name" onkeypress=${props.onNewColumnPress}>
-          </div>
+        <div>
+            <div class='filters'></div>
+
+            <div class="flex">
+                <table>
+                    <thead class="brown">
+                        ${ResultsTableHead(props)}
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <div>
+
+                <div class="card-dotted dropspot flex flex-align-center">
+                    <p class='oneline'><i class="fas fa-plus"></i> Drag metadata</p>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    `)
+
+    const ResultFilters = props => (`
+        <div>
+            <h2>Filters</h2>
+            ${o(() => {
+                if (props.filters && props.filters.workloadId) {
+                    return MetadataList({ metadata: { workloadId: props.filters.workloadId }, onClick: props.onWorkloadIdFilterClick })
+                }
+            })}
+            ${o(() => {
+                if (props.filters && props.filters.kind) {
+                    return MetadataList({ metadata: { Kind: props.filters.kind }, onClick: props.onKindClick })
+                }
+            })}
+            ${o(() => {
+                if (props.filters && props.filters.metadata && Object.keys(props.filters.metadata).length > 0) {
+                    return MetadataList({ metadata: props.filters.metadata, onClick: props.onMetadataClick })
+                }
+            })}
         </div>
     `)
 
     const ResultsTableHead = props => (`
         <tr>
             <td>id</td>
+            <td>workloadId</td>
             <td>kind</td>
             <td>status</td>
             <td>duration</td>
@@ -153,15 +184,26 @@ const Components = (function() {
         </tr>
     `)
 
-    const ResultsTableBody = props => props.results.map(result => ResultsTableBodyRow({ result, columns: props.columns })).join('')
+    const ResultsTableBody = props => props.results.map(result => ResultsTableBodyRow({
+        result,
+        columns: props.columns,
+        onMetadataClick: props.onMetadataClick,
+        onKindClick: props.onKindClick,
+        onWorkloadIdClick: props.onWorkloadIdClick
+    })).join('')
 
     const ResultsTableBodyRow = props => (`
         <tr class="${props.result.status !== 'pass' ? "fail" : "pass"}">
-            <td><a href="#">${props.result.id}</a></td>
-            <td>${props.result.kind}</td>
+            <td><a href="javascript:;">${props.result.id}</a></td>
+            <td><a href="javascript:;" onclick=${props.onWorkloadIdClick}>${props.result.workload_id}</a></td>
+            ${o(() => {
+                if (!props.hiddenColumns || !props.hiddenColumns['kind']) {
+                    return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.result.kind}</a></td>`
+                }
+            })}
             <td>${props.result.status}</td>
             <td>${props.result.duration}</td>
-            <td>${MetadataList({ metadata: props.result.metadata })}</td>
+            <td>${MetadataList({ metadata: props.result.metadata, onClick: props.onMetadataClick })}</td>
             ${props.columns.map(key => Td(props.result.metadata[key] || '')).join('')}
         </tr>
     `)
@@ -196,6 +238,7 @@ const Components = (function() {
         ResultsTableHead,
         ResultsTableBody,
         WorkloadDetail,
-        WorkloadFilters
+        WorkloadFilters,
+        ResultFilters
     }
 })()

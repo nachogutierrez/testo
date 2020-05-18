@@ -51,7 +51,7 @@ const Drag = (function() {
     if (e.buttons & 1 && dragTarget) {
       createShadow()
       const rect = dragShadow.getBoundingClientRect()
-      positionShadow(e.clientX - offset.x, e.clientY - offset.y)
+      positionShadow(e.x - offset.x, e.y - offset.y)
       for (let i = 0; i < dropspots.length; i++) {
         if (isContained(dropspots[i], e.clientX, e.clientY)) {
           hoverInHandler(dropspots[i], dragShadow)

@@ -82,7 +82,7 @@ table tr td {
 }
 
 .drag-shadow {
-  position: absolute;
+  position: fixed;
   opacity: 0.8;
 }
 

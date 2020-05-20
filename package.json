@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "db": "docker-compose --file db.yml up",
+    "stop_db": "docker-compose --file db.yml down",
     "connect": "docker exec -it --user postgres testo_db_1 /bin/bash -c 'psql'",
     "start": "docker-compose up --build"
   },

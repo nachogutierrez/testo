@@ -7,6 +7,7 @@ const Workloads = (function() {
 
     async function start() {
         state = createBaseState()
+        console.log(state);
         bindings = bind()
 
         config = await (await fetch('config.json')).json()
@@ -20,8 +21,9 @@ const Workloads = (function() {
     const createBaseState = () => ({
         page: 1,
         workloads: [],
-        columns: [],
-        filters: { metadata: {} }
+        c: [],
+        f: { metadata: {} },
+        // ...Bookmarks.readState()
     })
 
     const bind = () => ({
@@ -30,11 +32,11 @@ const Workloads = (function() {
 
     async function fetchWorkloads() {
         const filters = {}
-        if (state.filters.kind) {
-            filters.kind = state.filters.kind
+        if (state.f.kind) {
+            filters.kind = state.f.kind
         }
-        if (Object.keys(state.filters.metadata).length > 0) {
-            filters.metadata = { ...state.filters.metadata }
+        if (Object.keys(state.f.metadata).length > 0) {
+            filters.metadata = { ...state.f.metadata }
         }
         state.workloads = await testo.queryWorkloads(filters)
     }
@@ -42,8 +44,8 @@ const Workloads = (function() {
     function initState() {
         bindings.workloadsTable.innerHTML = Components.WorkloadsTable({
             workloads: state.workloads,
-            columns: state.columns,
-            filters: state.filters,
+            columns: state.c,
+            filters: state.f,
             onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
             onNewColumnPress: "Workloads.onNewColumnPress(event)",
             onCheckboxClick: "Workloads.syncState({ head: true, body: true })",
@@ -52,6 +54,9 @@ const Workloads = (function() {
     }
 
     function syncState(opts={}) {
+        // FIXME: prune is note well implemented, it's messing up the state
+        Bookmarks.writeState({ c: state.c, f: state.f })
+
         const { filters=false, head=false, body=false } = opts
 
         const hiddenColumns = {}
@@ -63,7 +68,7 @@ const Workloads = (function() {
 
         if (filters) {
             bindings.workloadsTable.querySelector('.filters').innerHTML = Components.WorkloadFilters({
-                filters: state.filters,
+                filters: state.f,
                 onKindClick: `Workloads.onKindFilterClick(event)`,
                 onMetadataClick: `Workloads.onMetadataFilterClick(event)`
             })
@@ -71,14 +76,14 @@ const Workloads = (function() {
 
         if (head) {
             bindings.workloadsTable.querySelector('thead').innerHTML = Components.WorkloadsTableHead({
-                columns: state.columns,
+                columns: state.c,
                 hiddenColumns,
                 onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
             })
         }
         if (body) {
             bindings.workloadsTable.querySelector('tbody').innerHTML = Components.WorkloadsTableBody({
-                columns: state.columns,
+                columns: state.c,
                 hiddenColumns,
                 workloads: state.workloads,
                 onMetadataClick: 'Workloads.onMetadataClick(event)',
@@ -94,8 +99,8 @@ const Workloads = (function() {
               },
               onDropspotUsed: (dropspot, target) => {
                   const key = target.getAttribute('data-key')
-                  if (!state.columns.includes(key)) {
-                      state.columns.push(key)
+                  if (!state.c.includes(key)) {
+                      state.c.push(key)
                       syncState({ head: true, body: true })
                   }
               }
@@ -104,7 +109,7 @@ const Workloads = (function() {
     }
 
     function onDeleteColumn(name) {
-        state.columns = state.columns.filter(c => c !== name)
+        state.c = state.c.filter(c => c !== name)
         syncState({ head: true, body: true })
     }
 
@@ -113,7 +118,7 @@ const Workloads = (function() {
             const value = e.target.value
             if (value) {
                 e.target.value = ''
-                state.columns.push(value)
+                state.c.push(value)
                 syncState({ head: true, body: true })
             }
         }
@@ -122,26 +127,26 @@ const Workloads = (function() {
     async function onMetadataClick(e) {
         const key = e.target.getAttribute('data-key')
         const value = e.target.getAttribute('data-value')
-        state.filters.metadata[key] = value
+        state.f.metadata[key] = value
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onKindClick(e) {
-        state.filters.kind = e.target.innerHTML
+        state.f.kind = e.target.innerHTML
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onKindFilterClick(e) {
-        state.filters.kind = undefined
+        state.f.kind = undefined
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onMetadataFilterClick(e) {
         const key = e.target.getAttribute('data-key')
-        delete state.filters.metadata[key]
+        delete state.f.metadata[key]
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }

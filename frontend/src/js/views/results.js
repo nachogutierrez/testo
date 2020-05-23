@@ -7,6 +7,7 @@ const Results = (function() {
 
     async function start() {
         state = createBaseState()
+        readStateFromUrl()
         bindings = bind()
 
         config = await (await fetch('config.json')).json()
@@ -24,11 +25,45 @@ const Results = (function() {
         page: 1,
         results: [],
         columns: [],
-        filters: {
-            workloadId: UrlParameters.get('workload'),
-            metadata: {}
-        }
+        filters: { metadata: {} }
     })
+
+    function readStateFromUrl() {
+        const bookmarks = Bookmarks.readState()
+        state.filters.workloadId = bookmarks.workloadId
+        bookmarks.workloadId = undefined
+
+        state.filters.kind = bookmarks.kind
+        bookmarks.kind = undefined
+
+        state.columns = []
+        if (bookmarks.columns) {
+            state.columns = bookmarks.columns.split(',')
+            bookmarks.columns = undefined
+        }
+
+        state.filters.metadata = {}
+        Object.keys(bookmarks).forEach(key => {
+            if (bookmarks[key]) {
+                state.filters.metadata[key] = bookmarks[key]
+            }
+        })
+    }
+
+    function writeStateToUrl() {
+        const bookmarks = {...state.filters.metadata}
+        if (state.columns.length > 0) {
+            bookmarks.columns = state.columns.join(',')
+        }
+        if (state.filters.kind) {
+            bookmarks.kind = state.filters.kind
+        }
+        if (state.filters.workloadId) {
+            bookmarks.workloadId = state.filters.workloadId
+        }
+
+        Bookmarks.writeState(bookmarks)
+    }
 
     const bind = () => ({
         workloadDetail: document.getElementById('workload-detail'),
@@ -54,6 +89,8 @@ const Results = (function() {
     }
 
     function syncState(opts = {}, all=false) {
+        writeStateToUrl()
+
         const { detail=false||all, filters=false||all, head=false||all, body=false||all } = opts
 
         if (detail) {

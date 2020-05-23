@@ -84,7 +84,7 @@ const Components = (function() {
 
     const WorkloadsTableBodyRow = props => (`
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
-            <td><a href="results?workload=${props.workload.id}">${props.workload.id}</a></td>
+            <td><a href="results?workloadId=${props.workload.id}">${props.workload.id}</a></td>
             <td>${Summary(props.workload)}</td>
             ${o(() => {
                 if (!props.hiddenColumns['kind']) {

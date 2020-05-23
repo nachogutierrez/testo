@@ -66,17 +66,14 @@ const PostgresResultService = function({ uri }) {
         const { id, workloadId, kind, metadata = {}, limit = 100, skip = 0, since, until, status } = opts
 
         if (id) {
-            // TODO: fetch metadata
             return await Promise.all((await query(pool, `select * from result where id='${id}'`)).rows.map(enhanceWithMetadata('result')))
         }
 
-        // TODO: fetch metadata
         return await Promise.all((await query(pool, buildGetResultsStatement({ workloadId, kind, metadata, limit, skip, since, until, status }))).rows.map(enhanceWithMetadata('result')))
     }
 
     async function createWorkloads(opts = []) {
 
-        // TODO: add workloads to response
         const workloads = []
         for (let i = 0; i < opts.length; i++) {
             const w = opts[i]
@@ -105,7 +102,6 @@ const PostgresResultService = function({ uri }) {
 
     async function createResults(opts = []) {
 
-        // TODO: add results to response
         const results = []
 
         for (let i = 0; i < opts.length; i++) {

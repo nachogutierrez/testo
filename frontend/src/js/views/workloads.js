@@ -14,6 +14,7 @@ const Workloads = (function() {
 
         initState(state, bindings)
         await fetchWorkloads()
+
         syncState({ filters: true, head: true, body: true })
     }
 
@@ -25,6 +26,11 @@ const Workloads = (function() {
             workloads: [],
             c: [],
             f: { metadata: {} },
+        }
+
+        if (bookmarks.page) {
+            s.page = parseInt(bookmarks.page, 10)
+            bookmarks.page = undefined
         }
 
         if (bookmarks.kind) {
@@ -54,6 +60,9 @@ const Workloads = (function() {
         if (state.f.kind) {
             bookmarks.kind = state.f.kind
         }
+        if (state.page > 1) {
+            bookmarks.page = state.page
+        }
 
         Bookmarks.writeState(bookmarks)
     }
@@ -64,6 +73,7 @@ const Workloads = (function() {
 
     async function fetchWorkloads() {
         const filters = {}
+        filters.page = state.page
         if (state.f.kind) {
             filters.kind = state.f.kind
         }
@@ -81,13 +91,13 @@ const Workloads = (function() {
             onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
             onNewColumnPress: "Workloads.onNewColumnPress(event)",
             onCheckboxClick: "Workloads.syncState({ head: true, body: true })",
+            onPreviousPageClick: "Workloads.onPreviousPageClick(event)",
+            onNextPageClick: "Workloads.onNextPageClick(event)",
             hiddenColumns: {}
         })
     }
 
     function syncState(opts={}) {
-        // FIXME: prune is note well implemented, it's messing up the state
-        // Bookmarks.writeState({ c: state.c, f: state.f })
         writeStateToUrl()
 
         const { filters=false, head=false, body=false } = opts
@@ -122,6 +132,8 @@ const Workloads = (function() {
                 onMetadataClick: 'Workloads.onMetadataClick(event)',
                 onKindClick: `Workloads.onKindClick(event)`
             })
+
+            bindings.workloadsTable.querySelector('.page-indicator').innerHTML = state.page
 
             Drag.init({
               onDropspotHoverIn: (dropspot, shadow) => {
@@ -158,6 +170,7 @@ const Workloads = (function() {
     }
 
     async function onMetadataClick(e) {
+        state.page = 1
         const key = e.target.getAttribute('data-key')
         const value = e.target.getAttribute('data-value')
         state.f.metadata[key] = value
@@ -166,22 +179,44 @@ const Workloads = (function() {
     }
 
     async function onKindClick(e) {
+        state.page = 1
         state.f.kind = e.target.innerHTML
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onKindFilterClick(e) {
+        state.page = 1
         state.f.kind = undefined
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onMetadataFilterClick(e) {
+        state.page = 1
         const key = e.target.getAttribute('data-key')
         delete state.f.metadata[key]
         await fetchWorkloads()
         syncState({ filters: true, body: true })
+    }
+
+    async function onNextPageClick(e) {
+        state.page++
+        await fetchWorkloads()
+        if (state.workloads.length === 0) {
+            state.page--
+            await fetchWorkloads()
+        } else {
+            syncState({ body: true })
+        }
+    }
+
+    async function onPreviousPageClick(e) {
+        if (state.page > 1) {
+            state.page--
+            await fetchWorkloads()
+            syncState({ body: true })
+        }
     }
 
     return {
@@ -192,7 +227,9 @@ const Workloads = (function() {
         onKindClick,
         syncState,
         onKindFilterClick,
-        onMetadataFilterClick
+        onMetadataFilterClick,
+        onNextPageClick,
+        onPreviousPageClick
     }
 })()
 

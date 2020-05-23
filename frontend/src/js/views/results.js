@@ -42,6 +42,11 @@ const Results = (function() {
             bookmarks.columns = undefined
         }
 
+        if (bookmarks.page) {
+            state.page = parseInt(bookmarks.page, 10)
+            bookmarks.page = undefined
+        }
+
         state.filters.metadata = {}
         Object.keys(bookmarks).forEach(key => {
             if (bookmarks[key]) {
@@ -61,6 +66,9 @@ const Results = (function() {
         if (state.filters.workloadId) {
             bookmarks.workloadId = state.filters.workloadId
         }
+        if (state.page > 1) {
+            bookmarks.page = state.page
+        }
 
         Bookmarks.writeState(bookmarks)
     }
@@ -71,7 +79,18 @@ const Results = (function() {
     })
 
     async function fetchResults() {
-        state.results = await testo.queryResults(state.filters)
+        const filters = {}
+        filters.page = state.page
+        if (state.filters.workloadId) {
+            filters.workloadId = state.filters.workloadId
+        }
+        if (state.filters.kind) {
+            filters.kind = state.filters.kind
+        }
+        if (Object.keys(state.filters.metadata).length > 0) {
+            filters.metadata = { ...state.filters.metadata }
+        }
+        state.results = await testo.queryResults(filters)
     }
 
     async function fetchWorkloadDetail() {
@@ -84,7 +103,9 @@ const Results = (function() {
             results: state.results,
             columns: state.columns,
             onDeleteColumnClicker: name => `Results.onDeleteColumn('${name}')`,
-            onNewColumnPress: "Results.onNewColumnPress(event)"
+            onNewColumnPress: "Results.onNewColumnPress(event)",
+            onPreviousPageClick: "Results.onPreviousPageClick(event)",
+            onNextPageClick: "Results.onNextPageClick(event)"
         })
     }
 
@@ -125,6 +146,8 @@ const Results = (function() {
                 onWorkloadIdClick: 'Results.onWorkloadIdClick(event)'
             })
 
+            bindings.resultsTable.querySelector('.page-indicator').innerHTML = state.page
+
             Drag.init({
               onDropspotHoverIn: (dropspot, shadow) => {
                 dropspot.classList.add('colorful')
@@ -160,6 +183,7 @@ const Results = (function() {
     }
 
     async function onMetadataClick(e) {
+        state.page = 1
         const key = e.target.getAttribute('data-key')
         const value = e.target.getAttribute('data-value')
         state.filters.metadata[key] = value
@@ -168,6 +192,7 @@ const Results = (function() {
     }
 
     async function onMetadataFilterClick(e) {
+        state.page = 1
         const key = e.target.getAttribute('data-key')
         delete state.filters.metadata[key]
         await fetchResults()
@@ -175,6 +200,7 @@ const Results = (function() {
     }
 
     async function onKindClick(e) {
+        state.page = 1
         state.filters.kind = e.target.innerHTML
         state.filters.workloadId = undefined
         await fetchResults()
@@ -182,12 +208,14 @@ const Results = (function() {
     }
 
     async function onKindFilterClick(e) {
+        state.page = 1
         state.filters.kind = undefined
         await fetchResults()
         syncState({ filters: true, body: true })
     }
 
     async function onWorkloadIdClick(e) {
+        state.page = 1
         state.filters.workloadId = e.target.innerHTML
         state.filters.kind = undefined
         await fetchResults()
@@ -196,9 +224,29 @@ const Results = (function() {
     }
 
     async function onWorkloadIdFilterClick(e) {
+        state.page = 1
         state.filters.workloadId = undefined
         await fetchResults()
         syncState({ filters: true, body: true })
+    }
+
+    async function onNextPageClick(e) {
+        state.page++
+        await fetchResults()
+        if (state.results.length === 0) {
+            state.page--
+            await fetchResults()
+        } else {
+            syncState({ body: true })
+        }
+    }
+
+    async function onPreviousPageClick(e) {
+        if (state.page > 1) {
+            state.page--
+            await fetchResults()
+            syncState({ body: true })
+        }
     }
 
     return {
@@ -210,7 +258,9 @@ const Results = (function() {
         onKindClick,
         onKindFilterClick,
         onWorkloadIdClick,
-        onWorkloadIdFilterClick
+        onWorkloadIdFilterClick,
+        onNextPageClick,
+        onPreviousPageClick
     }
 })()
 

@@ -14,7 +14,7 @@ const Bookmarks = (function() {
   function writeState(state) {
     const params = new URLSearchParams()
 
-    Object.keys(state).filter(key => state[key] && typeof(state[key]) === 'string').sort().forEach(key => {
+    Object.keys(state).filter(key => state[key] && ['string', 'number'].includes(typeof(state[key]))).sort().forEach(key => {
         params.set(key, state[key])
     })
 

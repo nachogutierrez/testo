@@ -18,13 +18,21 @@ const Components = (function() {
             </div>
 
             <div class="flex">
-              <table>
-                <thead class="brown">
-                    ${WorkloadsTableHead(props)}
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
+              <div class="flex flex-column">
+                  <table>
+                    <thead class="brown">
+                        ${WorkloadsTableHead(props)}
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+
+                  <div class="flex flex-space-between">
+                    <i class="fas fa-chevron-left fa-2x" onclick=${props.onPreviousPageClick}></i>
+                    <div class='page-indicator'>1</div>
+                    <i class="fas fa-chevron-right fa-2x" onclick=${props.onNextPageClick}></i>
+                  </div>
+              </div>
 
               <div>
 
@@ -57,6 +65,7 @@ const Components = (function() {
         <tr>
             <td>id</td>
             <td>summary</td>
+            <td>date</td>
             <td ${props.hiddenColumns['kind'] ? "class='hidden'" : ""}>kind</td>
             <td ${props.hiddenColumns['metadata'] ? "class='hidden'" : ""}>metadata</td>
             ${props.columns.sort().map(name => NewColumn({ name, onDeleteColumnClicker: props.onDeleteColumnClicker })).join('')}
@@ -86,6 +95,7 @@ const Components = (function() {
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
             <td><a href="results?workloadId=${props.workload.id}">${props.workload.id}</a></td>
             <td>${Summary(props.workload)}</td>
+            <td>${moment(props.workload.created_at).fromNow()}</td>
             ${o(() => {
                 if (!props.hiddenColumns['kind']) {
                     return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.workload.kind}</a></td>`
@@ -132,13 +142,20 @@ const Components = (function() {
             <div class='filters'></div>
 
             <div class="flex">
-                <table>
-                    <thead class="brown">
-                        ${ResultsTableHead(props)}
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="flex flex-column">
+                    <table>
+                        <thead class="brown">
+                            ${ResultsTableHead(props)}
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="flex flex-space-between">
+                        <i class="fas fa-chevron-left fa-2x" onclick=${props.onPreviousPageClick}></i>
+                        <div class='page-indicator'>1</div>
+                        <i class="fas fa-chevron-right fa-2x" onclick=${props.onNextPageClick}></i>
+                    </div>
+                </div>
 
                 <div>
 
@@ -176,6 +193,7 @@ const Components = (function() {
         <tr>
             <td>id</td>
             <td>workloadId</td>
+            <td>date</td>
             <td>kind</td>
             <td>status</td>
             <td>duration</td>
@@ -196,6 +214,7 @@ const Components = (function() {
         <tr class="${props.result.status !== 'pass' ? "fail" : "pass"}">
             <td><a href="javascript:;">${props.result.id}</a></td>
             <td><a href="javascript:;" onclick=${props.onWorkloadIdClick}>${props.result.workload_id}</a></td>
+            <td>${moment(props.result.created_at).fromNow()}</td>
             ${o(() => {
                 if (!props.hiddenColumns || !props.hiddenColumns['kind']) {
                     return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.result.kind}</a></td>`

@@ -1,0 +1,13 @@
+{
+  "name": "testocli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "testo": "src/cli.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.12.1",
+    "yargs": "^15.3.1"
+  }
+}

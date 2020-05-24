@@ -1,15 +1,12 @@
 const admin = require("firebase-admin")
 
-const serviceAccount = process.env.FIREBASE_PRIVATE_KEY
+const key64 = process.env.FIREBASE_PRIVATE_KEY
+const serviceAccount = JSON.parse(Buffer.from(key64, 'base64').toString('utf8'))
 
-console.log(require(`${__dirname}\\..\\..\\test-service-account-key.json`));
-
-// console.log(`${__dirname}/../../test-service-account-key.json`);
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://testo-d639c.firebaseio.com"
-// })
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://testo-d639c.appspot.com"
+})
 
 module.exports = {
     admin

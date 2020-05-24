@@ -35,8 +35,6 @@ async function main() {
             }
         })
 
-        // console.log(results);
-
         // creates results
         await axios.post(`${config.api}/create/result`, results)
     }

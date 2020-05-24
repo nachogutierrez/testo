@@ -1,5 +1,9 @@
 const { Pool } = require('pg')
+const format = require('pg-format')
 const { query } = require('../../util')
+
+const crypto = require('crypto')
+const hash = (s, algo='md5') => crypto.createHash(algo).update(s).digest("hex")
 
 const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0, since, until }) => (`
     select workload.id, workload.kind, workload.created_at, workload.pass, workload.fail, workload.skip, workload.error from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
@@ -77,7 +81,8 @@ const PostgresResultService = function({ uri }) {
         const workloads = []
         for (let i = 0; i < opts.length; i++) {
             const w = opts[i]
-            const { kind = 'undefined', metadata = {} } = w
+            let { kind = 'undefined', metadata = {} } = w
+            kind = hash(kind)
             const response = await query(pool, `insert into workload (kind) values ('${kind}') returning *`)
             const workloadId = response.rows[0].id
             const keys = Object.keys(metadata)
@@ -104,31 +109,47 @@ const PostgresResultService = function({ uri }) {
 
         const results = []
 
+        const resultInterts = []
+        const metadataInserts = []
+
+        // Assume all results are part of the same workload
+        const wid = opts[0].workloadId
+        const workload = (await getWorkloads({ id: workloadId }))[0]
+
+        console.time(`createResults - total time`)
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
-            const { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
-            const response = await query(pool, `insert into result (workload_id, kind, status, duration) values ($1, $2, $3, $4) returning *`, [workloadId, kind, status, duration])
-            await query(pool, `update workload set ${status} = ${status} + 1 where id = ${workloadId}`)
-            const resultId = response.rows[0].id
-            const keys = Object.keys(metadata)
-            const result = {
-                workloadId,
-                id: resultId,
-                kind,
-                status,
-                duration
+            let { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
+            if (workloadId !== wid) {
+                throw new Error(`All results should belong to the same workload. Found ${wid} and ${workloadId}`)
             }
-            const m = {}
+            // const workload = (await getWorkloads({ id: workloadId }))[0]
+            kind = hash(`${workload.kind}-${kind}`)
+            resultInterts.push([workloadId, kind, status, duration])
+            // const response = await query(pool, `insert into result (workload_id, kind, status, duration) values ($1, $2, $3, $4) returning *`, [workloadId, kind, status, duration])
+            // await query(pool, `update workload set ${status} = ${status} + 1 where id = ${workloadId}`)
+            // const resultId = response.rows[0].id
+            const keys = Object.keys(metadata)
+            // const result = {
+            //     workloadId,
+            //     id: resultId,
+            //     kind,
+            //     status,
+            //     duration
+            // }
+            // const m = {}
             for (let j = 0; j < keys.length; j++) {
                 const [key, value] = [keys[j], metadata[keys[j]]]
-                const metadataResponse = await query(pool, `insert into result_metadata (result_id, key, value) values ($1, $2, $3) returning *`, [resultId, key, value])
-                const pair = metadataResponse.rows[0]
-                m[pair.key] = pair.value
+                metadataInserts.push([])
+                // const metadataResponse = await query(pool, `insert into result_metadata (result_id, key, value) values ($1, $2, $3) returning *`, [resultId, key, value])
+                // const pair = metadataResponse.rows[0]
+                // m[pair.key] = pair.value
             }
 
-            result.metadata = m
-            results.push(result)
+            // result.metadata = m
+            // results.push(result)
         }
+        console.timeEnd(`createResults - total time`)
 
         return results
     }

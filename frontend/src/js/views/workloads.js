@@ -180,7 +180,7 @@ const Workloads = (function() {
 
     async function onKindClick(e) {
         state.page = 1
-        state.f.kind = e.target.innerHTML
+        state.f.kind = e.target.getAttribute('data-kind')
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }

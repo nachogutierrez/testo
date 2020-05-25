@@ -13,14 +13,12 @@ async function createWorkload(args) {
         throw e
     }
 
-    const response = await axios.post(`${args.api}/create/workload`, [
-        {
-            kind: args.kind,
-            metadata
-        }
-    ])
+    const response = await axios.post(`${args.api}/create/workload`, {
+        kind: args.kind,
+        metadata
+    })
 
-    console.log(response.data[0].id)
+    console.log(response.data.id)
 }
 
 async function publishResults(args) {

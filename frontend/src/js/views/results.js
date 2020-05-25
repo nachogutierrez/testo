@@ -25,7 +25,8 @@ const Results = (function() {
         page: 1,
         results: [],
         columns: [],
-        filters: { metadata: {} }
+        filters: { metadata: {} },
+        showFiles: false
     })
 
     function readStateFromUrl() {
@@ -112,11 +113,14 @@ const Results = (function() {
     function syncState(opts = {}, all=false) {
         writeStateToUrl()
 
-        const { detail=false||all, filters=false||all, head=false||all, body=false||all } = opts
+        const { detail=false||all, filters=false||all, head=false||all, body=false||all, files=false||all } = opts
 
         if (detail) {
             if(state.filters.workloadId) {
-                bindings.workloadDetail.innerHTML = Components.WorkloadDetail({ workload: state.workloadDetail })
+                bindings.workloadDetail.innerHTML = Components.WorkloadDetail({
+                    workload: state.workloadDetail,
+                    onFilesClick: 'Results.onFilesClick(event)'
+                })
             } else {
                 bindings.workloadDetail.innerHTML = ''
             }
@@ -164,6 +168,21 @@ const Results = (function() {
               }
             })
         }
+
+        if (files) {
+            if (state.showFiles) {
+                const hoc = Components.Modal({
+                    onCloseModal: 'Results.onCloseFilesModal(event)',
+                    style: 'min-width: 512px;'
+                })
+                const modal = hoc(Components.Files)
+                bindings.resultsTable.querySelector('.files-container').innerHTML = modal({
+                    files: state.files.map(f => ({ ...f, name: f.name.substring(59) }))
+                })
+            } else {
+                bindings.resultsTable.querySelector('.files-container').innerHTML = ''
+            }
+        }
     }
 
     function onDeleteColumn(name) {
@@ -201,7 +220,7 @@ const Results = (function() {
 
     async function onKindClick(e) {
         state.page = 1
-        state.filters.kind = e.target.innerHTML
+        state.filters.kind = e.target.getAttribute('data-kind')
         state.filters.workloadId = undefined
         await fetchResults()
         syncState({ filters: true, body: true })
@@ -216,18 +235,18 @@ const Results = (function() {
 
     async function onWorkloadIdClick(e) {
         state.page = 1
-        state.filters.workloadId = e.target.innerHTML
+        state.filters.workloadId = e.target.getAttribute('data-workload-id')
         state.filters.kind = undefined
         await fetchResults()
         await fetchWorkloadDetail()
-        syncState({ filters: true, body: true })
+        syncState({ detail: true, filters: true, body: true })
     }
 
     async function onWorkloadIdFilterClick(e) {
         state.page = 1
         state.filters.workloadId = undefined
         await fetchResults()
-        syncState({ filters: true, body: true })
+        syncState({ detail: true, filters: true, body: true })
     }
 
     async function onNextPageClick(e) {
@@ -249,6 +268,17 @@ const Results = (function() {
         }
     }
 
+    async function onFilesClick(e) {
+        state.files = await testo.getFiles({ workloadId: state.filters.workloadId })
+        state.showFiles = true
+        syncState({ files: true })
+    }
+
+    async function onCloseFilesModal(e) {
+        state.showFiles = false
+        syncState({ files: true })
+    }
+
     return {
         start,
         onDeleteColumn,
@@ -260,7 +290,9 @@ const Results = (function() {
         onWorkloadIdClick,
         onWorkloadIdFilterClick,
         onNextPageClick,
-        onPreviousPageClick
+        onPreviousPageClick,
+        onFilesClick,
+        onCloseFilesModal
     }
 })()
 

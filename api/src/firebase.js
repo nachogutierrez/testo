@@ -9,5 +9,5 @@ admin.initializeApp({
 })
 
 module.exports = {
-    admin
+    firebase: admin
 }

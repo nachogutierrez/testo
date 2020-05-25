@@ -1,12 +1,13 @@
 const { Pool } = require('pg')
 const format = require('pg-format')
+const uuid = require('uuid').v4
 const { query } = require('../../util')
 
 const crypto = require('crypto')
 const hash = (s, algo='md5') => crypto.createHash(algo).update(s).digest("hex")
 
 const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0, since, until }) => (`
-    select workload.id, workload.kind, workload.created_at, workload.pass, workload.fail, workload.skip, workload.error from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
+    select workload.id, workload.kind, to_char(workload.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, workload.pass, workload.fail, workload.skip, workload.error from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
     ${renderClause('where', joinConditions([where('workload.kind', '=', kind), where('workload.created_at', '>', since), where('workload.created_at', '<', until)]))}
     group by workload.id
     ${renderClause('having', Object.keys(metadata).map(k => havingKeyValue(k, metadata[k], 'workload_metadata')).join(' and '))}
@@ -16,7 +17,7 @@ const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0
 `.trim())
 
 const buildGetResultsStatement = ({ workloadId, kind, metadata = {}, limit = 100, skip = 0, since, until, status }) => (`
-    select result.id, result.workload_id, result.kind, result.status, result.duration, result.created_at
+    select result.id, result.workload_id, result.kind, result.status, result.duration, to_char(result.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at
     from result inner join result_metadata on result.id = result_metadata.result_id
     ${renderClause('where', joinConditions([where('result.kind', '=', kind), where('result.created_at', '>', since), where('result.created_at', '<', until), where('result.status', '=', status), where('result.workload_id', '=', workloadId)]))}
     group by result.id
@@ -42,7 +43,7 @@ const PostgresResultService = function({ uri }) {
 
     // TODO: investigate cache options
     async function getMetadata(id, table = 'workload') {
-        const metadataList = (await query(pool, `select * from ${table}_metadata where ${table}_id = ${id}`)).rows
+        const metadataList = (await query(pool, `select * from ${table}_metadata where ${table}_id = '${id}'`)).rows
         const metadata = {}
         for (let i = 0; i < metadataList.length; i++) {
             const { key, value } = metadataList[i]
@@ -76,80 +77,66 @@ const PostgresResultService = function({ uri }) {
         return await Promise.all((await query(pool, buildGetResultsStatement({ workloadId, kind, metadata, limit, skip, since, until, status }))).rows.map(enhanceWithMetadata('result')))
     }
 
-    async function createWorkloads(opts = []) {
+    // can only create one workload at a time, no batch process for workloads
+    async function createWorkloads(opts = {}) {
 
-        const workloads = []
-        for (let i = 0; i < opts.length; i++) {
-            const w = opts[i]
-            let { kind = 'undefined', metadata = {} } = w
-            kind = hash(kind)
-            const response = await query(pool, `insert into workload (kind) values ('${kind}') returning *`)
-            const workloadId = response.rows[0].id
-            const keys = Object.keys(metadata)
-            const workload = {
-                id: workloadId,
-                kind: kind
-            }
-            const m = {}
-            for (let j = 0; j < keys.length; j++) {
-                const [key, value] = [keys[j], metadata[keys[j]]]
-                const metadataResponse = await query(pool, `insert into workload_metadata (workload_id, key, value) values (${workloadId}, '${key}', '${value}') returning *`)
-                const pair = metadataResponse.rows[0]
-                m[pair.key] = pair.value
-            }
+        const workloadId = uuid()
+        const metadataInserts = []
 
-            workload.metadata = m
-            workloads.push(workload)
+        let { kind = 'undefined', metadata = {} } = opts
+        kind = hash(kind)
+        await query(pool, format('insert into workload (id, kind) values %L', [ [workloadId, kind] ]))
+
+        const keys = Object.keys(metadata)
+        for (let j = 0; j < keys.length; j++) {
+            const [key, value] = [keys[j], metadata[keys[j]]]
+            metadataInserts.push([workloadId, key, value])
         }
 
-        return workloads
+        const insertMetadataStatement = format('insert into workload_metadata (workload_id, key, value) values %L', metadataInserts)
+        await query(pool, insertMetadataStatement)
+
+        return {
+            id: workloadId,
+            kind,
+            metadata
+        }
     }
 
     async function createResults(opts = []) {
 
+
         const results = []
 
-        const resultInterts = []
+        const resultInserts = []
         const metadataInserts = []
+
 
         // Assume all results are part of the same workload
         const wid = opts[0].workloadId
-        const workload = (await getWorkloads({ id: workloadId }))[0]
+        const workloadKind = (await query(pool, `select kind from workload where id='${wid}'`)).rows[0].kind
 
-        console.time(`createResults - total time`)
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
+            const id = uuid()
             let { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
             if (workloadId !== wid) {
                 throw new Error(`All results should belong to the same workload. Found ${wid} and ${workloadId}`)
             }
-            // const workload = (await getWorkloads({ id: workloadId }))[0]
-            kind = hash(`${workload.kind}-${kind}`)
-            resultInterts.push([workloadId, kind, status, duration])
-            // const response = await query(pool, `insert into result (workload_id, kind, status, duration) values ($1, $2, $3, $4) returning *`, [workloadId, kind, status, duration])
-            // await query(pool, `update workload set ${status} = ${status} + 1 where id = ${workloadId}`)
-            // const resultId = response.rows[0].id
+            kind = hash(`${workloadKind}-${kind}`)
+            resultInserts.push([id, workloadId, kind, status, duration])
             const keys = Object.keys(metadata)
-            // const result = {
-            //     workloadId,
-            //     id: resultId,
-            //     kind,
-            //     status,
-            //     duration
-            // }
-            // const m = {}
             for (let j = 0; j < keys.length; j++) {
                 const [key, value] = [keys[j], metadata[keys[j]]]
-                metadataInserts.push([])
-                // const metadataResponse = await query(pool, `insert into result_metadata (result_id, key, value) values ($1, $2, $3) returning *`, [resultId, key, value])
-                // const pair = metadataResponse.rows[0]
-                // m[pair.key] = pair.value
+                metadataInserts.push([id, key, value])
             }
-
-            // result.metadata = m
-            // results.push(result)
         }
-        console.timeEnd(`createResults - total time`)
+
+        const insertResultsStatement = format('insert into result (id, workload_id, kind, status, duration) values %L', resultInserts)
+        await query(pool, insertResultsStatement)
+
+        const insertMetadataStatement = format('insert into result_metadata (result_id, key, value) values %L', metadataInserts)
+        await query(pool, insertMetadataStatement)
 
         return results
     }

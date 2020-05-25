@@ -3,6 +3,16 @@ if (process.env.PROD === '1') {
     process.removeAllListeners('warning') // necessary to suppress warnings and maintain a clean stdout
 }
 
+// Load configuration in env.json
+try {
+    const envConf = require('../env.json')
+    for (const key of Object.keys(envConf)) {
+        process.env[key] = envConf[key]
+    }
+} catch(e) {
+    console.log('env.json not found')
+}
+
 const { readConfig } = require('./config')
 
 const { uploadWorkloadFiles } = require('./commands/uploadFiles')

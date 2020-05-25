@@ -7,6 +7,8 @@ const Components = (function() {
 
     const o = f => f() || ''
 
+    const truncate = (s, n) => s.substring(0, n)
+
     const WorkloadsTable = props => (`
         <div>
             <div class='filters'></div>
@@ -93,12 +95,12 @@ const Components = (function() {
 
     const WorkloadsTableBodyRow = props => (`
         <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
-            <td><a href="results?workloadId=${props.workload.id}">${props.workload.id}</a></td>
+            <td><a href="results?workloadId=${props.workload.id}">${truncate(props.workload.id, 8)}</a></td>
             <td>${Summary(props.workload)}</td>
-            <td>${moment(props.workload.created_at).fromNow()}</td>
+            <td>${moment.utc(props.workload.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()}</td>
             ${o(() => {
                 if (!props.hiddenColumns['kind']) {
-                    return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.workload.kind}</a></td>`
+                    return `<td><a href="javascript:;" onclick=${props.onKindClick} data-kind='${props.workload.kind}'>${truncate(props.workload.kind, 8)}</a></td>`
                 }
             })}
             ${o(() => {
@@ -165,6 +167,8 @@ const Components = (function() {
 
                 </div>
             </div>
+
+            <div class='files-container'></div>
         </div>
     `)
 
@@ -212,16 +216,16 @@ const Components = (function() {
 
     const ResultsTableBodyRow = props => (`
         <tr class="${props.result.status !== 'pass' ? "fail" : "pass"}">
-            <td><a href="javascript:;">${props.result.id}</a></td>
-            <td><a href="javascript:;" onclick=${props.onWorkloadIdClick}>${props.result.workload_id}</a></td>
-            <td>${moment(props.result.created_at).fromNow()}</td>
+            <td><a href="javascript:;" data-id='${props.result.id}'>${truncate(props.result.id, 8)}</a></td>
+            <td><a href="javascript:;" onclick=${props.onWorkloadIdClick} data-workload-id='${props.result.workload_id}'>${truncate(props.result.workload_id, 8)}</a></td>
+            <td>${moment.utc(props.result.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()}</td>
             ${o(() => {
                 if (!props.hiddenColumns || !props.hiddenColumns['kind']) {
-                    return `<td><a href="javascript:;" onclick=${props.onKindClick}>${props.result.kind}</a></td>`
+                    return `<td><a href="javascript:;" onclick=${props.onKindClick} data-kind='${props.result.kind}'>${truncate(props.result.kind, 8)}</a></td>`
                 }
             })}
             <td>${props.result.status}</td>
-            <td>${props.result.duration}</td>
+            <td>${props.result.duration}ms</td>
             <td>${MetadataList({ metadata: props.result.metadata, onClick: props.onMetadataClick })}</td>
             ${props.columns.map(key => Td(props.result.metadata[key] || '')).join('')}
         </tr>
@@ -246,7 +250,29 @@ const Components = (function() {
                 <p>Metadata:</p>
                 ${MetadataList({ metadata: props.workload.metadata })}
             </div>
+            <a href="javascript:;" onclick=${props.onFilesClick}>files</a>
         </div>
+    `)
+
+    // HoC for Modals
+    const Modal = (opts = {}) => C => props => (`
+        <div class='modal' onclick=${opts.onCloseModal}>
+            <div class='flex flex-justify-center flex-align-center width100 height100'>
+                <div class='white' style='${opts.style||''}' onclick='(function(e){ e.stopPropagation() })(event)'>
+                    ${C(props)}
+                </div>
+            </div>
+        </div>
+    `)
+
+    const Files = props => (`
+        <div class='flex flex-column' style='margin: 16px'>
+            ${props.files.map(FileEntry).join('')}
+        </div>
+    `)
+
+    const FileEntry = props => (`
+        <a href="${props.url}" target="_blank" style='display: inline-block;'>${props.name}</a>
     `)
 
     return {
@@ -258,6 +284,8 @@ const Components = (function() {
         ResultsTableBody,
         WorkloadDetail,
         WorkloadFilters,
-        ResultFilters
+        ResultFilters,
+        Modal,
+        Files
     }
 })()

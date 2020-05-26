@@ -16,7 +16,6 @@ const Server = function({ resultService, metricService, firebase }) {
         try {
             await measureMax('query-workload-time', async () => {
                 const workloads = await resultService.getWorkloads(req.body)
-                console.log(workloads)
                 res.json(workloads)
             })
         } catch(e) {

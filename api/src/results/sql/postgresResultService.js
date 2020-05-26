@@ -116,6 +116,11 @@ const PostgresResultService = function({ uri }) {
         const wid = opts[0].workloadId
         const workloadKind = (await query(pool, `select kind from workload where id='${wid}'`)).rows[0].kind
 
+        const statusCounter = {
+            pass: 0,
+            fail: 0,
+            skip: 0
+        }
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
             let { id, workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
@@ -132,6 +137,7 @@ const PostgresResultService = function({ uri }) {
                 const [key, value] = [keys[j], metadata[keys[j]]]
                 metadataInserts.push([id, key, value])
             }
+            statusCounter[status]++
         }
 
         const insertResultsStatement = format('insert into result (id, workload_id, kind, status, duration) values %L', resultInserts)
@@ -139,6 +145,10 @@ const PostgresResultService = function({ uri }) {
 
         const insertMetadataStatement = format('insert into result_metadata (result_id, key, value) values %L', metadataInserts)
         await query(pool, insertMetadataStatement)
+
+        for (const status of Object.keys(statusCounter)) {
+            await query(pool, `update workload set ${status} = ${status} + 1 where id = '${wid}'`)
+        }
 
         return results
     }

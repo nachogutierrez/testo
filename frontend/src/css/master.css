@@ -21,6 +21,8 @@ table tr td {
 .height16 { height: 16px; }
 .height100 { height: 100%; }
 .width100 { width: 100%; }
+.scrollable { overflow: scroll; position: relative; }
+
 
 /* FLEX */
 .flex { display: flex; }
@@ -35,6 +37,18 @@ table tr td {
 .white { background-color: white; }
 .fail { background-color: #FFB5A5; }
 .pass { background-color: #ACFFA5; }
+
+.button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 4px black;
+}
+
+.stacktrace {
+    background: #d6d6c2;
+    color: #33331a;
+    padding: 4px;
+    border-radius: 4px;
+}
 
 .modal {
   background: rgba(0,0,0,0.75);

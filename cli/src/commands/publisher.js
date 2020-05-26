@@ -1,8 +1,12 @@
 const crypto = require('crypto')
 const axios = require('axios')
 const fs = require('fs').promises
-
+const uuid = require('uuid').v4
+const { admin } = require('../firebase')
+const { createTempFile } = require('../tmp')
 const parsers = require('../parser')
+
+const bucket = admin.storage().bucket()
 
 async function createWorkload(args) {
     let metadata
@@ -28,16 +32,27 @@ async function publishResults(args) {
     const parser = parsers[args.type]
     let parsed = await parseDirectory(parser, args.files)
 
-    // TODO: do something with stacktraces
-    for (p of parsed) {
-        p.stacktrace = undefined
+    for (const p of parsed) {
         p.workloadId = args.id
+        p.id = uuid()
+        if (p.stacktraces.length > 0) {
+            console.time(`${p.id} - upload stacktraces`)
+            for (const stacktrace of p.stacktraces) {
+                const [path, cb] = await createTempFile()
+                await fs.writeFile(path, stacktrace.value)
+                await bucket.upload(path, {
+                    destination: `testo/results/${p.id}/stacktraces/${stacktrace.name}`,
+                    gzip: true
+                })
+                cb()
+            }
+            console.timeEnd(`${p.id} - upload stacktraces`)
+        }
     }
 
-    const start = new Date().getTime()
+    console.time('publishResults')
     await axios.post(`${args.api}/create/result`, parsed)
-    const finish = new Date().getTime()
-    console.log(`successfully published results in ${finish - start}ms`)
+    console.timeEnd('publishResults')
 }
 
 async function parseDirectory(parser, dir) {

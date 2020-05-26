@@ -118,10 +118,12 @@ const PostgresResultService = function({ uri }) {
 
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
-            const id = uuid()
-            let { workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
+            let { id, workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
             if (workloadId !== wid) {
                 throw new Error(`All results should belong to the same workload. Found ${wid} and ${workloadId}`)
+            }
+            if (!id) {
+                id = uuid()
             }
             kind = hash(`${workloadKind}-${kind}`)
             resultInserts.push([id, workloadId, kind, status, duration])

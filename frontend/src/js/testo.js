@@ -1,7 +1,8 @@
 const Testo = function({ api }) {
 
     const cache = {
-        getFiles: {}
+        getFiles: {},
+        getStacktraces: {}
     }
 
     async function queryWorkloads(payload = {}) {
@@ -46,9 +47,30 @@ const Testo = function({ api }) {
         return files
     }
 
+    async function getStacktraces(payload = {}) {
+        if (!payload.resultId) {
+            throw new Error('Testo.getStacktraces() requires a result id')
+        }
+        if (cache.getStacktraces[payload.resultId]) {
+            return cache.getStacktraces[payload.resultId]
+        }
+
+        const response = await fetch(`${api}/stacktraces/${payload.resultId}`)
+        const stacktraces = await response.json()
+        for (const stacktrace of stacktraces) {
+            stacktrace.name = stacktrace.name.split('/').pop()
+            const stResponse = await fetch(stacktrace.url)
+            const contents = await stResponse.text()
+            stacktrace.value = contents
+        }
+        cache.getStacktraces[payload.resultId] = stacktraces
+        return stacktraces
+    }
+
     return {
         queryWorkloads,
         queryResults,
-        getFiles
+        getFiles,
+        getStacktraces
     }
 }

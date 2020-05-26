@@ -26,7 +26,8 @@ const Results = (function() {
         results: [],
         columns: [],
         filters: { metadata: {} },
-        showFiles: false
+        showFiles: false,
+        showStacktraces: false
     })
 
     function readStateFromUrl() {
@@ -113,7 +114,7 @@ const Results = (function() {
     function syncState(opts = {}, all=false) {
         writeStateToUrl()
 
-        const { detail=false||all, filters=false||all, head=false||all, body=false||all, files=false||all } = opts
+        const { detail=false||all, filters=false||all, head=false||all, body=false||all, modals=false||all } = opts
 
         if (detail) {
             if(state.filters.workloadId) {
@@ -147,7 +148,8 @@ const Results = (function() {
                 results: state.results,
                 onMetadataClick: 'Results.onMetadataClick(event)',
                 onKindClick: 'Results.onKindClick(event)',
-                onWorkloadIdClick: 'Results.onWorkloadIdClick(event)'
+                onWorkloadIdClick: 'Results.onWorkloadIdClick(event)',
+                onIdClick: 'Results.onIdClick(event)'
             })
 
             bindings.resultsTable.querySelector('.page-indicator').innerHTML = state.page
@@ -169,18 +171,29 @@ const Results = (function() {
             })
         }
 
-        if (files) {
+        if (modals) {
+            const { Modal, Files, TabView, Stacktrace, Scrollable } = Components
+            const modalHoc = Modal({
+                onCloseModal: 'Results.onCloseModal(event)',
+                style: 'width: 768px; padding: 32px;'
+            })
+
+            const modalsContainer = bindings.resultsTable.querySelector('.modal-container')
             if (state.showFiles) {
-                const hoc = Components.Modal({
-                    onCloseModal: 'Results.onCloseFilesModal(event)',
-                    style: 'min-width: 512px;'
-                })
-                const modal = hoc(Components.Files)
-                bindings.resultsTable.querySelector('.files-container').innerHTML = modal({
+
+                const modal = modalHoc(Files)
+                modalsContainer.innerHTML = modal({
                     files: state.files.map(f => ({ ...f, name: f.name.substring(59) }))
                 })
+            } else if (state.showStacktraces) {
+                const modal = modalHoc(TabView)
+                modalsContainer.innerHTML = modal(state.stacktraces.map(st => ({
+                    name: st.name,
+                    value: Stacktrace(st.value)
+                })))
+                TabView.init(modalsContainer)
             } else {
-                bindings.resultsTable.querySelector('.files-container').innerHTML = ''
+                modalsContainer.innerHTML = ''
             }
         }
     }
@@ -249,6 +262,13 @@ const Results = (function() {
         syncState({ detail: true, filters: true, body: true })
     }
 
+    async function onIdClick(e) {
+        const id = e.target.getAttribute('data-id')
+        state.showStacktraces =  true
+        state.stacktraces = await testo.getStacktraces({ resultId: id })
+        syncState({ modals: true })
+    }
+
     async function onNextPageClick(e) {
         state.page++
         await fetchResults()
@@ -271,12 +291,13 @@ const Results = (function() {
     async function onFilesClick(e) {
         state.files = await testo.getFiles({ workloadId: state.filters.workloadId })
         state.showFiles = true
-        syncState({ files: true })
+        syncState({ modals: true })
     }
 
-    async function onCloseFilesModal(e) {
+    async function onCloseModal(e) {
         state.showFiles = false
-        syncState({ files: true })
+        state.showStacktraces = false
+        syncState({ modals: true })
     }
 
     return {
@@ -292,7 +313,8 @@ const Results = (function() {
         onNextPageClick,
         onPreviousPageClick,
         onFilesClick,
-        onCloseFilesModal
+        onCloseModal,
+        onIdClick
     }
 })()
 

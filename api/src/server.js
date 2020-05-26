@@ -85,6 +85,38 @@ const Server = function({ resultService, metricService, firebase }) {
         res.json(resolvedPromises)
     })
 
+    app.get('/stacktraces/:id', async (req, res) => {
+        const u = uuid()
+        console.time(`${u} - /stacktraces/:id`)
+        const bucket = firebase.storage().bucket()
+        const resultId = req.params.id
+        const data = await bucket.getFiles({
+            directory: `testo/results/${resultId}/stacktraces`
+        })
+        const firebaseFiles = data[0]
+
+        const promises = []
+
+        const files = firebaseFiles.map(ff => ({ name: ff.name }))
+        for (const file of files) {
+            promises.push(async () => {
+                const url = await bucket.file(file.name).getSignedUrl({
+                    action: 'read',
+                    expires: '12-12-2020'
+                })
+                return {
+                    name: file.name,
+                    url: url[0]
+                }
+            })
+        }
+
+        const resolvedPromises = await Promise.all(promises.map(f => f()))
+
+        console.timeEnd(`${u} - /stacktraces/:id`)
+        res.json(resolvedPromises)
+    })
+
     return app
 }
 

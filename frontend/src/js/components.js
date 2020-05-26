@@ -168,7 +168,7 @@ const Components = (function() {
                 </div>
             </div>
 
-            <div class='files-container'></div>
+            <div class='modal-container'></div>
         </div>
     `)
 
@@ -211,12 +211,19 @@ const Components = (function() {
         columns: props.columns,
         onMetadataClick: props.onMetadataClick,
         onKindClick: props.onKindClick,
-        onWorkloadIdClick: props.onWorkloadIdClick
+        onWorkloadIdClick: props.onWorkloadIdClick,
+        onIdClick: props.onIdClick
     })).join('')
 
     const ResultsTableBodyRow = props => (`
         <tr class="${props.result.status !== 'pass' ? "fail" : "pass"}">
-            <td><a href="javascript:;" data-id='${props.result.id}'>${truncate(props.result.id, 8)}</a></td>
+            ${o(() => {
+                if (props.result.status !== 'pass') {
+                    return `<td><a href="javascript:;" data-id='${props.result.id}' onclick=${props.onIdClick}>${truncate(props.result.id, 8)}</a></td>`
+                } else {
+                    return `<td>${truncate(props.result.id, 8)}</td>`
+                }
+            })}
             <td><a href="javascript:;" onclick=${props.onWorkloadIdClick} data-workload-id='${props.result.workload_id}'>${truncate(props.result.workload_id, 8)}</a></td>
             <td>${moment.utc(props.result.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()}</td>
             ${o(() => {
@@ -265,6 +272,60 @@ const Components = (function() {
         </div>
     `)
 
+    const TabView = (tabs = []) => (`
+        <div class='flex flex-column'>
+            <div class='tabs flex'>
+                ${tabs.map(Tab).join('')}
+            </div>
+
+            <div class='tab-contents-container'>
+                ${tabs.map(TabContent).join('')}
+            </div>
+        </div>
+    `)
+
+    TabView.init = (el, opts = {}) => {
+        const tabs = el.querySelectorAll('.tab')
+        const contents = el.querySelectorAll('.tab-contents')
+        const hideAll = () => {
+            tabs.forEach(tabEl => tabEl.classList.remove('active'))
+            contents.forEach(tabEl => tabEl.classList.add('hidden'))
+        }
+        const select = target => {
+            hideAll()
+            target.classList.add('active')
+            contents.forEach(tabEl => {
+                if (target.innerHTML === tabEl.getAttribute('data-name')) {
+                    tabEl.classList.remove('hidden')
+                }
+            })
+        }
+        tabs.forEach(tabEl => {
+            tabEl.addEventListener('click', e => select(e.target))
+        })
+        select(tabs[0])
+    }
+
+    const Tab = props => (`
+        <div class='tab button' style='border: solid 1px black; padding: 8px;'>${props.name}</div>
+    `)
+
+    const TabContent = props => (`
+        <div class='tab-contents' data-name='${props.name}'>
+            <pre class='stacktrace scrollable' style='max-height: 512px;'>${props.value}</pre>
+        </div>
+    `)
+
+    const Scrollable = (C, opts = {}) => props => (`
+        <div style='overflow: scroll; position: relative; max-height: ${opts.maxHeight || '512px'};'>
+            ${C(props)}
+        </div>
+    `)
+
+    const Stacktrace = st => (`
+        <pre class='stacktrace'>${st}</pre>
+    `)
+
     const Files = props => (`
         <div class='flex flex-column' style='margin: 16px'>
             ${props.files.map(FileEntry).join('')}
@@ -286,6 +347,9 @@ const Components = (function() {
         WorkloadFilters,
         ResultFilters,
         Modal,
-        Files
+        Files,
+        TabView,
+        Scrollable,
+        Stacktrace
     }
 })()

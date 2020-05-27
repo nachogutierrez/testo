@@ -27,6 +27,48 @@ const buildGetResultsStatement = ({ workloadId, kind, metadata = {}, limit = 100
     offset ${skip};
 `.trim())
 
+// receives workload kind
+const buildGetWorkloadKeysStatement = ({ kind, limit = 8, skip = 0 }) => (`
+    select distinct(workload_metadata.key) from workload
+    inner join workload_metadata on workload.id = workload_metadata.workload_id
+    ${renderClause('where', joinConditions([where('kind', '=', kind)]))}
+    order by key
+    limit ${limit}
+    offset ${skip}
+`.trim())
+
+// receives workload kind
+const buildGetResultKeysStatement = ({ kind, limit = 8, skip = 0 }) => (`
+    select distinct(result_metadata.key) from result
+    inner join result_metadata on result.id = result_metadata.result_id
+    inner join workload on workload.id = result.workload_id
+    ${renderClause('where', joinConditions([where('workload.kind', '=', kind)]))}
+    order by key
+    limit ${limit}
+    offset ${skip}
+`.trim())
+
+// receives workload kind
+const buildGetWorkloadValuesStatement = ({ kind, key, limit = 8, skip = 0 }) => (`
+    select distinct(workload_metadata.value) from workload
+    inner join workload_metadata on workload.id = workload_metadata.workload_id
+    ${renderClause('where', joinConditions([where('kind', '=', kind), where('key', '=', key)]))}
+    order by value
+    limit ${limit}
+    offset ${skip}
+`.trim())
+
+// receives workload kind
+const buildGetResultValuesStatement = ({ kind, key, limit = 8, skip = 0 }) => (`
+    select distinct(result_metadata.value) from result
+    inner join result_metadata on result.id = result_metadata.result_id
+    inner join workload on workload.id = result.workload_id
+    ${renderClause('where', joinConditions([where('workload.kind', '=', kind), where('key', '=', key)]))}
+    order by value
+    limit ${limit}
+    offset ${skip}
+`.trim())
+
 const renderClause = (clause, conditions) => (conditions ? `${clause} ${conditions}` : '')
 const where = (key, operator, value) => (value ? `${key} ${operator} '${value}'` : '')
 const joinConditions = (conditions = []) => conditions.filter(c => c).join(' and ')
@@ -105,7 +147,6 @@ const PostgresResultService = function({ uri }) {
 
     async function createResults(opts = []) {
 
-
         const results = []
 
         const resultInserts = []
@@ -147,17 +188,51 @@ const PostgresResultService = function({ uri }) {
         await query(pool, insertMetadataStatement)
 
         for (const status of Object.keys(statusCounter)) {
-            await query(pool, `update workload set ${status} = ${status} + 1 where id = '${wid}'`)
+            if (statusCounter[status] > 0) {
+                await query(pool, `update workload set ${status} = ${status} + ${statusCounter[status]} where id = '${wid}'`)
+            }
         }
 
         return results
+    }
+
+    async function metadataKeys(opts = {}) {
+        const { type='workload', kind, limit, skip } = opts
+
+        if (!['workload', 'result'].includes(type)) {
+            throw new Error(`type has to be in ['workload', 'result']. got: ${type}`)
+        }
+        let statementGenerator
+        if (type === 'workload') statementGenerator = buildGetWorkloadKeysStatement
+        else statementGenerator = buildGetResultKeysStatement
+
+        const statement = statementGenerator({ kind, limit, skip })
+        const response = await query(pool, statement)
+        return response.rows.map(r => r.key)
+    }
+
+    async function metadataValues(opts = {}) {
+        const { type='workload', kind, key, limit, skip } = opts
+
+        if (!['workload', 'result'].includes(type)) {
+            throw new Error(`type has to be in ['workload', 'result']. got: ${type}`)
+        }
+        let statementGenerator
+        if (type === 'workload') statementGenerator = buildGetWorkloadValuesStatement
+        else statementGenerator = buildGetResultValuesStatement
+
+        const statement = statementGenerator({ kind, key, limit, skip })
+        const response = await query(pool, statement)
+        return response.rows.map(r => r.value)
     }
 
     return {
         getWorkloads,
         getResults,
         createWorkloads,
-        createResults
+        createResults,
+        metadataKeys,
+        metadataValues
     }
 }
 

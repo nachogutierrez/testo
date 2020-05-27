@@ -52,6 +52,20 @@ const Server = function({ resultService, metricService, firebase }) {
         res.json(await resultService.createResults(req.body))
     })
 
+    /*
+    * Query metadata values based on filters
+    */
+    app.post('/metadata/keys', async (req, res) => {
+        res.json(await resultService.metadataKeys(req.body))
+    })
+
+    /*
+    * Query metadata values based on filters
+    */
+    app.post('/metadata/values', async (req, res) => {
+        res.json(await resultService.metadataValues(req.body))
+    })
+
     app.get('/files/:id', async (req, res) => {
         const u = uuid()
         console.time(`${u} - /files/:id`)

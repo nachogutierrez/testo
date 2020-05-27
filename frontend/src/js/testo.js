@@ -6,7 +6,7 @@ const Testo = function({ api }) {
     }
 
     async function queryWorkloads(payload = {}) {
-        if (!payload.limit) payload.limit = 8
+        if (!payload.limit) payload.limit = 20
         if (!payload.page) payload.page = 1
         payload.skip = (payload.page - 1) * payload.limit
 
@@ -20,7 +20,7 @@ const Testo = function({ api }) {
     }
 
     async function queryResults(payload = {}) {
-        if (!payload.limit) payload.limit = 8
+        if (!payload.limit) payload.limit = 20
         if (!payload.page) payload.page = 1
         payload.skip = (payload.page - 1) * payload.limit
 
@@ -67,10 +67,37 @@ const Testo = function({ api }) {
         return stacktraces
     }
 
+    async function getMetadataKeys(payload = {}) {
+        const response = await fetch(`${api}/metadata/keys`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+
+        const keys = await response.json()
+        return keys
+    }
+
+    async function getMetadataValues(payload = {}) {
+        if (!payload.key) {
+            throw new Error(`getColumnOptions() requires a key`)
+        }
+        const response = await fetch(`${api}/metadata/values`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+
+        const values = await response.json()
+        return values
+    }
+
     return {
         queryWorkloads,
         queryResults,
         getFiles,
-        getStacktraces
+        getStacktraces,
+        getMetadataKeys,
+        getMetadataValues
     }
 }

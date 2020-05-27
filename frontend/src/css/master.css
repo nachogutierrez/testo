@@ -1,3 +1,19 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Arvo', serif;
+}
+
 table, th, td {
   border: 1px solid black;
 }
@@ -31,12 +47,20 @@ table tr td {
 .flex-align-center { align-items: center; }
 .flex-justify-center { justify-content: center; }
 .flex-space-between { justify-content: space-between;}
+.flex-expand { flex: 1; }
 
 /* COLORS */
 .brown { background-color: #ff9966; }
 .white { background-color: white; }
 .fail { background-color: #FFB5A5; }
 .pass { background-color: #ACFFA5; }
+.skip { background-color: #e6e600; }
+.primary { background-color: #ff9966; }
+.id-color { background-color: red; }
+.kind-color { background-color: green; }
+.key-color { background-color: violet; }
+.filter-color { background-color: gray; }
+.tag-color { background-color: lightblue; }
 
 .button:hover {
     cursor: pointer;
@@ -63,7 +87,6 @@ table tr td {
 .tag {
   border-radius: 16px;
   padding: 5px;
-  background: #6699ff;
   color: white;
   margin: 2px;
   font-size: 14px;

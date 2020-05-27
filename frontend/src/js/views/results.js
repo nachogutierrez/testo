@@ -13,7 +13,8 @@ const Results = (function() {
         config = await (await fetch('config.json')).json()
         testo = Testo({ api: config.testoApi })
 
-        initState(state, bindings)
+        firstRender()
+        initComponents()
         await fetchResults()
         if (state.filters.workloadId) {
             await fetchWorkloadDetail()
@@ -76,8 +77,7 @@ const Results = (function() {
     }
 
     const bind = () => ({
-        workloadDetail: document.getElementById('workload-detail'),
-        resultsTable: document.getElementById('results-table')
+        app: document.getElementById('app')
     })
 
     async function fetchResults() {
@@ -100,35 +100,54 @@ const Results = (function() {
         state.workloadDetail = workloads[0]
     }
 
-    function initState() {
-        bindings.resultsTable.innerHTML = Components.ResultsTable({
-            results: state.results,
-            columns: state.columns,
-            onDeleteColumnClicker: name => `Results.onDeleteColumn('${name}')`,
-            onNewColumnPress: "Results.onNewColumnPress(event)",
-            onPreviousPageClick: "Results.onPreviousPageClick(event)",
-            onNextPageClick: "Results.onNextPageClick(event)"
+    function firstRender() {
+        const { TableView, ResultsTableHead } = Components
+        bindings.app.innerHTML = TableView({
+            title: 'Results',
+            head: ResultsTableHead()
+        })
+    }
+
+    function initComponents() {
+        const { Navbar, Searchbar, ExploreKey, ApplyFilter, ApplyTag } = Components
+        Searchbar.init(bindings.app, {
+            onInput: (input, setResults) => {
+                setResults([
+                    ExploreKey(input.value),
+                    ApplyFilter({ key: 'branch', value: input.value }),
+                    ApplyTag(input.value)
+                ])
+            },
+            onClick: (el, i) => {
+                console.log(i)
+            }
+        })
+
+        const { TableFooter } = Components
+        TableFooter.init(bindings.app, {
+            onPreviousPageClick,
+            onNextPageClick
         })
     }
 
     function syncState(opts = {}, all=false) {
         writeStateToUrl()
 
-        const { detail=false||all, filters=false||all, head=false||all, body=false||all, modals=false||all } = opts
+        const { detail=false||all, filters=false||all, body=false||all, modals=false||all } = opts
 
         if (detail) {
             if(state.filters.workloadId) {
-                bindings.workloadDetail.innerHTML = Components.WorkloadDetail({
+                bindings.app.querySelector('.detail').innerHTML = Components.WorkloadDetail({
                     workload: state.workloadDetail,
                     onFilesClick: 'Results.onFilesClick(event)'
                 })
             } else {
-                bindings.workloadDetail.innerHTML = ''
+                bindings.app.querySelector('.detail').innerHTML = ''
             }
         }
 
         if (filters) {
-            bindings.resultsTable.querySelector('.filters').innerHTML = Components.ResultFilters({
+            bindings.app.querySelector('.filters').innerHTML = Components.ResultFilters({
                 filters: state.filters,
                 onKindClick: `Results.onKindFilterClick(event)`,
                 onMetadataClick: `Results.onMetadataFilterClick(event)`,
@@ -136,14 +155,8 @@ const Results = (function() {
             })
         }
 
-        if (head) {
-            bindings.resultsTable.querySelector('thead').innerHTML = Components.ResultsTableHead({
-                columns: state.columns,
-                onDeleteColumnClicker: name => `Results.onDeleteColumn('${name}')`
-            })
-        }
         if (body) {
-            bindings.resultsTable.querySelector('tbody').innerHTML = Components.ResultsTableBody({
+            bindings.app.querySelector('tbody').innerHTML = Components.ResultsTableBody({
                 columns: state.columns,
                 results: state.results,
                 onMetadataClick: 'Results.onMetadataClick(event)',
@@ -152,23 +165,7 @@ const Results = (function() {
                 onIdClick: 'Results.onIdClick(event)'
             })
 
-            bindings.resultsTable.querySelector('.page-indicator').innerHTML = state.page
-
-            Drag.init({
-              onDropspotHoverIn: (dropspot, shadow) => {
-                dropspot.classList.add('colorful')
-              },
-              onDropspotHoverOut: (dropspot, shadow) => {
-                dropspot.classList.remove('colorful')
-              },
-              onDropspotUsed: (dropspot, target) => {
-                  const key = target.getAttribute('data-key')
-                  if (!state.columns.includes(key)) {
-                      state.columns.push(key)
-                      syncState({ head: true, body: true })
-                  }
-              }
-            })
+            bindings.app.querySelector('.page-indicator').innerHTML = state.page
         }
 
         if (modals) {
@@ -178,7 +175,7 @@ const Results = (function() {
                 style: 'width: 768px; padding: 32px;'
             })
 
-            const modalsContainer = bindings.resultsTable.querySelector('.modal-container')
+            const modalsContainer = bindings.app.querySelector('.modal-container')
             if (state.showFiles) {
 
                 const modal = modalHoc(Files)
@@ -194,22 +191,6 @@ const Results = (function() {
                 TabView.init(modalsContainer)
             } else {
                 modalsContainer.innerHTML = ''
-            }
-        }
-    }
-
-    function onDeleteColumn(name) {
-        state.columns = state.columns.filter(c => c !== name)
-        syncState({ head: true, body: true })
-    }
-
-    function onNewColumnPress(e) {
-        if (e.keyCode === 13) {
-            const value = e.target.value
-            if (value) {
-                e.target.value = ''
-                state.columns.push(value)
-                syncState({ head: true, body: true })
             }
         }
     }
@@ -236,7 +217,7 @@ const Results = (function() {
         state.filters.kind = e.target.getAttribute('data-kind')
         state.filters.workloadId = undefined
         await fetchResults()
-        syncState({ filters: true, body: true })
+        syncState({ detail: true, filters: true, body: true })
     }
 
     async function onKindFilterClick(e) {
@@ -302,8 +283,6 @@ const Results = (function() {
 
     return {
         start,
-        onDeleteColumn,
-        onNewColumnPress,
         onMetadataClick,
         onMetadataFilterClick,
         onKindClick,

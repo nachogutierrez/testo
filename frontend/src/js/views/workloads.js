@@ -12,10 +12,11 @@ const Workloads = (function() {
         config = await (await fetch('config.json')).json()
         testo = Testo({ api: config.testoApi })
 
-        initState(state, bindings)
+        firstRender()
+        initComponents()
         await fetchWorkloads()
 
-        syncState({ filters: true, head: true, body: true })
+        syncState({}, true)
     }
 
     function createBaseState() {
@@ -24,8 +25,7 @@ const Workloads = (function() {
         let s = {
             page: 1,
             workloads: [],
-            c: [],
-            f: { metadata: {} },
+            filters: { metadata: {} }
         }
 
         if (bookmarks.page) {
@@ -34,18 +34,13 @@ const Workloads = (function() {
         }
 
         if (bookmarks.kind) {
-            s.f.kind = bookmarks.kind
+            s.filters.kind = bookmarks.kind
             bookmarks.kind = undefined
-        }
-
-        if (bookmarks.columns) {
-            s.c = bookmarks.columns.split(',')
-            bookmarks.columns = undefined
         }
 
         Object.keys(bookmarks).forEach(key => {
             if (bookmarks[key]) {
-                s.f.metadata[key] = bookmarks[key]
+                s.filters.metadata[key] = bookmarks[key]
             }
         })
 
@@ -53,12 +48,9 @@ const Workloads = (function() {
     }
 
     function writeStateToUrl() {
-        const bookmarks = {...state.f.metadata}
-        if (state.c.length > 0) {
-            bookmarks.columns = state.c.join(',')
-        }
-        if (state.f.kind) {
-            bookmarks.kind = state.f.kind
+        const bookmarks = {...state.filters.metadata}
+        if (state.filters.kind) {
+            bookmarks.kind = state.filters.kind
         }
         if (state.page > 1) {
             bookmarks.page = state.page
@@ -68,104 +60,73 @@ const Workloads = (function() {
     }
 
     const bind = () => ({
-        workloadsTable: document.getElementById('workloads-table')
+        app: document.getElementById('app')
     })
 
     async function fetchWorkloads() {
         const filters = {}
         filters.page = state.page
-        if (state.f.kind) {
-            filters.kind = state.f.kind
+        if (state.filters.kind) {
+            filters.kind = state.filters.kind
         }
-        if (Object.keys(state.f.metadata).length > 0) {
-            filters.metadata = { ...state.f.metadata }
+        if (Object.keys(state.filters.metadata).length > 0) {
+            filters.metadata = { ...state.filters.metadata }
         }
         state.workloads = await testo.queryWorkloads(filters)
     }
 
-    function initState() {
-        bindings.workloadsTable.innerHTML = Components.WorkloadsTable({
-            workloads: state.workloads,
-            columns: state.c,
-            filters: state.f,
-            onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
-            onNewColumnPress: "Workloads.onNewColumnPress(event)",
-            onCheckboxClick: "Workloads.syncState({ head: true, body: true })",
-            onPreviousPageClick: "Workloads.onPreviousPageClick(event)",
-            onNextPageClick: "Workloads.onNextPageClick(event)",
-            hiddenColumns: {}
+    function firstRender() {
+        const { TableView, WorkloadsTableHead } = Components
+        bindings.app.innerHTML = TableView({
+            title: 'Workloads',
+            head: WorkloadsTableHead()
         })
     }
 
-    function syncState(opts={}) {
-        writeStateToUrl()
-
-        const { filters=false, head=false, body=false } = opts
-
-        const hiddenColumns = {}
-        document.querySelectorAll('input.column-hider').forEach(el => {
-            if (el.checked) {
-                hiddenColumns[el.getAttribute('data-target')] = true
+    function initComponents() {
+        const { Searchbar, ExploreKey, ApplyFilter, ApplyTag } = Components
+        Searchbar.init(bindings.app, {
+            onInput: (input, setResults) => {
+                setResults([
+                    ExploreKey(input.value),
+                    ApplyFilter({ key: 'branch', value: input.value }),
+                    ApplyTag(input.value)
+                ])
+            },
+            onClick: (el, i) => {
+                console.log(i)
             }
         })
 
+        const { TableFooter } = Components
+        TableFooter.init(bindings.app, {
+            onPreviousPageClick,
+            onNextPageClick
+        })
+    }
+
+    function syncState(opts={}, all=false) {
+        writeStateToUrl()
+
+        const { filters=false||all, body=false||all } = opts
+
         if (filters) {
-            bindings.workloadsTable.querySelector('.filters').innerHTML = Components.WorkloadFilters({
-                filters: state.f,
+            bindings.app.querySelector('.filters').innerHTML = Components.WorkloadFilters({
+                filters: state.filters,
                 onKindClick: `Workloads.onKindFilterClick(event)`,
                 onMetadataClick: `Workloads.onMetadataFilterClick(event)`
             })
         }
 
-        if (head) {
-            bindings.workloadsTable.querySelector('thead').innerHTML = Components.WorkloadsTableHead({
-                columns: state.c,
-                hiddenColumns,
-                onDeleteColumnClicker: name => `Workloads.onDeleteColumn('${name}')`,
-            })
-        }
         if (body) {
-            bindings.workloadsTable.querySelector('tbody').innerHTML = Components.WorkloadsTableBody({
-                columns: state.c,
-                hiddenColumns,
-                workloads: state.workloads,
+            const { WorkloadsRow } = Components
+            bindings.app.querySelector('tbody').innerHTML = state.workloads.map(w => WorkloadsRow({
+                workload: w,
                 onMetadataClick: 'Workloads.onMetadataClick(event)',
                 onKindClick: `Workloads.onKindClick(event)`
-            })
+            })).join('')
 
-            bindings.workloadsTable.querySelector('.page-indicator').innerHTML = state.page
-
-            Drag.init({
-              onDropspotHoverIn: (dropspot, shadow) => {
-                dropspot.classList.add('colorful')
-              },
-              onDropspotHoverOut: (dropspot, shadow) => {
-                dropspot.classList.remove('colorful')
-              },
-              onDropspotUsed: (dropspot, target) => {
-                  const key = target.getAttribute('data-key')
-                  if (!state.c.includes(key)) {
-                      state.c.push(key)
-                      syncState({ head: true, body: true })
-                  }
-              }
-            })
-        }
-    }
-
-    function onDeleteColumn(name) {
-        state.c = state.c.filter(c => c !== name)
-        syncState({ head: true, body: true })
-    }
-
-    function onNewColumnPress(e) {
-        if (e.keyCode === 13) {
-            const value = e.target.value
-            if (value) {
-                e.target.value = ''
-                state.c.push(value)
-                syncState({ head: true, body: true })
-            }
+            bindings.app.querySelector('.page-indicator').innerHTML = state.page
         }
     }
 
@@ -173,21 +134,21 @@ const Workloads = (function() {
         state.page = 1
         const key = e.target.getAttribute('data-key')
         const value = e.target.getAttribute('data-value')
-        state.f.metadata[key] = value
+        state.filters.metadata[key] = value
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onKindClick(e) {
         state.page = 1
-        state.f.kind = e.target.getAttribute('data-kind')
+        state.filters.kind = e.target.getAttribute('data-kind')
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
 
     async function onKindFilterClick(e) {
         state.page = 1
-        state.f.kind = undefined
+        state.filters.kind = undefined
         await fetchWorkloads()
         syncState({ filters: true, body: true })
     }
@@ -195,9 +156,17 @@ const Workloads = (function() {
     async function onMetadataFilterClick(e) {
         state.page = 1
         const key = e.target.getAttribute('data-key')
-        delete state.f.metadata[key]
+        delete state.filters.metadata[key]
         await fetchWorkloads()
         syncState({ filters: true, body: true })
+    }
+
+    async function onPreviousPageClick(e) {
+        if (state.page > 1) {
+            state.page--
+            await fetchWorkloads()
+            syncState({ body: true })
+        }
     }
 
     async function onNextPageClick(e) {
@@ -211,18 +180,8 @@ const Workloads = (function() {
         }
     }
 
-    async function onPreviousPageClick(e) {
-        if (state.page > 1) {
-            state.page--
-            await fetchWorkloads()
-            syncState({ body: true })
-        }
-    }
-
     return {
         start,
-        onDeleteColumn,
-        onNewColumnPress,
         onMetadataClick,
         onKindClick,
         syncState,

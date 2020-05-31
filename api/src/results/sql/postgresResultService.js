@@ -3,11 +3,9 @@ const format = require('pg-format')
 const uuid = require('uuid').v4
 const { query } = require('../../util')
 
-const crypto = require('crypto')
-const hash = (s, algo='md5') => crypto.createHash(algo).update(s).digest("hex")
-
 const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0, since, until }) => (`
-    select workload.id, workload.kind, to_char(workload.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, workload.pass, workload.fail, workload.skip, workload.error from workload inner join workload_metadata on workload.id = workload_metadata.workload_id
+    select workload.id, workload.kind, to_char(workload.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, workload.pass, workload.fail, workload.skip, workload.error
+    from workload left join workload_metadata on workload.id = workload_metadata.workload_id
     ${renderClause('where', joinConditions([where('workload.kind', '=', kind), where('workload.created_at', '>', since), where('workload.created_at', '<', until)]))}
     group by workload.id
     ${renderClause('having', Object.keys(metadata).map(k => havingKeyValue(k, metadata[k], 'workload_metadata')).join(' and '))}
@@ -18,7 +16,7 @@ const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0
 
 const buildGetResultsStatement = ({ workloadId, kind, metadata = {}, limit = 100, skip = 0, since, until, status }) => (`
     select result.id, result.workload_id, result.kind, result.status, result.duration, to_char(result.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at
-    from result inner join result_metadata on result.id = result_metadata.result_id
+    from result left join result_metadata on result.id = result_metadata.result_id
     ${renderClause('where', joinConditions([where('result.kind', '=', kind), where('result.created_at', '>', since), where('result.created_at', '<', until), where('result.status', '=', status), where('result.workload_id', '=', workloadId)]))}
     group by result.id
     ${renderClause('having', Object.keys(metadata).map(k => havingKeyValue(k, metadata[k], 'result_metadata')).join(' and '))}
@@ -120,13 +118,12 @@ const PostgresResultService = function({ uri }) {
     }
 
     // can only create one workload at a time, no batch process for workloads
-    async function createWorkloads(opts = {}) {
+    async function createWorkload(opts = {}) {
 
         const workloadId = uuid()
         const metadataInserts = []
 
         let { kind = 'undefined', metadata = {} } = opts
-        kind = hash(kind)
         await query(pool, format('insert into workload (id, kind) values %L', [ [workloadId, kind] ]))
 
         const keys = Object.keys(metadata)
@@ -173,7 +170,6 @@ const PostgresResultService = function({ uri }) {
             if (!id) {
                 id = uuid()
             }
-            kind = hash(`${workloadKind}-${kind}`)
             resultInserts.push([id, workloadId, kind, status, duration])
             const keys = Object.keys(metadata)
             for (let j = 0; j < keys.length; j++) {
@@ -233,7 +229,7 @@ const PostgresResultService = function({ uri }) {
     return {
         getWorkloads,
         getResults,
-        createWorkloads,
+        createWorkload,
         createResults,
         metadataKeys,
         metadataValues

@@ -10,6 +10,7 @@ try {
 
 const fs = require('fs').promises
 const elasticsearch = require('@elastic/elasticsearch')
+const { SearchService } = require('./search/searchService')
 const { Server } = require('./server')
 const { MemoryResultService, PostgresResultService } = require('./results')
 const { PostgresMetricService } = require('./metrics/postgresMetricService')
@@ -24,7 +25,7 @@ async function main() {
     const app = Server({
         resultService: PostgresResultService({ uri: process.env.TESTO_DB_URI || 'postgresql://postgres:postgres@localhost:8888/testo2' }),
         metricService: PostgresMetricService({ uri: process.env.METRICS_DB_URI }),
-        searchService: new elasticsearch.Client({ node: process.env.ELASTICSEARCH_URI || 'http://localhost:9200' }),
+        searchService: SearchService({ client: new elasticsearch.Client({ node: process.env.ELASTICSEARCH_URI || 'http://localhost:9200' }) }),
         firebase
     })
 

@@ -92,12 +92,28 @@ const Testo = function({ api }) {
         return values
     }
 
+    async function suggestions(payload = {}) {
+        if (!payload.query) {
+            throw new Error(`suggestions() requires a query`)
+        }
+
+        const response = await fetch(`${api}/suggestions`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+
+        const data = await response.json()
+        return data
+    }
+
     return {
         queryWorkloads,
         queryResults,
         getFiles,
         getStacktraces,
         getMetadataKeys,
-        getMetadataValues
+        getMetadataValues,
+        suggestions
     }
 }

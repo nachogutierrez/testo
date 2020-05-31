@@ -34,6 +34,10 @@ const PostgresMetricService = function({ uri, pushInterval=1000 }) {
                     value = metric.value
                 break
                 case 'counter':
+                    if (Date.now() - metric.since < metric.rate) {
+                        queue[metricName] = metric
+                        continue
+                    }
                     value = metric.value
                 break
                 default:
@@ -69,9 +73,9 @@ const PostgresMetricService = function({ uri, pushInterval=1000 }) {
         queue[metricName].count += 1
     }
 
-    function pushCounterMetric(metricName) {
+    function pushCounterMetric(metricName, rate = 60000) {
         if (!queue[metricName] || queue[metricName].type !== 'counter' || !queue[metricName].value) {
-            queue[metricName] = { type: 'counter', value: 0 }
+            queue[metricName] = { type: 'counter', value: 0, since: Date.now(), rate }
         }
         queue[metricName].value += 1
     }

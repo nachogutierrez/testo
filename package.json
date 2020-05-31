@@ -5,8 +5,10 @@
   "scripts": {
     "db": "docker-compose --file db.yml up",
     "stop_db": "docker-compose --file db.yml down",
+    "elasticsearch": "docker-compose --file elasticsearch.yml up",
+    "stop_elasticsearch": "docker-compose --file elasticsearch.yml down",
     "connect": "docker exec -it --user postgres testo_db_1 /bin/bash -c 'psql'",
-    "start": "docker-compose up --build",
+    "start": "docker-compose up --build --force-recreate",
     "build_ubuntu": "docker build -t local-ubuntu:1.0.0 -f ubuntu.dockerfile .",
     "wubuntu": "docker run -v %cd%:/repo -it --entrypoint /bin/bash local-ubuntu:1.0.0"
   },

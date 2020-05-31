@@ -7,163 +7,29 @@ const Components = (function() {
 
     const o = f => f() || ''
 
-    const truncate = (s, n) => s.substring(0, n)
+    const truncate = (s, n) => `${s}`.substring(0, n)
+
+    const openModal = c => {
+        const container = document.querySelector('.modal-container')
+        container.innerHTML = Modal(c)
+        return container
+    }
+
+    const closeModal = () => {
+        document.querySelector('.modal-container').innerHTML = ''
+    }
+
+    function openExploreView(opts = {}) {
+        const { ExploreView } = Components
+        const container = openModal(ExploreView())
+        ExploreView.init(container, opts)
+    }
 
     const Logo = () => (`
         <div class='flex'>
-            <p class='clickable' style='margin-left: 16px; border: solid 1px black; padding: 4px;'>Testo</p>
+            <a href='/workloads' class='clickable' style='margin-left: 16px; border: solid 1px black; padding: 4px;'>Testo</a>
         </div>
     `)
-
-    const ExploreButton = props => (`
-        <div class='explore-icon clickable' style='padding: 8px; border-radius: 50%;'>
-            <i class="fas fa-window-restore"></i>
-        </div>
-    `)
-    ExploreButton.init = (el, opts = {}) => {
-        const { onFilterChosen = ()=>'' } = opts
-        const modalContainer = document.querySelector('.modal-container')
-        el.querySelector('.explore-icon').addEventListener('click', () => {
-            modalContainer.innerHTML = Modal(ExploreView())
-
-            opts.onFilterChosen = (key, value) => {
-                modalContainer.innerHTML = ''
-                onFilterChosen(key, value)
-            }
-
-            ExploreView.init(modalContainer, opts)
-        })
-    }
-
-    const ExploreView = props => (`
-        <div style='padding: 16px;'>
-            <div class='explore-view' style='overflow: hidden; position: relative; height: 512px; width: 512px;'>
-                <div class='keys'></div>
-                <div class='values hide'></div>
-            </div>
-        </div>
-    `)
-    ExploreView.init = async (el, opts = {}) => {
-        let { getKind = ()=>'', api, onFilterChosen = ()=>'', key, type = 'workload' } = opts
-        const viewEl = el.querySelector('.explore-view')
-        const keysEl = viewEl.querySelector('.keys')
-        const valuesEl = viewEl.querySelector('.values')
-
-        function initView() {
-            if (key) {
-                valuesEl.innerHTML = PaginatedView()
-                PaginatedView.init(valuesEl, {
-                    async render(limit, skip) {
-
-                        const values = await api.getMetadataValues({ kind: getKind(), limit, skip, key, type })
-                        if (values.length === 0) return undefined
-                        return `
-                            <div style='flex flex-column'>
-                                <i class="fas fa-chevron-left back clickable" style='padding: 16px;'></i>
-                                <h2 style='text-align: center; margin: 16px;'>explore values</h2>
-                                <h3 style='text-align: center; margin-bottom: 8px;'>key = ${key}</h2>
-                                ${o(() => {
-                                    if (getKind()) {
-                                        return (`
-                                            <div class='flex flex-wrap' style='margin-bottom: 16px'>
-                                                ${FilterList({ metadata: { kind: getKind() }, color: 'kind-color' })}
-                                            </div>
-                                        `)
-                                    }
-                                })}
-                                ${values.map(ExploreViewItem).join('')}
-                            </div>
-                        `
-                    },
-                    activate(el) {
-                        el.querySelectorAll('.item').forEach(item => item.addEventListener('click', e => {
-                            const value = e.target.innerHTML
-                            onFilterChosen(key, value)
-                        }))
-                        el.querySelector('.back').addEventListener('click', () => {
-                            key = undefined
-                            valuesEl.classList.add('hide')
-                            keysEl.classList.remove('hide')
-                            initView()
-                        })
-                    }
-                })
-            } else {
-                keysEl.innerHTML = PaginatedView()
-                PaginatedView.init(keysEl, {
-                    async render(limit, skip) {
-
-                        const keys = await api.getMetadataKeys({ kind: getKind(), limit, skip, type })
-                        if (keys.length === 0) return undefined
-                        return `
-                            <div style='flex flex-column'>
-                                <h2 style='text-align: center; margin: 16px;'>explore keys</h2>
-                                ${o(() => {
-                                    if (getKind()) {
-                                        return (`
-                                            <div class='flex flex-wrap' style='margin-bottom: 16px'>
-                                                ${FilterList({ metadata: { kind: getKind() }, color: 'kind-color' })}
-                                            </div>
-                                        `)
-                                    }
-                                })}
-                                ${keys.map(ExploreViewItem).join('')}
-                            </div>
-                        `
-                    },
-                    activate(el) {
-                        el.querySelectorAll('.item').forEach(item => item.addEventListener('click', e => {
-                            key = e.target.innerHTML
-                            keysEl.classList.add('hide')
-                            valuesEl.classList.remove('hide')
-                            initView()
-                        }))
-                    }
-                })
-            }
-        }
-        initView()
-    }
-
-    const ExploreViewItem = value => (`
-        <div class='item clickable' style='border: solid 1px black; padding: 4px;'>${value}</div>
-    `)
-
-    const PaginatedView = () => (`
-        <div class='paginated-view'>
-            <div class='content'></div>
-            ${TableFooter()}
-        </div>
-    `)
-    PaginatedView.init = async (el, opts = {}) => {
-        const viewEl = el.querySelector('.paginated-view')
-        const contentEl = viewEl.querySelector('.content')
-        const pageIndicatorEl = viewEl.querySelector('.footer .page-indicator')
-        const { render, activate } = opts
-        let pageSize = 10
-        let page = 1
-
-        viewEl.querySelector('.footer .left').addEventListener('click', async () => {
-            if (page <= 1) return
-            page--
-            contentEl.innerHTML = await render(pageSize, (page - 1) * pageSize)
-            pageIndicatorEl.innerHTML = page
-            activate(contentEl)
-        })
-        viewEl.querySelector('.footer .right').addEventListener('click', async () => {
-            page++
-            const newContent = await render(pageSize, (page - 1) * pageSize)
-            if (newContent) {
-                contentEl.innerHTML = newContent
-                pageIndicatorEl.innerHTML = page
-                activate(contentEl)
-            } else {
-                page--
-            }
-        })
-        contentEl.innerHTML = await render(pageSize, (page - 1) * pageSize)
-        activate(contentEl)
-    }
 
     const TableView = props => (`
         <div class='flex flex-column height100'>
@@ -182,7 +48,7 @@ const Components = (function() {
             <div class="detail"></div>
             <div class='filters'></div>
 
-            ${Scrollable(Table)(props.head)}
+            ${Scrollable(Table(props.head))}
             ${TableFooter()}
 
             <div class='modal-container'></div>
@@ -434,9 +300,9 @@ const Components = (function() {
         </div>
     `)
 
-    const Scrollable = (C, opts = {}) => props => (`
+    const Scrollable = (c, opts = {}) => (`
         <div style='overflow-y: scroll; position: relative;'>
-            ${C(props)}
+            ${c}
         </div>
     `)
 
@@ -475,37 +341,200 @@ const Components = (function() {
           <input type="text" placeholder="${props.placeholder || ''}" style='width: 512px; height: ${props.height || '24px'}; font-size: 16px; border: 0;'>
 
           <div class='results flex flex-column' style='background: gray; width: 100%; visibility: hidden; position: relative; z-index: 5;'>
-            <div class="item" style='padding: 4px; color: violet;'>explore key: <span><strong>branch</strong></span></div>
-            <div class="item" style='padding: 4px; color: violet;'>explore key: <span><strong>brown</strong></span></div>
-            <div class="item" style='padding: 4px; color: orange;'>apply filter: <span><strong>branch=master</strong></span></div>
-            <div class="item" style='padding: 4px; color: lightblue;'>apply tag: <span><strong>TE-6652</strong></span></div>
+            <p style='padding: 4px;'>No results...</p>
           </div>
         </div>
     `)
     Searchbar.init = (el, opts = {}) => {
+        let results = []
         const resultsEl = el.querySelector('.searchbar .results')
         const inputEl = el.querySelector('.searchbar input')
+        const empty = () => resultsEl.innerHTML = `<p style='padding: 4px;'>No results...</p>`
         const setResults = (r = []) => {
+            results = r
+            if (!r || r.length === 0) {
+                empty()
+                return
+            }
             resultsEl.innerHTML = r.join('')
             resultsEl.childNodes.forEach((cn, i) => {
+                cn.setAttribute('tabindex', '-1')
                 cn.addEventListener('click', () => {
-                    if (opts.onClick) opts.onClick(cn, i)
+                    if (opts.onClick) opts.onClick(cn, inputEl)
+                })
+                cn.addEventListener('keydown', e => {
+                    if (e.keyCode === 38) {
+                        if (i === 0) {
+                            inputEl.focus()
+                            setTimeout(() => inputEl.selectionStart = inputEl.selectionEnd = 10000, 0)
+                        } else {
+                            resultsEl.childNodes[i - 1].focus()
+                        }
+                    } else if (e.keyCode === 40) {
+                        const next = resultsEl.childNodes[i + 1]
+                        if (next) {
+                            next.focus()
+                        }
+                    } else if (e.keyCode === 13) {
+                        cn.click()
+                    }
                 })
             })
         }
         inputEl.addEventListener('input', e => {
             if (!inputEl.value) {
                 resultsEl.style.visibility = 'hidden'
+                results = []
+                empty()
             }
             else {
                 resultsEl.style.visibility = 'visible'
                 if (opts.onInput) opts.onInput(inputEl, setResults)
             }
         })
+        inputEl.addEventListener('keydown', e => {
+            if (e.keyCode === 40) {
+                if (results.length > 0) {
+                    resultsEl.childNodes[0].focus()
+                }
+            } else if (e.keyCode === 13) {
+                if (results.length > 0) {
+                    resultsEl.childNodes[0].click()
+                }
+            }
+        })
     }
 
-    const ExploreKey = key => `<div class='clickable' style='padding: 4px; color: violet;'>explore key: <span><strong>${key}</strong></span></div>`
-    const ApplyFilter = props => `<div class='clickable' style='padding: 4px; color: orange;'>apply filter: <span><strong>${props.key}=${props.value}</strong></span></div>`
+    const ExploreButton = props => (`
+        <div class='explore-icon clickable' style='padding: 8px; border-radius: 50%;'>
+            <i class="fas fa-window-restore"></i>
+        </div>
+    `)
+    ExploreButton.init = (el, opts = {}) => el.querySelector('.explore-icon').addEventListener('click', opts.onClick)
+
+    const ExploreView = props => (`
+        <div style='padding: 16px;'>
+            <div class='explore-view' style='overflow-y: hidden; position: relative; height: 512px; width: 512px;'>
+                <div class='keys height100'></div>
+            </div>
+        </div>
+    `)
+
+    ExploreView.init = async (el, opts = {}) => {
+        let { kind, api, onFilterChosen = ()=>'', key, type = 'workload' } = opts
+        const viewEl = el.querySelector('.explore-view')
+        const keysEl = viewEl.querySelector('.keys')
+
+        function initView() {
+            if (key) {
+                keysEl.innerHTML = PaginatedView()
+                PaginatedView.init(keysEl, {
+                    async render(limit, skip) {
+
+                        const values = await api.getMetadataValues({ kind, limit, skip, key, type })
+                        if (values.length === 0) return undefined
+                        return (`
+                            <div class='flex flex-column height100'>
+                                <i class="fas fa-chevron-left back clickable" style='padding: 16px; align-self: flex-start'></i>
+                                <h2 style='text-align: center; margin: 16px;'>explore values</h2>
+                                <h3 style='text-align: center; margin-bottom: 8px;'>key = ${key}</h2>
+                                ${ExploreViewTags({ kind })}
+                                ${Scrollable(values.map(ExploreViewItem).join(''))}
+                            </div>
+                        `)
+                    },
+                    activate(el) {
+                        el.querySelectorAll('.item').forEach(item => item.addEventListener('click', e => {
+                            const value = e.target.innerHTML
+                            onFilterChosen(key, value)
+                        }))
+                        el.querySelector('.back').addEventListener('click', () => {
+                            key = undefined
+                            initView()
+                        })
+                    }
+                })
+            } else {
+                keysEl.innerHTML = PaginatedView()
+                PaginatedView.init(keysEl, {
+                    async render(limit, skip) {
+
+                        const keys = await api.getMetadataKeys({ kind, limit, skip, type })
+                        if (keys.length === 0) return undefined
+                        return (`
+                            <div class='flex flex-column height100'>
+                                <h2 style='text-align: center; margin: 16px;'>explore keys</h2>
+                                ${ExploreViewTags({ kind })}
+                                ${Scrollable(keys.map(ExploreViewItem).join(''))}
+                            </div>
+                        `)
+                    },
+                    activate(el) {
+                        el.querySelectorAll('.item').forEach(item => item.addEventListener('click', e => {
+                            key = e.target.innerHTML
+                            initView()
+                        }))
+                    }
+                })
+            }
+        }
+        initView()
+    }
+
+    const ExploreViewTags = props => (`
+        <div class='flex flex-wrap' style='margin-bottom: 16px'>
+            ${o(() => {
+                const list = []
+                if (props.kind) {
+                    list.push(FilterList({ metadata: { kind: props.kind }, color: 'kind-color' }))
+                }
+                return list.join('')
+            })}
+        </div>
+    `)
+
+    const ExploreViewItem = value => (`
+        <div class='item clickable' style='border: solid 1px black; padding: 4px;'>${value}</div>
+    `)
+
+    const PaginatedView = () => (`
+        <div class='paginated-view flex flex-column height100'>
+            <div class='content height100' style='overflow: hidden;'></div>
+            ${TableFooter()}
+        </div>
+    `)
+    PaginatedView.init = async (el, opts = {}) => {
+        const viewEl = el.querySelector('.paginated-view')
+        const contentEl = viewEl.querySelector('.content')
+        const pageIndicatorEl = viewEl.querySelector('.footer .page-indicator')
+        const { render, activate } = opts
+        let pageSize = 10
+        let page = 1
+
+        viewEl.querySelector('.footer .left').addEventListener('click', async () => {
+            if (page <= 1) return
+            page--
+            contentEl.innerHTML = await render(pageSize, (page - 1) * pageSize)
+            pageIndicatorEl.innerHTML = page
+            activate(contentEl)
+        })
+        viewEl.querySelector('.footer .right').addEventListener('click', async () => {
+            page++
+            const newContent = await render(pageSize, (page - 1) * pageSize)
+            if (newContent) {
+                contentEl.innerHTML = newContent
+                pageIndicatorEl.innerHTML = page
+                activate(contentEl)
+            } else {
+                page--
+            }
+        })
+        contentEl.innerHTML = await render(pageSize, (page - 1) * pageSize)
+        activate(contentEl)
+    }
+
+    const ExploreKey = key => `<div class='clickable' style='padding: 4px; color: violet;' data-type='key' data-key='${key}'>explore key: <span><strong>${key}</strong></span></div>`
+    const ApplyFilter = props => `<div class='clickable' style='padding: 4px; color: orange;' data-type='filter' data-key='${props.key}' data-value='${props.value}'>apply filter: <span><strong>${props.key}=${props.value}</strong></span></div>`
     const ApplyTag = tag => `<div class='clickable' style='padding: 4px; color: lightblue;'>apply tag: <span><strong>${tag}</strong></span></div>`
 
     return {
@@ -528,6 +557,10 @@ const Components = (function() {
         ApplyFilter,
         ApplyTag,
         TableFooter,
-        ExploreButton
+        ExploreButton,
+        ExploreView,
+        openModal,
+        closeModal,
+        openExploreView
     }
 })()

@@ -111,31 +111,64 @@ const Results = (function() {
     function initComponents() {
         const { ExploreButton } = Components
         ExploreButton.init(bindings.app, {
-            api: testo,
-            type: 'result',
-            getKind: () => {
-                if (state.workloadDetail) {
-                    return state.workloadDetail.kind
+            onClick: () => Components.openExploreView({
+                kind: state.workloadDetail ? state.workloadDetail.kind : undefined,
+                api: testo,
+                type: 'result',
+                onFilterChosen(key, value) {
+                    state.filters.metadata[key] = value
+                    Components.closeModal()
+                    syncState({ filters: true, body: true })
                 }
-            },
-            async onFilterChosen(key, value) {
-                state.filters.metadata[key] = value
-                await fetchResults()
-                syncState({ filters: true, body: true })
-            }
+            })
         })
 
         const { Navbar, Searchbar, ExploreKey, ApplyFilter, ApplyTag } = Components
         Searchbar.init(bindings.app, {
-            onInput: (input, setResults) => {
-                setResults([
-                    ExploreKey(input.value),
-                    ApplyFilter({ key: 'branch', value: input.value }),
-                    ApplyTag(input.value)
-                ])
+            onInput: async (input, setResults) => {
+                const payload = {
+                    query: input.value,
+                    type: 'result'
+                }
+                if (state.workloadDetail) {
+                    payload.workloadKind = state.workloadDetail.kind
+                }
+                const suggestions = await testo.suggestions(payload)
+
+                setResults(suggestions.map(s => {
+                    if (s.suggestion === 'key') {
+                        return ExploreKey(s.key)
+                    } else {
+                        return ApplyFilter(s)
+                    }
+                }))
             },
-            onClick: (el, i) => {
-                console.log(i)
+            onClick: (el, input) => {
+                const type = el.getAttribute('data-type')
+                if (type === 'key') {
+                    const key =  el.getAttribute('data-key')
+                    input.value = ''
+                    input.dispatchEvent(new CustomEvent('input', {}))
+                    Components.openExploreView({
+                        kind: state.workloadDetail ? state.workloadDetail.kind : undefined,
+                        api: testo,
+                        key,
+                        type: 'result',
+                        onFilterChosen(key, value) {
+                            state.filters.metadata[key] = value
+                            Components.closeModal()
+                            syncState({ filters: true, body: true })
+                        }
+                    })
+                } else if (type === 'filter') {
+                    const key = el.getAttribute('data-key')
+                    const value = el.getAttribute('data-value')
+                    state.filters.metadata[key] = value
+                    input.value = ''
+                    input.dispatchEvent(new CustomEvent('input', {}))
+                    syncState({ filters: true, body: true })
+                    input.focus()
+                }
             }
         })
 

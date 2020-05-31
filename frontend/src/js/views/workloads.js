@@ -87,25 +87,57 @@ const Workloads = (function() {
         const { Searchbar, ExploreKey, ApplyFilter, ApplyTag, ExploreButton } = Components
 
         ExploreButton.init(bindings.app, {
-            api: testo,
-            getKind: () => state.filters.kind,
-            async onFilterChosen(key, value) {
-                state.filters.metadata[key] = value
-                await fetchWorkloads()
-                syncState({ filters: true, body: true })
-            }
+            onClick: () => Components.openExploreView({
+                kind: state.filters.kind,
+                api: testo,
+                onFilterChosen(key, value) {
+                    state.filters.metadata[key] = value
+                    Components.closeModal()
+                    syncState({ filters: true, body: true })
+                }
+            })
         })
 
         Searchbar.init(bindings.app, {
-            onInput: (input, setResults) => {
-                setResults([
-                    ExploreKey(input.value),
-                    ApplyFilter({ key: 'branch', value: input.value }),
-                    ApplyTag(input.value)
-                ])
+            onInput: async (input, setResults) => {
+                const suggestions = await testo.suggestions({
+                    query: input.value,
+                    type: 'workload',
+                    workloadKind: state.filters.kind
+                })
+                setResults(suggestions.map(s => {
+                    if (s.suggestion === 'key') {
+                        return ExploreKey(s.key)
+                    } else {
+                        return ApplyFilter(s)
+                    }
+                }))
             },
-            onClick: (el, i) => {
-                console.log(i)
+            onClick: (el, input) => {
+                const type = el.getAttribute('data-type')
+                if (type === 'key') {
+                    const key =  el.getAttribute('data-key')
+                    input.value = ''
+                    input.dispatchEvent(new CustomEvent('input', {}))
+                    Components.openExploreView({
+                        kind: state.filters.kind,
+                        api: testo,
+                        key,
+                        onFilterChosen(key, value) {
+                            state.filters.metadata[key] = value
+                            Components.closeModal()
+                            syncState({ filters: true, body: true })
+                        }
+                    })
+                } else if (type === 'filter') {
+                    const key = el.getAttribute('data-key')
+                    const value = el.getAttribute('data-value')
+                    state.filters.metadata[key] = value
+                    input.value = ''
+                    input.dispatchEvent(new CustomEvent('input', {}))
+                    syncState({ filters: true, body: true })
+                    input.focus()
+                }
             }
         })
 

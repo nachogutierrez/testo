@@ -1,16 +1,31 @@
 version: "3.7"
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: http.dockerfile
+    volumes:
+      - ./frontend/src:/usr/http/files
+    depends_on:
+      - api
+    ports:
+      - 8080:8080
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: debug.dockerfile
+    volumes:
+      - ./api/src:/usr/testo/src
+      - ./api/env.json:/usr/testo/env.json
     depends_on:
       - db
+      - elasticsearch
     environment:
       - METRICS_DB_URI=postgresql://postgres:postgres@db:5432/metrics
       - TESTO_DB_URI=postgresql://postgres:postgres@db:5432/testo
+      - ELASTICSEARCH_URI=http://elasticsearch:9200
     ports:
-      - 8080:8080
+      - 5000:5000
   db:
     image: postgres
     restart: always
@@ -18,10 +33,20 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - my-postgres:/var/lib/postgresql/data
+  elasticsearch:
+    image: elasticsearch:7.7.0
+    restart: always
+    volumes:
+      - my-elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
   grafana:
     image: grafana/grafana:5.4.5
     ports:
-      - 8081:3000
+      - 3000:3000
     volumes:
       - ./grafana.ini:/etc/grafana/grafana.ini
     depends_on:
@@ -29,3 +54,4 @@ services:
 
 volumes:
   my-postgres:
+  my-elasticsearch:

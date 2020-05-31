@@ -36,6 +36,7 @@ table tr td {
 .oneline { white-space: nowrap; }
 .clickable { cursor: pointer; transition: box-shadow 0.15s ease;}
 .clickable:hover { box-shadow: 0 0 8px black; }
+.clickable:focus { box-shadow: 0 0 8px black; }
 .hidden { display: none; }
 .hide { display: none; }
 .height16 { height: 16px; }

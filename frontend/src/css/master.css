@@ -11,7 +11,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 html, body, #app {
   height: 100%;
   overflow: hidden;
-  font-family: 'Arvo', serif;
+}
+
+* {
+    font-family: 'Arvo', serif;
 }
 
 table, th, td {
@@ -34,6 +37,7 @@ table tr td {
 .clickable { cursor: pointer; transition: box-shadow 0.15s ease;}
 .clickable:hover { box-shadow: 0 0 8px black; }
 .hidden { display: none; }
+.hide { display: none; }
 .height16 { height: 16px; }
 .height100 { height: 100%; }
 .width100 { width: 100%; }

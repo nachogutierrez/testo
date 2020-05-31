@@ -109,6 +109,22 @@ const Results = (function() {
     }
 
     function initComponents() {
+        const { ExploreButton } = Components
+        ExploreButton.init(bindings.app, {
+            api: testo,
+            type: 'result',
+            getKind: () => {
+                if (state.workloadDetail) {
+                    return state.workloadDetail.kind
+                }
+            },
+            async onFilterChosen(key, value) {
+                state.filters.metadata[key] = value
+                await fetchResults()
+                syncState({ filters: true, body: true })
+            }
+        })
+
         const { Navbar, Searchbar, ExploreKey, ApplyFilter, ApplyTag } = Components
         Searchbar.init(bindings.app, {
             onInput: (input, setResults) => {
@@ -239,6 +255,7 @@ const Results = (function() {
     async function onWorkloadIdFilterClick(e) {
         state.page = 1
         state.filters.workloadId = undefined
+        state.workloadDetail = undefined
         await fetchResults()
         syncState({ detail: true, filters: true, body: true })
     }

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const uuid = require('uuid').v4
 
-const Server = function({ resultService, metricService, firebase }) {
+const Server = function({ resultService, metricService, searchService, firebase }) {
     const app = express()
     app.use(bodyParser.json())
     app.use(cors())
@@ -30,9 +30,25 @@ const Server = function({ resultService, metricService, firebase }) {
     app.post('/create/workload', async (req, res) => {
         const u = uuid()
         console.time(`${u} - /create/workload`)
+        console.log(req.body)
         try {
             await measureMax('create-workload-time', async () => {
                 const data = await resultService.createWorkloads(req.body)
+                const promises = []
+                for (const key of Object.keys(req.body.metadata)) {
+                    promises.push(searchService.index({
+                        index: 'metadata',
+                        body: {
+                            workloadKind: req.body.kind,
+                            type: 'workload',
+                            key,
+                            value: req.body.metadata[key]
+                        }
+                    }))
+                }
+                console.time(`${u} - indexing metadata`)
+                await Promise.all(promises)
+                console.timeEnd(`${u} - indexing metadata`)
                 res.json(data)
             })
         } catch(e) {

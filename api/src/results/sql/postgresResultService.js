@@ -135,8 +135,10 @@ const PostgresResultService = function({ uri }) {
             metadataInserts.push([workloadId, key, value])
         }
 
-        const insertMetadataStatement = format('insert into workload_metadata (workload_id, key, value) values %L', metadataInserts)
-        await query(pool, insertMetadataStatement)
+        if (metadataInserts.length > 0) {
+            const insertMetadataStatement = format('insert into workload_metadata (workload_id, key, value) values %L', metadataInserts)
+            await query(pool, insertMetadataStatement)
+        }
 
         return {
             id: workloadId,
@@ -184,8 +186,10 @@ const PostgresResultService = function({ uri }) {
         const insertResultsStatement = format('insert into result (id, workload_id, kind, status, duration) values %L', resultInserts)
         await query(pool, insertResultsStatement)
 
-        const insertMetadataStatement = format('insert into result_metadata (result_id, key, value) values %L', metadataInserts)
-        await query(pool, insertMetadataStatement)
+        if (metadataInserts.length > 0) {
+            const insertMetadataStatement = format('insert into result_metadata (result_id, key, value) values %L', metadataInserts)
+            await query(pool, insertMetadataStatement)
+        }
 
         for (const status of Object.keys(statusCounter)) {
             if (statusCounter[status] > 0) {

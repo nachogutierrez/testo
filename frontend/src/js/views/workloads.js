@@ -84,7 +84,18 @@ const Workloads = (function() {
     }
 
     function initComponents() {
-        const { Searchbar, ExploreKey, ApplyFilter, ApplyTag } = Components
+        const { Searchbar, ExploreKey, ApplyFilter, ApplyTag, ExploreButton } = Components
+
+        ExploreButton.init(bindings.app, {
+            api: testo,
+            getKind: () => state.filters.kind,
+            async onFilterChosen(key, value) {
+                state.filters.metadata[key] = value
+                await fetchWorkloads()
+                syncState({ filters: true, body: true })
+            }
+        })
+
         Searchbar.init(bindings.app, {
             onInput: (input, setResults) => {
                 setResults([

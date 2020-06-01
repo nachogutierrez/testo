@@ -47,6 +47,9 @@ require('yargs')
         yargs.option('kind', { demandOption: true, type: 'string',
             describe: 'workload kind'
         })
+        yargs.option('created_at', { type: 'string',
+            describe: 'creation date YYYY-MM-DD HH:mm:ss'
+        })
         yargs.option('metadata', { default: '{}', type: 'string',
             describe: 'metadata json'
         })
@@ -60,6 +63,9 @@ require('yargs')
         })
         yargs.option('type', { default: 'junit', type: 'string',
             describe: 'parser type to be used on files'
+        })
+        yargs.option('created_at', { type: 'string',
+            describe: 'creation date YYYY-MM-DD HH:mm:ss'
         })
     }, enhanceArguments(publishResults))
     .argv

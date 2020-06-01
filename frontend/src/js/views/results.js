@@ -143,7 +143,7 @@ const Results = (function() {
                     }
                 }))
             },
-            onClick: (el, input) => {
+            onClick: async (el, input) => {
                 const type = el.getAttribute('data-type')
                 if (type === 'key') {
                     const key =  el.getAttribute('data-key')
@@ -154,9 +154,10 @@ const Results = (function() {
                         api: testo,
                         key,
                         type: 'result',
-                        onFilterChosen(key, value) {
+                        async onFilterChosen(key, value) {
                             state.filters.metadata[key] = value
                             Components.closeModal()
+                            await fetchResults()
                             syncState({ filters: true, body: true })
                         }
                     })
@@ -166,6 +167,7 @@ const Results = (function() {
                     state.filters.metadata[key] = value
                     input.value = ''
                     input.dispatchEvent(new CustomEvent('input', {}))
+                    await fetchResults()
                     syncState({ filters: true, body: true })
                     input.focus()
                 }

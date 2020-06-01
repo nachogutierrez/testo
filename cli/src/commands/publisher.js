@@ -2,6 +2,7 @@ const crypto = require('crypto')
 const axios = require('axios')
 const fs = require('fs').promises
 const uuid = require('uuid').v4
+const moment = require('moment')
 const { admin } = require('../firebase')
 const { createTempFile } = require('../tmp')
 const parsers = require('../parser')
@@ -17,9 +18,13 @@ async function createWorkload(args) {
         throw e
     }
 
+    if (args.created_at) {
+        moment(args.created_at, 'YYYY-MM-DD HH:mm:ss', true) // validate format
+    }
     const response = await axios.post(`${args.api}/create/workload`, {
         kind: args.kind,
-        metadata
+        metadata,
+        created_at: args.created_at
     })
 
     console.log(response.data.id)
@@ -47,6 +52,13 @@ async function publishResults(args) {
                 cb()
             }
             console.timeEnd(`${p.id} - upload stacktraces`)
+        }
+    }
+
+    if (args.created_at) {
+        moment(args.created_at, 'YYYY-MM-DD HH:mm:ss', true) // validate format
+        for (const r of parsed) {
+            r.created_at = args.created_at
         }
     }
 

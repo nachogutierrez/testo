@@ -1,42 +1,41 @@
 const axios = require('axios')
 const fs = require('fs').promises
+const moment = require('moment')
 const { hash, resultsDir } = require('./util')
 const config = require('../config.json')
 
-const args = process.argv.slice(2)
-let workloadName = 'default_workload'
-if (args.length > 0) {
-    workloadName = args[0]
-}
-
 async function main() {
-    const resultFiles = await fs.readdir(resultsDir())
-    for (let i = 0; i < resultFiles.length; i++) {
-        let { metadata, results } = require(`${resultsDir()}/${resultFiles[i]}`)
-        metadata.name = workloadName
+    const directories = await fs.readdir(resultsDir())
+    for (let i = 0; i < directories.length; i++) {
+        const directory = directories[i]
+        const resultFiles = await fs.readdir(`${resultsDir()}/${directory}`)
+        for (let j = 0; j < resultFiles.length; j++) {
+            let { metadata, results, kind } = require(`${resultsDir()}/${directory}/${resultFiles[j]}`)
 
-        // creates workload
-        const response = await axios.post(`${config.api}/create/workload`, [
-            {
-                kind: hash(workloadName),
-                metadata
-            }
-        ])
+            // creates workload
+            const response = await axios.post(`${config.api}/create/workload`, {
+                kind,
+                metadata,
+                created_at: `${directory} 13:30:00`
+            })
 
-        results = results.map(r => {
-            return {
-                duration: r.duration,
-                status: r.isSuccess ? 'pass' : 'fail',
-                workloadId: response.data[0].id,
-                kind: hash(`${workloadName}-${r.name}`),
-                metadata: {
-                    name: r.name
+            results = results.map(r => {
+                return {
+                    duration: r.duration,
+                    status: r.isSuccess ? 'pass' : 'fail',
+                    workloadId: response.data.id,
+                    kind: r.name,
+                    metadata: {
+                        name: r.name
+                    }
                 }
-            }
-        })
+            })
 
-        // creates results
-        await axios.post(`${config.api}/create/result`, results)
+            // // creates results
+            await axios.post(`${config.api}/create/result`, results)
+
+            console.log(`${directory} - ${j + 1}/${resultFiles.length} done`)
+        }
     }
 }
 

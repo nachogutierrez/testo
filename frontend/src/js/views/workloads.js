@@ -113,7 +113,7 @@ const Workloads = (function() {
                     }
                 }))
             },
-            onClick: (el, input) => {
+            onClick: async (el, input) => {
                 const type = el.getAttribute('data-type')
                 if (type === 'key') {
                     const key =  el.getAttribute('data-key')
@@ -123,9 +123,10 @@ const Workloads = (function() {
                         kind: state.filters.kind,
                         api: testo,
                         key,
-                        onFilterChosen(key, value) {
+                        async onFilterChosen(key, value) {
                             state.filters.metadata[key] = value
                             Components.closeModal()
+                            await fetchWorkloads()
                             syncState({ filters: true, body: true })
                         }
                     })
@@ -135,7 +136,8 @@ const Workloads = (function() {
                     state.filters.metadata[key] = value
                     input.value = ''
                     input.dispatchEvent(new CustomEvent('input', {}))
-                    syncState({ filters: true, body: true })
+                    await fetchWorkloads()
+                    syncState({ filters: true, body: true })                    
                     input.focus()
                 }
             }

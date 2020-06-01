@@ -1,22 +1,3 @@
 {
-  "api": "http://localhost:8080",
-  "seed": "uih21i3h12ui3hiu12hu312i3",
-  "totalWorkloads": [5000, 5001],
-  "workloadKinds": [5, 10],
-  "resultsPerWorkload": [150, 151],
-  "workloadMetadataLabels": [3, 6],
-  "workloadMetadata": {
-    "browser": [
-      "chrome",
-      "firefox",
-      "safari",
-      "ie"
-    ],
-    "shard": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    "jdk": ["jdk8", "jdk11"],
-    "database": ["postgres", "mysql", "mongodb", "cassandra"],
-    "color": ["green", "red", "blue", "pink", "yellow"]
-  },
-  "resultFailChance": 0.005,
-  "resultDuration": [50, 501]
+  "api": "http://localhost:5000"
 }

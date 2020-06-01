@@ -1,6 +1,7 @@
 const { Pool } = require('pg')
 const format = require('pg-format')
 const uuid = require('uuid').v4
+const moment = require('moment')
 const { query } = require('../../util')
 
 const buildGetWorkloadsStatement = ({ kind, metadata = {}, limit = 100, skip = 0, since, until }) => (`
@@ -99,22 +100,40 @@ const PostgresResultService = function({ uri }) {
 
     async function getWorkloads(opts = {}) {
         const { id, kind, metadata = {}, limit = 100, skip = 0, since, until } = opts
+        const u = uuid()
 
         if (id) {
             return await Promise.all((await query(pool, `select * from workload where id='${id}'`)).rows.map(enhanceWithMetadata('workload')))
         }
 
-        return await Promise.all((await query(pool, buildGetWorkloadsStatement({ kind, metadata, limit, skip, since, until }))).rows.map(enhanceWithMetadata('workload')))
+        console.time(`${u} - fetch workloads`)
+        const workloads = await query(pool, buildGetWorkloadsStatement({ kind, metadata, limit, skip, since, until }))
+        console.timeEnd(`${u} - fetch workloads`)
+        console.time(`${u} - enhance workloads`)
+        const enhancedWorkloads = await Promise.all(workloads.rows.map(enhanceWithMetadata('workload')))
+        console.timeEnd(`${u} - enhance workloads`)
+        return enhancedWorkloads
     }
 
     async function getResults(opts = {}) {
         const { id, workloadId, kind, metadata = {}, limit = 100, skip = 0, since, until, status } = opts
+        const u = uuid()
 
         if (id) {
             return await Promise.all((await query(pool, `select * from result where id='${id}'`)).rows.map(enhanceWithMetadata('result')))
         }
 
-        return await Promise.all((await query(pool, buildGetResultsStatement({ workloadId, kind, metadata, limit, skip, since, until, status }))).rows.map(enhanceWithMetadata('result')))
+        console.time(`${u} - fetch results`)
+        const results = await query(pool, buildGetResultsStatement({ workloadId, kind, metadata, limit, skip, since, until, status }))
+        console.timeEnd(`${u} - fetch results`)
+        console.time(`${u} - enhance results`)
+        const enhancedResults =  await Promise.all(results.rows.map(enhanceWithMetadata('result')))
+        console.timeEnd(`${u} - enhance results`)
+        return enhancedResults
+    }
+
+    function now() {
+        return moment().format('YYYY-MM-DD HH:mm:ss')
     }
 
     // can only create one workload at a time, no batch process for workloads
@@ -123,8 +142,8 @@ const PostgresResultService = function({ uri }) {
         const workloadId = uuid()
         const metadataInserts = []
 
-        let { kind = 'undefined', metadata = {} } = opts
-        await query(pool, format('insert into workload (id, kind) values %L', [ [workloadId, kind] ]))
+        let { kind = 'undefined', metadata = {}, created_at = now() } = opts
+        await query(pool, format('insert into workload (id, kind, created_at) values %L', [ [workloadId, kind, created_at] ]))
 
         const keys = Object.keys(metadata)
         for (let j = 0; j < keys.length; j++) {
@@ -163,14 +182,14 @@ const PostgresResultService = function({ uri }) {
         }
         for (let i = 0; i < opts.length; i++) {
             const r = opts[i]
-            let { id, workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {} } = r
+            let { id, workloadId, kind = 'undefined', status = 'pass', duration = 0, metadata = {}, created_at = now() } = r
             if (workloadId !== wid) {
                 throw new Error(`All results should belong to the same workload. Found ${wid} and ${workloadId}`)
             }
             if (!id) {
                 id = uuid()
             }
-            resultInserts.push([id, workloadId, kind, status, duration])
+            resultInserts.push([id, workloadId, kind, status, duration, created_at])
             const keys = Object.keys(metadata)
             for (let j = 0; j < keys.length; j++) {
                 const [key, value] = [keys[j], metadata[keys[j]]]
@@ -179,7 +198,8 @@ const PostgresResultService = function({ uri }) {
             statusCounter[status]++
         }
 
-        const insertResultsStatement = format('insert into result (id, workload_id, kind, status, duration) values %L', resultInserts)
+
+        const insertResultsStatement = format('insert into result (id, workload_id, kind, status, duration, created_at) values %L', resultInserts)
         await query(pool, insertResultsStatement)
 
         if (metadataInserts.length > 0) {

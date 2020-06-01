@@ -7,11 +7,12 @@
     "template": "node src/template.js",
     "generate": "node src/generate.js",
     "pub": "node src/publish.js",
-    "clean": "rm results/*",
+    "clean": "rm -rf results",
     "wclean": "del /F /Q results\\*"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "moment": "^2.26.0",
     "seedrandom": "^3.0.5"
   }
 }

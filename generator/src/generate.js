@@ -1,4 +1,5 @@
 const fs = require('fs').promises
+const moment = require('moment')
 const { randomBetween, shuffle, takeOne, randomBetweenF, cleanFloat, defaultGenerator, templatesDir, resultsDir } = require('./util')
 
 const generateResults = (template, generator = defaultGenerator) => {
@@ -20,36 +21,62 @@ const generateResults = (template, generator = defaultGenerator) => {
         m[key] = takeOne(metadata[key], generator)
     }
 
+    m.name = template.kind
+
     return {
         metadata: m,
-        results
+        results,
+        kind: template.kind
     }
 }
 
+
 const args = process.argv.slice(2)
-let templateFileName = 'template.json'
-let amount = 1
-
-if (args.length > 0) {
-    amount = args[0]
+if (args.length < 5) {
+    console.log(`USAGE: yarn generate templateName amountLeft amountRight from to`)
+    console.log(`example: yarn generate template.json 10 20 2020-05-01 2020-05-25`)
+    process.exit(1)
 }
-
-if (args.length > 1) {
-    templateFileName = args[1]
-}
+const templateFileName = args[0]
+const amountLeft = parseInt(args[1], 10)
+const amountRight = parseInt(args[2], 10)
+const from = args[3]
+const to = args[4]
 
 const template = require(`${templatesDir()}/${templateFileName}`)
 
 async function main() {
-    const timestamp = new Date().getTime()
-    for (let i = 0; i < amount; i++) {
-        const resultsFileName = `results-${timestamp}-${i}-${templateFileName}`
+    await fs.mkdir(`${resultsDir()}`, { recursive: true })
 
-        const results = generateResults(template)
+    let m1 = moment(from)
+    let m2 = moment(to)
 
-        await fs.writeFile(`${resultsDir()}/${resultsFileName}`, JSON.stringify(results, null, 4))
-        console.log(`${i + 1}/${amount} results generated`);
+    if (m2.diff(m1, 'days') <= 0) {
+        throw new Error('difference in days has to be positive')
     }
+
+    const days = []
+    let current = m1
+    while(m2.diff(current, 'days') >= 0) {
+        days.push(current.format('YYYY-MM-DD'))
+        current = current.add(1, 'days')
+    }
+
+    for (const day of days) {
+        await fs.mkdir(`${resultsDir()}/${day}`, { recursive: true })
+        const amount = randomBetween(defaultGenerator, amountLeft, amountRight)
+
+        const timestamp = new Date().getTime()
+        for (let i = 0; i < amount; i++) {
+            const resultsFileName = `results-${timestamp}-${i}-${templateFileName}`
+
+            const results = generateResults(template)
+
+            await fs.writeFile(`${resultsDir()}/${day}/${resultsFileName}`, JSON.stringify(results, null, 4))
+            console.log(`${day} -> ${i + 1}/${amount} results generated`)
+        }
+    }
+
     console.log('results saved')
 }
 

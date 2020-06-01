@@ -3,14 +3,12 @@ const { randomBetween, shuffle, takeOne, randomBetweenF, cleanFloat, defaultGene
 const { subjects, connectors, qualities, metadata } = require('../data.json')
 
 const generateTemplate = (props = {}) => {
-    const { generator = defaultGenerator } = props
+    const { generator = defaultGenerator, kind, metaAmount, amountTestCases, problematicP } = props
     const used = new Set()
     const metaKeys = Object.keys(metadata)
-    const metaAmount = randomBetween(generator, 1, 4)
     shuffle(generator, metaKeys)
     const chosenMetadata = metaKeys.slice(0, metaAmount)
     const testCases = []
-    const amountTestCases = randomBetween(generator, 5, 21)
     for (var i = 0; i < amountTestCases; i++) {
         let name = `${takeOne(subjects, generator)} ${takeOne(connectors, generator)} ${takeOne(qualities, generator)}`
         while(used.has(name)) {
@@ -20,10 +18,10 @@ const generateTemplate = (props = {}) => {
         const durationLeft = randomBetween(generator, 100, 2000)
         const durationRight = Math.floor(1.5 * durationLeft)
 
-        const isProblematic = generator() > 0.95
+        const isProblematic = generator() > problematicP
         let successRate = randomBetweenF(generator, 0.95, 0.99)
         if (isProblematic) {
-            successRate = randomBetweenF(generator, 0.65, 0.75)
+            successRate = randomBetweenF(generator, 0.4, 0.75)
         }
 
         testCases.push({
@@ -38,18 +36,25 @@ const generateTemplate = (props = {}) => {
         amountTestCases,
         testCases,
         metadata,
-        chosenMetadata
+        chosenMetadata,
+        kind
     }
 }
 
 const args = process.argv.slice(2)
-let fileName = 'template.json'
-if (args.length > 0) {
-    fileName = args[0]
+if (args.length < 5) {
+    console.log('USAGE: yarn template templateName kind metaAmount amountTestCases problematicP')
+    console.log(`example: yarn template template.json 'My awesome testsuite' 3 15 0.95`)
+    process.exit(1)
 }
+const templateName = args[0]
+const kind = args[1]
+const metaAmount = parseInt(args[2], 10)
+const amountTestCases = parseInt(args[3], 10)
+const problematicP = parseFloat(args[4])
 
-const template = generateTemplate()
-fs.writeFile(`${templatesDir()}/${fileName}`, JSON.stringify(template, null, 4), err => {
+const template = generateTemplate({ kind, metaAmount, amountTestCases, problematicP })
+fs.writeFile(`${templatesDir()}/${templateName}`, JSON.stringify(template, null, 4), err => {
     if (err) throw err
     console.log('template saved')
 })

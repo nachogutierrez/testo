@@ -13,14 +13,11 @@ const SearchService = function({ client }) {
                 value: workload.metadata[key]
             })
         }
-        console.log(dataset)
         const body = dataset.flatMap(doc => [{ index: { _index: 'metadata' } }, doc])
         await client.bulk({ refresh: true, body })
     }
 
     async function indexResultMetadata(workload = {}, results = []) {
-        console.log('indexing result');
-        console.log(workload);
         const dataset = []
         for (const result of results) {
             if (!result.metadata) continue
@@ -41,8 +38,6 @@ const SearchService = function({ client }) {
     async function suggestions(payload = {}) {
         const { query, workloadKind, type = 'workload' } = payload
         if (!query) return []
-
-        console.log(payload)
 
         const promises = [
             keySuggestions({ type, workloadKind, query }),

@@ -19,6 +19,7 @@ const Results = (function() {
         if (state.filters.workloadId) {
             await fetchWorkloadDetail()
         }
+
         syncState({}, true)
     }
 

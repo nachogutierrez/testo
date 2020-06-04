@@ -10,9 +10,9 @@ const generateTemplate = (props = {}) => {
     const chosenMetadata = metaKeys.slice(0, metaAmount)
     const testCases = []
     for (var i = 0; i < amountTestCases; i++) {
-        let name = `${takeOne(subjects, generator)} ${takeOne(connectors, generator)} ${takeOne(qualities, generator)}`
+        let name = `${takeOne(subjects, generator)} ${takeOne(connectors, generator)} ${takeOne(qualities, generator)} with ${takeOne(subjects, generator)}`
         while(used.has(name)) {
-            name = `${takeOne(subjects, generator)} ${takeOne(connectors, generator)} ${takeOne(qualities, generator)}`
+            name = `${takeOne(subjects, generator)} ${takeOne(connectors, generator)} ${takeOne(qualities, generator)} with ${takeOne(subjects, generator)}`
         }
         used.add(name)
         const durationLeft = randomBetween(generator, 100, 2000)

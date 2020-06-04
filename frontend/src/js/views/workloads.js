@@ -137,7 +137,7 @@ const Workloads = (function() {
                     input.value = ''
                     input.dispatchEvent(new CustomEvent('input', {}))
                     await fetchWorkloads()
-                    syncState({ filters: true, body: true })                    
+                    syncState({ filters: true, body: true })
                     input.focus()
                 }
             }

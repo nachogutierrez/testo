@@ -214,7 +214,7 @@ const Components = (function() {
                     return `<td>${truncate(props.result.id, 8)}</td>`
                 }
             })}
-            <td><a href="javascript:;" onclick=${props.onWorkloadIdClick} data-workload-id='${props.result.workload_id}'>${truncate(props.result.workload_id, 8)}</a></td>
+            <td><a href="javascript:;" onclick=${props.onWorkloadIdClick} data-workload-id='${props.result.workloadId}'>${truncate(props.result.workloadId, 8)}</a></td>
             <td class='oneline'>${moment.utc(props.result.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()}</td>
             <td><a href="javascript:;" onclick=${props.onKindClick} data-kind='${props.result.kind}'>${truncate(props.result.kind, 8)}</a></td>
             <td>${props.result.status}</td>

@@ -21,6 +21,7 @@ const Server = function({ resultService, metricService, searchService, firebase 
                 res.json(workloads)
             })
         } catch(e) {
+            console.error(e)
             res.status(400).json({ message: 'error fetching workloads', exception: e.message })
             pushCounterMetric('query-workload-failed-rpm')
         } finally {
@@ -100,6 +101,8 @@ const Server = function({ resultService, metricService, searchService, firebase 
     })
 
     app.post('/create/workload', async (req, res) => {
+        const u = uuid()
+
         try {
             await measureMax('create-workload-time', async () => {
                 req.body.kind = hash(req.body.kind)
@@ -125,6 +128,7 @@ const Server = function({ resultService, metricService, searchService, firebase 
                 res.json(results)
             })
         } catch(e) {
+            console.error(e)
             res.status(400).json({ message: 'error fetching results', exception: e.message })
             pushCounterMetric('query-result-failed-rpm')
         } finally {
@@ -152,6 +156,7 @@ const Server = function({ resultService, metricService, searchService, firebase 
                 res.json(data)
             })
         } catch(e) {
+            console.error(e)
             res.status(400).json({ message: 'error creating results', exception: e.message })
             pushCounterMetric('create-result-failed-rpm')
         } finally {

@@ -1,0 +1,4567 @@
+{
+    "amountTestCases": 500,
+    "testCases": [
+        {
+            "name": "captains must kill nazis",
+            "successRate": 0.9526,
+            "isProblematic": false,
+            "duration": [
+                947,
+                1420
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't watch youtube videos",
+            "successRate": 0.9648,
+            "isProblematic": false,
+            "duration": [
+                561,
+                841
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't wear sandals",
+            "successRate": 0.9678,
+            "isProblematic": false,
+            "duration": [
+                1529,
+                2293
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to explore the galaxy",
+            "successRate": 0.9887,
+            "isProblematic": false,
+            "duration": [
+                493,
+                739
+            ]
+        },
+        {
+            "name": "birds should explore the galaxy",
+            "successRate": 0.9835,
+            "isProblematic": false,
+            "duration": [
+                1809,
+                2713
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can't think about the future",
+            "successRate": 0.9627,
+            "isProblematic": false,
+            "duration": [
+                1857,
+                2785
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to befriend a star",
+            "successRate": 0.5748,
+            "isProblematic": true,
+            "duration": [
+                1545,
+                2317
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't smoke",
+            "successRate": 0.9613,
+            "isProblematic": false,
+            "duration": [
+                477,
+                715
+            ]
+        },
+        {
+            "name": "birds should kick ass",
+            "successRate": 0.9837,
+            "isProblematic": false,
+            "duration": [
+                1821,
+                2731
+            ]
+        },
+        {
+            "name": "captains can do cardio",
+            "successRate": 0.969,
+            "isProblematic": false,
+            "duration": [
+                776,
+                1164
+            ]
+        },
+        {
+            "name": "cats should wear sandals",
+            "successRate": 0.9723,
+            "isProblematic": false,
+            "duration": [
+                405,
+                607
+            ]
+        },
+        {
+            "name": "hitler can achieve world peace",
+            "successRate": 0.9789,
+            "isProblematic": false,
+            "duration": [
+                327,
+                490
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to kill nazis",
+            "successRate": 0.978,
+            "isProblematic": false,
+            "duration": [
+                228,
+                342
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to achieve world peace",
+            "successRate": 0.9504,
+            "isProblematic": false,
+            "duration": [
+                1334,
+                2001
+            ]
+        },
+        {
+            "name": "cats can't kick ass",
+            "successRate": 0.9664,
+            "isProblematic": false,
+            "duration": [
+                1394,
+                2091
+            ]
+        },
+        {
+            "name": "captains can befriend a star",
+            "successRate": 0.9501,
+            "isProblematic": false,
+            "duration": [
+                1842,
+                2763
+            ]
+        },
+        {
+            "name": "cats can achieve world peace",
+            "successRate": 0.9864,
+            "isProblematic": false,
+            "duration": [
+                792,
+                1188
+            ]
+        },
+        {
+            "name": "scientists can't take medicine",
+            "successRate": 0.9662,
+            "isProblematic": false,
+            "duration": [
+                1135,
+                1702
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should get along with squirrels",
+            "successRate": 0.6294,
+            "isProblematic": true,
+            "duration": [
+                1794,
+                2691
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can do cardio",
+            "successRate": 0.9805,
+            "isProblematic": false,
+            "duration": [
+                1309,
+                1963
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to watch youtube videos",
+            "successRate": 0.9704,
+            "isProblematic": false,
+            "duration": [
+                1735,
+                2602
+            ]
+        },
+        {
+            "name": "dogs must wear sandals",
+            "successRate": 0.9765,
+            "isProblematic": false,
+            "duration": [
+                1237,
+                1855
+            ]
+        },
+        {
+            "name": "cats can't think about the future",
+            "successRate": 0.9662,
+            "isProblematic": false,
+            "duration": [
+                1783,
+                2674
+            ]
+        },
+        {
+            "name": "computers must explore the galaxy",
+            "successRate": 0.973,
+            "isProblematic": false,
+            "duration": [
+                949,
+                1423
+            ]
+        },
+        {
+            "name": "apples must run for president",
+            "successRate": 0.9895,
+            "isProblematic": false,
+            "duration": [
+                1921,
+                2881
+            ]
+        },
+        {
+            "name": "cats can't wear sandals",
+            "successRate": 0.9778,
+            "isProblematic": false,
+            "duration": [
+                914,
+                1371
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to go shopping",
+            "successRate": 0.9773,
+            "isProblematic": false,
+            "duration": [
+                1141,
+                1711
+            ]
+        },
+        {
+            "name": "people that smoke can be red",
+            "successRate": 0.9548,
+            "isProblematic": false,
+            "duration": [
+                306,
+                459
+            ]
+        },
+        {
+            "name": "people that smoke can't kill nazis",
+            "successRate": 0.986,
+            "isProblematic": false,
+            "duration": [
+                374,
+                561
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to go shopping",
+            "successRate": 0.965,
+            "isProblematic": false,
+            "duration": [
+                1559,
+                2338
+            ]
+        },
+        {
+            "name": "hitler should run for president",
+            "successRate": 0.9587,
+            "isProblematic": false,
+            "duration": [
+                1056,
+                1584
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to earn millions a year",
+            "successRate": 0.9676,
+            "isProblematic": false,
+            "duration": [
+                196,
+                294
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to write clean code",
+            "successRate": 0.9709,
+            "isProblematic": false,
+            "duration": [
+                1143,
+                1714
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to kill nazis",
+            "successRate": 0.9793,
+            "isProblematic": false,
+            "duration": [
+                987,
+                1480
+            ]
+        },
+        {
+            "name": "captains can conquer europe",
+            "successRate": 0.9538,
+            "isProblematic": false,
+            "duration": [
+                1316,
+                1974
+            ]
+        },
+        {
+            "name": "cats can get along with squirrels",
+            "successRate": 0.4929,
+            "isProblematic": true,
+            "duration": [
+                1363,
+                2044
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should start a revolution",
+            "successRate": 0.9599,
+            "isProblematic": false,
+            "duration": [
+                1337,
+                2005
+            ]
+        },
+        {
+            "name": "cats can go shopping",
+            "successRate": 0.9816,
+            "isProblematic": false,
+            "duration": [
+                1921,
+                2881
+            ]
+        },
+        {
+            "name": "birds should smoke",
+            "successRate": 0.9849,
+            "isProblematic": false,
+            "duration": [
+                1498,
+                2247
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to be red",
+            "successRate": 0.9865,
+            "isProblematic": false,
+            "duration": [
+                734,
+                1101
+            ]
+        },
+        {
+            "name": "hitler can't watch youtube videos",
+            "successRate": 0.9853,
+            "isProblematic": false,
+            "duration": [
+                358,
+                537
+            ]
+        },
+        {
+            "name": "captains should take a bath",
+            "successRate": 0.9897,
+            "isProblematic": false,
+            "duration": [
+                971,
+                1456
+            ]
+        },
+        {
+            "name": "cats should befriend a star",
+            "successRate": 0.9844,
+            "isProblematic": false,
+            "duration": [
+                1412,
+                2118
+            ]
+        },
+        {
+            "name": "birds should wear sandals",
+            "successRate": 0.9613,
+            "isProblematic": false,
+            "duration": [
+                1104,
+                1656
+            ]
+        },
+        {
+            "name": "hitler can't kill nazis",
+            "successRate": 0.9601,
+            "isProblematic": false,
+            "duration": [
+                1320,
+                1980
+            ]
+        },
+        {
+            "name": "dogs can't wear sandals",
+            "successRate": 0.9822,
+            "isProblematic": false,
+            "duration": [
+                1099,
+                1648
+            ]
+        },
+        {
+            "name": "hitler can kick ass",
+            "successRate": 0.9538,
+            "isProblematic": false,
+            "duration": [
+                1132,
+                1698
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can wear sandals",
+            "successRate": 0.9691,
+            "isProblematic": false,
+            "duration": [
+                421,
+                631
+            ]
+        },
+        {
+            "name": "captains can kick ass",
+            "successRate": 0.9629,
+            "isProblematic": false,
+            "duration": [
+                441,
+                661
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to explore the galaxy",
+            "successRate": 0.9824,
+            "isProblematic": false,
+            "duration": [
+                1956,
+                2934
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must start a revolution",
+            "successRate": 0.9673,
+            "isProblematic": false,
+            "duration": [
+                1581,
+                2371
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to be red",
+            "successRate": 0.9799,
+            "isProblematic": false,
+            "duration": [
+                263,
+                394
+            ]
+        },
+        {
+            "name": "a spartan warrior must write clean code",
+            "successRate": 0.9576,
+            "isProblematic": false,
+            "duration": [
+                111,
+                166
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to write clean code",
+            "successRate": 0.9742,
+            "isProblematic": false,
+            "duration": [
+                981,
+                1471
+            ]
+        },
+        {
+            "name": "cats should cook pasta",
+            "successRate": 0.9829,
+            "isProblematic": false,
+            "duration": [
+                243,
+                364
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to smoke",
+            "successRate": 0.9699,
+            "isProblematic": false,
+            "duration": [
+                1408,
+                2112
+            ]
+        },
+        {
+            "name": "scientists can't kick ass",
+            "successRate": 0.9551,
+            "isProblematic": false,
+            "duration": [
+                1716,
+                2574
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to wear sandals",
+            "successRate": 0.987,
+            "isProblematic": false,
+            "duration": [
+                1747,
+                2620
+            ]
+        },
+        {
+            "name": "dogs can't befriend a star",
+            "successRate": 0.9569,
+            "isProblematic": false,
+            "duration": [
+                269,
+                403
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can conquer europe",
+            "successRate": 0.9867,
+            "isProblematic": false,
+            "duration": [
+                1612,
+                2418
+            ]
+        },
+        {
+            "name": "computers can't explore the galaxy",
+            "successRate": 0.9807,
+            "isProblematic": false,
+            "duration": [
+                1141,
+                1711
+            ]
+        },
+        {
+            "name": "scientists can't kill nazis",
+            "successRate": 0.9797,
+            "isProblematic": false,
+            "duration": [
+                1173,
+                1759
+            ]
+        },
+        {
+            "name": "apples can't do cardio",
+            "successRate": 0.9799,
+            "isProblematic": false,
+            "duration": [
+                891,
+                1336
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to write clean code",
+            "successRate": 0.9795,
+            "isProblematic": false,
+            "duration": [
+                720,
+                1080
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't conquer europe",
+            "successRate": 0.9551,
+            "isProblematic": false,
+            "duration": [
+                662,
+                993
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to think about the future",
+            "successRate": 0.9645,
+            "isProblematic": false,
+            "duration": [
+                1610,
+                2415
+            ]
+        },
+        {
+            "name": "scientists can't conquer europe",
+            "successRate": 0.9598,
+            "isProblematic": false,
+            "duration": [
+                943,
+                1414
+            ]
+        },
+        {
+            "name": "people that smoke can't smoke",
+            "successRate": 0.9541,
+            "isProblematic": false,
+            "duration": [
+                654,
+                981
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to kick ass",
+            "successRate": 0.969,
+            "isProblematic": false,
+            "duration": [
+                1333,
+                1999
+            ]
+        },
+        {
+            "name": "hitler can't be red",
+            "successRate": 0.963,
+            "isProblematic": false,
+            "duration": [
+                717,
+                1075
+            ]
+        },
+        {
+            "name": "hitler should earn millions a year",
+            "successRate": 0.9526,
+            "isProblematic": false,
+            "duration": [
+                1546,
+                2319
+            ]
+        },
+        {
+            "name": "apples can earn millions a year",
+            "successRate": 0.9535,
+            "isProblematic": false,
+            "duration": [
+                1933,
+                2899
+            ]
+        },
+        {
+            "name": "a spartan warrior must explore the galaxy",
+            "successRate": 0.9598,
+            "isProblematic": false,
+            "duration": [
+                1344,
+                2016
+            ]
+        },
+        {
+            "name": "apples should write clean code",
+            "successRate": 0.9579,
+            "isProblematic": false,
+            "duration": [
+                1559,
+                2338
+            ]
+        },
+        {
+            "name": "scientists should conquer europe",
+            "successRate": 0.9589,
+            "isProblematic": false,
+            "duration": [
+                424,
+                636
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to write clean code",
+            "successRate": 0.9578,
+            "isProblematic": false,
+            "duration": [
+                1616,
+                2424
+            ]
+        },
+        {
+            "name": "dogs can't cook pasta",
+            "successRate": 0.9539,
+            "isProblematic": false,
+            "duration": [
+                1832,
+                2748
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to run for president",
+            "successRate": 0.9807,
+            "isProblematic": false,
+            "duration": [
+                930,
+                1395
+            ]
+        },
+        {
+            "name": "dogs can't think about the future",
+            "successRate": 0.9757,
+            "isProblematic": false,
+            "duration": [
+                1679,
+                2518
+            ]
+        },
+        {
+            "name": "dogs can earn millions a year",
+            "successRate": 0.9603,
+            "isProblematic": false,
+            "duration": [
+                1241,
+                1861
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must kick ass",
+            "successRate": 0.9766,
+            "isProblematic": false,
+            "duration": [
+                1554,
+                2331
+            ]
+        },
+        {
+            "name": "hitler can take a bath",
+            "successRate": 0.9657,
+            "isProblematic": false,
+            "duration": [
+                1352,
+                2028
+            ]
+        },
+        {
+            "name": "people that smoke can smoke",
+            "successRate": 0.9527,
+            "isProblematic": false,
+            "duration": [
+                1388,
+                2082
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can't go shopping",
+            "successRate": 0.9537,
+            "isProblematic": false,
+            "duration": [
+                643,
+                964
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should run for president",
+            "successRate": 0.9547,
+            "isProblematic": false,
+            "duration": [
+                235,
+                352
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must kill nazis",
+            "successRate": 0.9602,
+            "isProblematic": false,
+            "duration": [
+                1669,
+                2503
+            ]
+        },
+        {
+            "name": "cats must write clean code",
+            "successRate": 0.9814,
+            "isProblematic": false,
+            "duration": [
+                310,
+                465
+            ]
+        },
+        {
+            "name": "people that smoke should go shopping",
+            "successRate": 0.9705,
+            "isProblematic": false,
+            "duration": [
+                1814,
+                2721
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't take medicine",
+            "successRate": 0.4837,
+            "isProblematic": true,
+            "duration": [
+                199,
+                298
+            ]
+        },
+        {
+            "name": "apples can go shopping",
+            "successRate": 0.9585,
+            "isProblematic": false,
+            "duration": [
+                1841,
+                2761
+            ]
+        },
+        {
+            "name": "people that smoke must take medicine",
+            "successRate": 0.9844,
+            "isProblematic": false,
+            "duration": [
+                776,
+                1164
+            ]
+        },
+        {
+            "name": "captains can get along with squirrels",
+            "successRate": 0.9726,
+            "isProblematic": false,
+            "duration": [
+                1388,
+                2082
+            ]
+        },
+        {
+            "name": "cats can't watch youtube videos",
+            "successRate": 0.9569,
+            "isProblematic": false,
+            "duration": [
+                1646,
+                2469
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can conquer europe",
+            "successRate": 0.9709,
+            "isProblematic": false,
+            "duration": [
+                259,
+                388
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to think about the future",
+            "successRate": 0.9565,
+            "isProblematic": false,
+            "duration": [
+                217,
+                325
+            ]
+        },
+        {
+            "name": "apples can't start a revolution",
+            "successRate": 0.9627,
+            "isProblematic": false,
+            "duration": [
+                530,
+                795
+            ]
+        },
+        {
+            "name": "birds can kill nazis",
+            "successRate": 0.9788,
+            "isProblematic": false,
+            "duration": [
+                1730,
+                2595
+            ]
+        },
+        {
+            "name": "birds must be red",
+            "successRate": 0.9798,
+            "isProblematic": false,
+            "duration": [
+                317,
+                475
+            ]
+        },
+        {
+            "name": "hitler can start a war",
+            "successRate": 0.9767,
+            "isProblematic": false,
+            "duration": [
+                1964,
+                2946
+            ]
+        },
+        {
+            "name": "scientists can start a war",
+            "successRate": 0.9883,
+            "isProblematic": false,
+            "duration": [
+                337,
+                505
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can explore the galaxy",
+            "successRate": 0.9808,
+            "isProblematic": false,
+            "duration": [
+                257,
+                385
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must think about the future",
+            "successRate": 0.9658,
+            "isProblematic": false,
+            "duration": [
+                348,
+                522
+            ]
+        },
+        {
+            "name": "captains can't smoke",
+            "successRate": 0.9881,
+            "isProblematic": false,
+            "duration": [
+                440,
+                660
+            ]
+        },
+        {
+            "name": "dogs can cook pasta",
+            "successRate": 0.9598,
+            "isProblematic": false,
+            "duration": [
+                1645,
+                2467
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should take a bath",
+            "successRate": 0.9805,
+            "isProblematic": false,
+            "duration": [
+                1080,
+                1620
+            ]
+        },
+        {
+            "name": "dogs can't run for president",
+            "successRate": 0.9683,
+            "isProblematic": false,
+            "duration": [
+                1602,
+                2403
+            ]
+        },
+        {
+            "name": "dogs must think about the future",
+            "successRate": 0.9554,
+            "isProblematic": false,
+            "duration": [
+                1347,
+                2020
+            ]
+        },
+        {
+            "name": "people that smoke can go shopping",
+            "successRate": 0.9791,
+            "isProblematic": false,
+            "duration": [
+                1031,
+                1546
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should explore the galaxy",
+            "successRate": 0.9652,
+            "isProblematic": false,
+            "duration": [
+                1443,
+                2164
+            ]
+        },
+        {
+            "name": "a spartan warrior must take medicine",
+            "successRate": 0.9578,
+            "isProblematic": false,
+            "duration": [
+                1299,
+                1948
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to conquer europe",
+            "successRate": 0.9505,
+            "isProblematic": false,
+            "duration": [
+                955,
+                1432
+            ]
+        },
+        {
+            "name": "dogs should explore the galaxy",
+            "successRate": 0.9709,
+            "isProblematic": false,
+            "duration": [
+                504,
+                756
+            ]
+        },
+        {
+            "name": "birds can get along with squirrels",
+            "successRate": 0.9749,
+            "isProblematic": false,
+            "duration": [
+                166,
+                249
+            ]
+        },
+        {
+            "name": "a spartan warrior can kill nazis",
+            "successRate": 0.9708,
+            "isProblematic": false,
+            "duration": [
+                161,
+                241
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to earn millions a year",
+            "successRate": 0.9802,
+            "isProblematic": false,
+            "duration": [
+                161,
+                241
+            ]
+        },
+        {
+            "name": "hitler should do cardio",
+            "successRate": 0.9639,
+            "isProblematic": false,
+            "duration": [
+                1449,
+                2173
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should cook pasta",
+            "successRate": 0.9715,
+            "isProblematic": false,
+            "duration": [
+                994,
+                1491
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to think about the future",
+            "successRate": 0.9775,
+            "isProblematic": false,
+            "duration": [
+                506,
+                759
+            ]
+        },
+        {
+            "name": "cats can't achieve world peace",
+            "successRate": 0.9547,
+            "isProblematic": false,
+            "duration": [
+                210,
+                315
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't take a bath",
+            "successRate": 0.9692,
+            "isProblematic": false,
+            "duration": [
+                1869,
+                2803
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to take medicine",
+            "successRate": 0.955,
+            "isProblematic": false,
+            "duration": [
+                1013,
+                1519
+            ]
+        },
+        {
+            "name": "birds should think about the future",
+            "successRate": 0.9826,
+            "isProblematic": false,
+            "duration": [
+                1745,
+                2617
+            ]
+        },
+        {
+            "name": "scientists must kick ass",
+            "successRate": 0.9829,
+            "isProblematic": false,
+            "duration": [
+                1361,
+                2041
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to run for president",
+            "successRate": 0.9659,
+            "isProblematic": false,
+            "duration": [
+                368,
+                552
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to start a revolution",
+            "successRate": 0.961,
+            "isProblematic": false,
+            "duration": [
+                247,
+                370
+            ]
+        },
+        {
+            "name": "hitler must watch youtube videos",
+            "successRate": 0.9878,
+            "isProblematic": false,
+            "duration": [
+                1937,
+                2905
+            ]
+        },
+        {
+            "name": "computers should kill nazis",
+            "successRate": 0.9628,
+            "isProblematic": false,
+            "duration": [
+                365,
+                547
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should do cardio",
+            "successRate": 0.9769,
+            "isProblematic": false,
+            "duration": [
+                894,
+                1341
+            ]
+        },
+        {
+            "name": "scientists must run for president",
+            "successRate": 0.9522,
+            "isProblematic": false,
+            "duration": [
+                1628,
+                2442
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to do cardio",
+            "successRate": 0.9735,
+            "isProblematic": false,
+            "duration": [
+                1184,
+                1776
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to achieve world peace",
+            "successRate": 0.9723,
+            "isProblematic": false,
+            "duration": [
+                1748,
+                2622
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to take a bath",
+            "successRate": 0.959,
+            "isProblematic": false,
+            "duration": [
+                1705,
+                2557
+            ]
+        },
+        {
+            "name": "birds can't cook pasta",
+            "successRate": 0.9665,
+            "isProblematic": false,
+            "duration": [
+                901,
+                1351
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't get along with squirrels",
+            "successRate": 0.982,
+            "isProblematic": false,
+            "duration": [
+                992,
+                1488
+            ]
+        },
+        {
+            "name": "captains should be red",
+            "successRate": 0.9719,
+            "isProblematic": false,
+            "duration": [
+                1471,
+                2206
+            ]
+        },
+        {
+            "name": "computers should kick ass",
+            "successRate": 0.9819,
+            "isProblematic": false,
+            "duration": [
+                1875,
+                2812
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to start a revolution",
+            "successRate": 0.9771,
+            "isProblematic": false,
+            "duration": [
+                705,
+                1057
+            ]
+        },
+        {
+            "name": "computers must take medicine",
+            "successRate": 0.9559,
+            "isProblematic": false,
+            "duration": [
+                115,
+                172
+            ]
+        },
+        {
+            "name": "hitler should watch youtube videos",
+            "successRate": 0.9522,
+            "isProblematic": false,
+            "duration": [
+                1400,
+                2100
+            ]
+        },
+        {
+            "name": "hitler should befriend a star",
+            "successRate": 0.9583,
+            "isProblematic": false,
+            "duration": [
+                1155,
+                1732
+            ]
+        },
+        {
+            "name": "apples should cook pasta",
+            "successRate": 0.9615,
+            "isProblematic": false,
+            "duration": [
+                769,
+                1153
+            ]
+        },
+        {
+            "name": "a spartan warrior must start a war",
+            "successRate": 0.9525,
+            "isProblematic": false,
+            "duration": [
+                1777,
+                2665
+            ]
+        },
+        {
+            "name": "captains must cook pasta",
+            "successRate": 0.9562,
+            "isProblematic": false,
+            "duration": [
+                1068,
+                1602
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to wear sandals",
+            "successRate": 0.9765,
+            "isProblematic": false,
+            "duration": [
+                725,
+                1087
+            ]
+        },
+        {
+            "name": "apples can run for president",
+            "successRate": 0.9715,
+            "isProblematic": false,
+            "duration": [
+                653,
+                979
+            ]
+        },
+        {
+            "name": "people that smoke should smoke",
+            "successRate": 0.9804,
+            "isProblematic": false,
+            "duration": [
+                130,
+                195
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to start a revolution",
+            "successRate": 0.9622,
+            "isProblematic": false,
+            "duration": [
+                767,
+                1150
+            ]
+        },
+        {
+            "name": "birds should earn millions a year",
+            "successRate": 0.9647,
+            "isProblematic": false,
+            "duration": [
+                1983,
+                2974
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to explore the galaxy",
+            "successRate": 0.9559,
+            "isProblematic": false,
+            "duration": [
+                1055,
+                1582
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should befriend a star",
+            "successRate": 0.9624,
+            "isProblematic": false,
+            "duration": [
+                1380,
+                2070
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to go shopping",
+            "successRate": 0.9748,
+            "isProblematic": false,
+            "duration": [
+                1636,
+                2454
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to explore the galaxy",
+            "successRate": 0.9635,
+            "isProblematic": false,
+            "duration": [
+                244,
+                366
+            ]
+        },
+        {
+            "name": "captains must take medicine",
+            "successRate": 0.977,
+            "isProblematic": false,
+            "duration": [
+                900,
+                1350
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to get along with squirrels",
+            "successRate": 0.9788,
+            "isProblematic": false,
+            "duration": [
+                266,
+                399
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to smoke",
+            "successRate": 0.959,
+            "isProblematic": false,
+            "duration": [
+                1159,
+                1738
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to take a bath",
+            "successRate": 0.9535,
+            "isProblematic": false,
+            "duration": [
+                952,
+                1428
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't write clean code",
+            "successRate": 0.951,
+            "isProblematic": false,
+            "duration": [
+                1693,
+                2539
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to cook pasta",
+            "successRate": 0.9807,
+            "isProblematic": false,
+            "duration": [
+                876,
+                1314
+            ]
+        },
+        {
+            "name": "cats should start a revolution",
+            "successRate": 0.9897,
+            "isProblematic": false,
+            "duration": [
+                548,
+                822
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to kill nazis",
+            "successRate": 0.9751,
+            "isProblematic": false,
+            "duration": [
+                186,
+                279
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to go shopping",
+            "successRate": 0.9668,
+            "isProblematic": false,
+            "duration": [
+                321,
+                481
+            ]
+        },
+        {
+            "name": "hitler can watch youtube videos",
+            "successRate": 0.9661,
+            "isProblematic": false,
+            "duration": [
+                985,
+                1477
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can't conquer europe",
+            "successRate": 0.968,
+            "isProblematic": false,
+            "duration": [
+                1368,
+                2052
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to smoke",
+            "successRate": 0.9812,
+            "isProblematic": false,
+            "duration": [
+                248,
+                372
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to watch youtube videos",
+            "successRate": 0.9631,
+            "isProblematic": false,
+            "duration": [
+                365,
+                547
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to befriend a star",
+            "successRate": 0.9698,
+            "isProblematic": false,
+            "duration": [
+                1201,
+                1801
+            ]
+        },
+        {
+            "name": "people that smoke can achieve world peace",
+            "successRate": 0.9754,
+            "isProblematic": false,
+            "duration": [
+                852,
+                1278
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can watch youtube videos",
+            "successRate": 0.9861,
+            "isProblematic": false,
+            "duration": [
+                1927,
+                2890
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to go shopping",
+            "successRate": 0.9751,
+            "isProblematic": false,
+            "duration": [
+                673,
+                1009
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must earn millions a year",
+            "successRate": 0.9719,
+            "isProblematic": false,
+            "duration": [
+                984,
+                1476
+            ]
+        },
+        {
+            "name": "cats must start a war",
+            "successRate": 0.9683,
+            "isProblematic": false,
+            "duration": [
+                1911,
+                2866
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to earn millions a year",
+            "successRate": 0.9557,
+            "isProblematic": false,
+            "duration": [
+                933,
+                1399
+            ]
+        },
+        {
+            "name": "people that smoke should be red",
+            "successRate": 0.975,
+            "isProblematic": false,
+            "duration": [
+                436,
+                654
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to be red",
+            "successRate": 0.9886,
+            "isProblematic": false,
+            "duration": [
+                398,
+                597
+            ]
+        },
+        {
+            "name": "hitler can't conquer europe",
+            "successRate": 0.9659,
+            "isProblematic": false,
+            "duration": [
+                1818,
+                2727
+            ]
+        },
+        {
+            "name": "a spartan warrior must conquer europe",
+            "successRate": 0.9728,
+            "isProblematic": false,
+            "duration": [
+                1981,
+                2971
+            ]
+        },
+        {
+            "name": "captains should explore the galaxy",
+            "successRate": 0.9597,
+            "isProblematic": false,
+            "duration": [
+                1815,
+                2722
+            ]
+        },
+        {
+            "name": "people that smoke must explore the galaxy",
+            "successRate": 0.5273,
+            "isProblematic": true,
+            "duration": [
+                877,
+                1315
+            ]
+        },
+        {
+            "name": "birds can start a revolution",
+            "successRate": 0.9612,
+            "isProblematic": false,
+            "duration": [
+                1654,
+                2481
+            ]
+        },
+        {
+            "name": "birds can start a war",
+            "successRate": 0.9891,
+            "isProblematic": false,
+            "duration": [
+                848,
+                1272
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to think about the future",
+            "successRate": 0.967,
+            "isProblematic": false,
+            "duration": [
+                636,
+                954
+            ]
+        },
+        {
+            "name": "computers must start a revolution",
+            "successRate": 0.959,
+            "isProblematic": false,
+            "duration": [
+                907,
+                1360
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to go shopping",
+            "successRate": 0.968,
+            "isProblematic": false,
+            "duration": [
+                1779,
+                2668
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can explore the galaxy",
+            "successRate": 0.978,
+            "isProblematic": false,
+            "duration": [
+                513,
+                769
+            ]
+        },
+        {
+            "name": "scientists must watch youtube videos",
+            "successRate": 0.9897,
+            "isProblematic": false,
+            "duration": [
+                1878,
+                2817
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to cook pasta",
+            "successRate": 0.9806,
+            "isProblematic": false,
+            "duration": [
+                150,
+                225
+            ]
+        },
+        {
+            "name": "computers must write clean code",
+            "successRate": 0.9559,
+            "isProblematic": false,
+            "duration": [
+                1427,
+                2140
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to achieve world peace",
+            "successRate": 0.9682,
+            "isProblematic": false,
+            "duration": [
+                274,
+                411
+            ]
+        },
+        {
+            "name": "dogs can run for president",
+            "successRate": 0.6556,
+            "isProblematic": true,
+            "duration": [
+                1501,
+                2251
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to earn millions a year",
+            "successRate": 0.9673,
+            "isProblematic": false,
+            "duration": [
+                797,
+                1195
+            ]
+        },
+        {
+            "name": "cats should achieve world peace",
+            "successRate": 0.4087,
+            "isProblematic": true,
+            "duration": [
+                1840,
+                2760
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to run for president",
+            "successRate": 0.9683,
+            "isProblematic": false,
+            "duration": [
+                844,
+                1266
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must explore the galaxy",
+            "successRate": 0.9542,
+            "isProblematic": false,
+            "duration": [
+                1543,
+                2314
+            ]
+        },
+        {
+            "name": "computers must get along with squirrels",
+            "successRate": 0.9888,
+            "isProblematic": false,
+            "duration": [
+                1126,
+                1689
+            ]
+        },
+        {
+            "name": "computers should start a revolution",
+            "successRate": 0.9593,
+            "isProblematic": false,
+            "duration": [
+                138,
+                207
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to write clean code",
+            "successRate": 0.9742,
+            "isProblematic": false,
+            "duration": [
+                897,
+                1345
+            ]
+        },
+        {
+            "name": "computers can't get along with squirrels",
+            "successRate": 0.9581,
+            "isProblematic": false,
+            "duration": [
+                1378,
+                2067
+            ]
+        },
+        {
+            "name": "hitler should go shopping",
+            "successRate": 0.9569,
+            "isProblematic": false,
+            "duration": [
+                1507,
+                2260
+            ]
+        },
+        {
+            "name": "scientists must wear sandals",
+            "successRate": 0.9642,
+            "isProblematic": false,
+            "duration": [
+                534,
+                801
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't run for president",
+            "successRate": 0.9564,
+            "isProblematic": false,
+            "duration": [
+                1405,
+                2107
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to start a war",
+            "successRate": 0.989,
+            "isProblematic": false,
+            "duration": [
+                1210,
+                1815
+            ]
+        },
+        {
+            "name": "birds must cook pasta",
+            "successRate": 0.9875,
+            "isProblematic": false,
+            "duration": [
+                177,
+                265
+            ]
+        },
+        {
+            "name": "people that smoke can think about the future",
+            "successRate": 0.9792,
+            "isProblematic": false,
+            "duration": [
+                895,
+                1342
+            ]
+        },
+        {
+            "name": "cats can kick ass",
+            "successRate": 0.9876,
+            "isProblematic": false,
+            "duration": [
+                828,
+                1242
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to cook pasta",
+            "successRate": 0.988,
+            "isProblematic": false,
+            "duration": [
+                1623,
+                2434
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must cook pasta",
+            "successRate": 0.4816,
+            "isProblematic": true,
+            "duration": [
+                1058,
+                1587
+            ]
+        },
+        {
+            "name": "scientists should wear sandals",
+            "successRate": 0.9657,
+            "isProblematic": false,
+            "duration": [
+                1536,
+                2304
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should wear sandals",
+            "successRate": 0.986,
+            "isProblematic": false,
+            "duration": [
+                249,
+                373
+            ]
+        },
+        {
+            "name": "captains can't run for president",
+            "successRate": 0.7189,
+            "isProblematic": true,
+            "duration": [
+                439,
+                658
+            ]
+        },
+        {
+            "name": "apples should kick ass",
+            "successRate": 0.9567,
+            "isProblematic": false,
+            "duration": [
+                561,
+                841
+            ]
+        },
+        {
+            "name": "people that smoke should kick ass",
+            "successRate": 0.9691,
+            "isProblematic": false,
+            "duration": [
+                1483,
+                2224
+            ]
+        },
+        {
+            "name": "a spartan warrior must be red",
+            "successRate": 0.9844,
+            "isProblematic": false,
+            "duration": [
+                866,
+                1299
+            ]
+        },
+        {
+            "name": "birds can't be red",
+            "successRate": 0.9751,
+            "isProblematic": false,
+            "duration": [
+                1401,
+                2101
+            ]
+        },
+        {
+            "name": "computers should do cardio",
+            "successRate": 0.9813,
+            "isProblematic": false,
+            "duration": [
+                327,
+                490
+            ]
+        },
+        {
+            "name": "birds should take a bath",
+            "successRate": 0.9892,
+            "isProblematic": false,
+            "duration": [
+                520,
+                780
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to start a war",
+            "successRate": 0.9836,
+            "isProblematic": false,
+            "duration": [
+                1235,
+                1852
+            ]
+        },
+        {
+            "name": "people that smoke can get along with squirrels",
+            "successRate": 0.9536,
+            "isProblematic": false,
+            "duration": [
+                1074,
+                1611
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't earn millions a year",
+            "successRate": 0.9691,
+            "isProblematic": false,
+            "duration": [
+                1310,
+                1965
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to achieve world peace",
+            "successRate": 0.952,
+            "isProblematic": false,
+            "duration": [
+                1737,
+                2605
+            ]
+        },
+        {
+            "name": "people that smoke should write clean code",
+            "successRate": 0.9841,
+            "isProblematic": false,
+            "duration": [
+                1301,
+                1951
+            ]
+        },
+        {
+            "name": "people that smoke should kill nazis",
+            "successRate": 0.9756,
+            "isProblematic": false,
+            "duration": [
+                1595,
+                2392
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to kick ass",
+            "successRate": 0.9638,
+            "isProblematic": false,
+            "duration": [
+                590,
+                885
+            ]
+        },
+        {
+            "name": "cats must smoke",
+            "successRate": 0.9501,
+            "isProblematic": false,
+            "duration": [
+                1697,
+                2545
+            ]
+        },
+        {
+            "name": "dogs must explore the galaxy",
+            "successRate": 0.9738,
+            "isProblematic": false,
+            "duration": [
+                679,
+                1018
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't be red",
+            "successRate": 0.9871,
+            "isProblematic": false,
+            "duration": [
+                1540,
+                2310
+            ]
+        },
+        {
+            "name": "dogs should earn millions a year",
+            "successRate": 0.9702,
+            "isProblematic": false,
+            "duration": [
+                539,
+                808
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to start a revolution",
+            "successRate": 0.9512,
+            "isProblematic": false,
+            "duration": [
+                261,
+                391
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't wear sandals",
+            "successRate": 0.9646,
+            "isProblematic": false,
+            "duration": [
+                716,
+                1074
+            ]
+        },
+        {
+            "name": "scientists should run for president",
+            "successRate": 0.5284,
+            "isProblematic": true,
+            "duration": [
+                332,
+                498
+            ]
+        },
+        {
+            "name": "computers must go shopping",
+            "successRate": 0.962,
+            "isProblematic": false,
+            "duration": [
+                1426,
+                2139
+            ]
+        },
+        {
+            "name": "apples can't get along with squirrels",
+            "successRate": 0.9673,
+            "isProblematic": false,
+            "duration": [
+                1489,
+                2233
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to start a war",
+            "successRate": 0.9655,
+            "isProblematic": false,
+            "duration": [
+                447,
+                670
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to write clean code",
+            "successRate": 0.9602,
+            "isProblematic": false,
+            "duration": [
+                1574,
+                2361
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to take a bath",
+            "successRate": 0.9702,
+            "isProblematic": false,
+            "duration": [
+                1427,
+                2140
+            ]
+        },
+        {
+            "name": "captains can go shopping",
+            "successRate": 0.9506,
+            "isProblematic": false,
+            "duration": [
+                1835,
+                2752
+            ]
+        },
+        {
+            "name": "apples can't kick ass",
+            "successRate": 0.9741,
+            "isProblematic": false,
+            "duration": [
+                1748,
+                2622
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to start a revolution",
+            "successRate": 0.9865,
+            "isProblematic": false,
+            "duration": [
+                502,
+                753
+            ]
+        },
+        {
+            "name": "scientists must think about the future",
+            "successRate": 0.985,
+            "isProblematic": false,
+            "duration": [
+                486,
+                729
+            ]
+        },
+        {
+            "name": "birds must take medicine",
+            "successRate": 0.9693,
+            "isProblematic": false,
+            "duration": [
+                1966,
+                2949
+            ]
+        },
+        {
+            "name": "computers can't run for president",
+            "successRate": 0.9509,
+            "isProblematic": false,
+            "duration": [
+                1611,
+                2416
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should achieve world peace",
+            "successRate": 0.9687,
+            "isProblematic": false,
+            "duration": [
+                1234,
+                1851
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to do cardio",
+            "successRate": 0.9774,
+            "isProblematic": false,
+            "duration": [
+                1702,
+                2553
+            ]
+        },
+        {
+            "name": "dogs must do cardio",
+            "successRate": 0.9639,
+            "isProblematic": false,
+            "duration": [
+                1359,
+                2038
+            ]
+        },
+        {
+            "name": "people that smoke must be red",
+            "successRate": 0.9585,
+            "isProblematic": false,
+            "duration": [
+                1355,
+                2032
+            ]
+        },
+        {
+            "name": "dogs must go shopping",
+            "successRate": 0.9858,
+            "isProblematic": false,
+            "duration": [
+                717,
+                1075
+            ]
+        },
+        {
+            "name": "a spartan warrior can't write clean code",
+            "successRate": 0.9561,
+            "isProblematic": false,
+            "duration": [
+                1130,
+                1695
+            ]
+        },
+        {
+            "name": "people that smoke must start a revolution",
+            "successRate": 0.9523,
+            "isProblematic": false,
+            "duration": [
+                1834,
+                2751
+            ]
+        },
+        {
+            "name": "birds must kick ass",
+            "successRate": 0.9727,
+            "isProblematic": false,
+            "duration": [
+                1766,
+                2649
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to befriend a star",
+            "successRate": 0.9681,
+            "isProblematic": false,
+            "duration": [
+                1707,
+                2560
+            ]
+        },
+        {
+            "name": "computers must achieve world peace",
+            "successRate": 0.9621,
+            "isProblematic": false,
+            "duration": [
+                1528,
+                2292
+            ]
+        },
+        {
+            "name": "computers can watch youtube videos",
+            "successRate": 0.9599,
+            "isProblematic": false,
+            "duration": [
+                757,
+                1135
+            ]
+        },
+        {
+            "name": "apples can do cardio",
+            "successRate": 0.9872,
+            "isProblematic": false,
+            "duration": [
+                923,
+                1384
+            ]
+        },
+        {
+            "name": "hitler must earn millions a year",
+            "successRate": 0.9572,
+            "isProblematic": false,
+            "duration": [
+                1641,
+                2461
+            ]
+        },
+        {
+            "name": "scientists can take a bath",
+            "successRate": 0.9635,
+            "isProblematic": false,
+            "duration": [
+                1110,
+                1665
+            ]
+        },
+        {
+            "name": "people that smoke can't befriend a star",
+            "successRate": 0.9825,
+            "isProblematic": false,
+            "duration": [
+                269,
+                403
+            ]
+        },
+        {
+            "name": "a spartan warrior must kick ass",
+            "successRate": 0.9891,
+            "isProblematic": false,
+            "duration": [
+                1390,
+                2085
+            ]
+        },
+        {
+            "name": "computers can't go shopping",
+            "successRate": 0.9632,
+            "isProblematic": false,
+            "duration": [
+                433,
+                649
+            ]
+        },
+        {
+            "name": "scientists must start a revolution",
+            "successRate": 0.9697,
+            "isProblematic": false,
+            "duration": [
+                1341,
+                2011
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to start a war",
+            "successRate": 0.9787,
+            "isProblematic": false,
+            "duration": [
+                1665,
+                2497
+            ]
+        },
+        {
+            "name": "birds must do cardio",
+            "successRate": 0.9861,
+            "isProblematic": false,
+            "duration": [
+                1042,
+                1563
+            ]
+        },
+        {
+            "name": "a spartan warrior can't wear sandals",
+            "successRate": 0.9737,
+            "isProblematic": false,
+            "duration": [
+                938,
+                1407
+            ]
+        },
+        {
+            "name": "computers can write clean code",
+            "successRate": 0.9875,
+            "isProblematic": false,
+            "duration": [
+                1762,
+                2643
+            ]
+        },
+        {
+            "name": "captains should go shopping",
+            "successRate": 0.9634,
+            "isProblematic": false,
+            "duration": [
+                1292,
+                1938
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should get along with squirrels",
+            "successRate": 0.9585,
+            "isProblematic": false,
+            "duration": [
+                851,
+                1276
+            ]
+        },
+        {
+            "name": "apples must kill nazis",
+            "successRate": 0.9558,
+            "isProblematic": false,
+            "duration": [
+                1457,
+                2185
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should take medicine",
+            "successRate": 0.974,
+            "isProblematic": false,
+            "duration": [
+                1674,
+                2511
+            ]
+        },
+        {
+            "name": "apples should be red",
+            "successRate": 0.9516,
+            "isProblematic": false,
+            "duration": [
+                1216,
+                1824
+            ]
+        },
+        {
+            "name": "a spartan warrior can't conquer europe",
+            "successRate": 0.9598,
+            "isProblematic": false,
+            "duration": [
+                429,
+                643
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should write clean code",
+            "successRate": 0.9708,
+            "isProblematic": false,
+            "duration": [
+                222,
+                333
+            ]
+        },
+        {
+            "name": "apples must kick ass",
+            "successRate": 0.9789,
+            "isProblematic": false,
+            "duration": [
+                1317,
+                1975
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to watch youtube videos",
+            "successRate": 0.98,
+            "isProblematic": false,
+            "duration": [
+                1658,
+                2487
+            ]
+        },
+        {
+            "name": "a spartan warrior can go shopping",
+            "successRate": 0.963,
+            "isProblematic": false,
+            "duration": [
+                1793,
+                2689
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must be red",
+            "successRate": 0.9549,
+            "isProblematic": false,
+            "duration": [
+                779,
+                1168
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to do cardio",
+            "successRate": 0.984,
+            "isProblematic": false,
+            "duration": [
+                1352,
+                2028
+            ]
+        },
+        {
+            "name": "apples can kick ass",
+            "successRate": 0.964,
+            "isProblematic": false,
+            "duration": [
+                603,
+                904
+            ]
+        },
+        {
+            "name": "birds should take medicine",
+            "successRate": 0.9528,
+            "isProblematic": false,
+            "duration": [
+                539,
+                808
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't cook pasta",
+            "successRate": 0.9866,
+            "isProblematic": false,
+            "duration": [
+                1605,
+                2407
+            ]
+        },
+        {
+            "name": "hitler should kill nazis",
+            "successRate": 0.96,
+            "isProblematic": false,
+            "duration": [
+                636,
+                954
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can befriend a star",
+            "successRate": 0.9558,
+            "isProblematic": false,
+            "duration": [
+                697,
+                1045
+            ]
+        },
+        {
+            "name": "people that smoke should take a bath",
+            "successRate": 0.9662,
+            "isProblematic": false,
+            "duration": [
+                513,
+                769
+            ]
+        },
+        {
+            "name": "apples must smoke",
+            "successRate": 0.9792,
+            "isProblematic": false,
+            "duration": [
+                1899,
+                2848
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to conquer europe",
+            "successRate": 0.9519,
+            "isProblematic": false,
+            "duration": [
+                281,
+                421
+            ]
+        },
+        {
+            "name": "a spartan warrior can conquer europe",
+            "successRate": 0.9827,
+            "isProblematic": false,
+            "duration": [
+                611,
+                916
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must do cardio",
+            "successRate": 0.9774,
+            "isProblematic": false,
+            "duration": [
+                1309,
+                1963
+            ]
+        },
+        {
+            "name": "a spartan warrior can take medicine",
+            "successRate": 0.9691,
+            "isProblematic": false,
+            "duration": [
+                358,
+                537
+            ]
+        },
+        {
+            "name": "computers can wear sandals",
+            "successRate": 0.9603,
+            "isProblematic": false,
+            "duration": [
+                930,
+                1395
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must start a war",
+            "successRate": 0.9647,
+            "isProblematic": false,
+            "duration": [
+                751,
+                1126
+            ]
+        },
+        {
+            "name": "computers can't take a bath",
+            "successRate": 0.9875,
+            "isProblematic": false,
+            "duration": [
+                195,
+                292
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to kill nazis",
+            "successRate": 0.9676,
+            "isProblematic": false,
+            "duration": [
+                817,
+                1225
+            ]
+        },
+        {
+            "name": "computers must cook pasta",
+            "successRate": 0.9678,
+            "isProblematic": false,
+            "duration": [
+                1488,
+                2232
+            ]
+        },
+        {
+            "name": "apples must get along with squirrels",
+            "successRate": 0.954,
+            "isProblematic": false,
+            "duration": [
+                173,
+                259
+            ]
+        },
+        {
+            "name": "dogs can go shopping",
+            "successRate": 0.9744,
+            "isProblematic": false,
+            "duration": [
+                1842,
+                2763
+            ]
+        },
+        {
+            "name": "computers must kick ass",
+            "successRate": 0.9503,
+            "isProblematic": false,
+            "duration": [
+                1227,
+                1840
+            ]
+        },
+        {
+            "name": "cats can cook pasta",
+            "successRate": 0.9596,
+            "isProblematic": false,
+            "duration": [
+                1566,
+                2349
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to cook pasta",
+            "successRate": 0.9548,
+            "isProblematic": false,
+            "duration": [
+                663,
+                994
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to write clean code",
+            "successRate": 0.9684,
+            "isProblematic": false,
+            "duration": [
+                1206,
+                1809
+            ]
+        },
+        {
+            "name": "computers can befriend a star",
+            "successRate": 0.9694,
+            "isProblematic": false,
+            "duration": [
+                234,
+                351
+            ]
+        },
+        {
+            "name": "computers should take medicine",
+            "successRate": 0.9783,
+            "isProblematic": false,
+            "duration": [
+                1028,
+                1542
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to take medicine",
+            "successRate": 0.9603,
+            "isProblematic": false,
+            "duration": [
+                958,
+                1437
+            ]
+        },
+        {
+            "name": "dogs can't conquer europe",
+            "successRate": 0.9574,
+            "isProblematic": false,
+            "duration": [
+                935,
+                1402
+            ]
+        },
+        {
+            "name": "dogs can explore the galaxy",
+            "successRate": 0.9899,
+            "isProblematic": false,
+            "duration": [
+                1484,
+                2226
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to take medicine",
+            "successRate": 0.9616,
+            "isProblematic": false,
+            "duration": [
+                337,
+                505
+            ]
+        },
+        {
+            "name": "birds can't befriend a star",
+            "successRate": 0.9755,
+            "isProblematic": false,
+            "duration": [
+                790,
+                1185
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should wear sandals",
+            "successRate": 0.9763,
+            "isProblematic": false,
+            "duration": [
+                1248,
+                1872
+            ]
+        },
+        {
+            "name": "dogs can't earn millions a year",
+            "successRate": 0.963,
+            "isProblematic": false,
+            "duration": [
+                1637,
+                2455
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to get along with squirrels",
+            "successRate": 0.9776,
+            "isProblematic": false,
+            "duration": [
+                1212,
+                1818
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to run for president",
+            "successRate": 0.9806,
+            "isProblematic": false,
+            "duration": [
+                295,
+                442
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can earn millions a year",
+            "successRate": 0.9876,
+            "isProblematic": false,
+            "duration": [
+                634,
+                951
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must get along with squirrels",
+            "successRate": 0.9516,
+            "isProblematic": false,
+            "duration": [
+                513,
+                769
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to earn millions a year",
+            "successRate": 0.9683,
+            "isProblematic": false,
+            "duration": [
+                297,
+                445
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to be red",
+            "successRate": 0.9562,
+            "isProblematic": false,
+            "duration": [
+                904,
+                1356
+            ]
+        },
+        {
+            "name": "scientists should kill nazis",
+            "successRate": 0.9638,
+            "isProblematic": false,
+            "duration": [
+                1181,
+                1771
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't get along with squirrels",
+            "successRate": 0.9796,
+            "isProblematic": false,
+            "duration": [
+                609,
+                913
+            ]
+        },
+        {
+            "name": "birds should start a war",
+            "successRate": 0.972,
+            "isProblematic": false,
+            "duration": [
+                1781,
+                2671
+            ]
+        },
+        {
+            "name": "hitler can't smoke",
+            "successRate": 0.963,
+            "isProblematic": false,
+            "duration": [
+                196,
+                294
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to go shopping",
+            "successRate": 0.9661,
+            "isProblematic": false,
+            "duration": [
+                1447,
+                2170
+            ]
+        },
+        {
+            "name": "captains should get along with squirrels",
+            "successRate": 0.9717,
+            "isProblematic": false,
+            "duration": [
+                1897,
+                2845
+            ]
+        },
+        {
+            "name": "hitler should conquer europe",
+            "successRate": 0.9523,
+            "isProblematic": false,
+            "duration": [
+                251,
+                376
+            ]
+        },
+        {
+            "name": "hitler can do cardio",
+            "successRate": 0.9566,
+            "isProblematic": false,
+            "duration": [
+                508,
+                762
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to achieve world peace",
+            "successRate": 0.98,
+            "isProblematic": false,
+            "duration": [
+                841,
+                1261
+            ]
+        },
+        {
+            "name": "apples can't achieve world peace",
+            "successRate": 0.9674,
+            "isProblematic": false,
+            "duration": [
+                135,
+                202
+            ]
+        },
+        {
+            "name": "a spartan warrior can't do cardio",
+            "successRate": 0.9757,
+            "isProblematic": false,
+            "duration": [
+                1410,
+                2115
+            ]
+        },
+        {
+            "name": "people that smoke can run for president",
+            "successRate": 0.5587,
+            "isProblematic": true,
+            "duration": [
+                1467,
+                2200
+            ]
+        },
+        {
+            "name": "a spartan warrior should run for president",
+            "successRate": 0.9701,
+            "isProblematic": false,
+            "duration": [
+                1850,
+                2775
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to start a revolution",
+            "successRate": 0.9564,
+            "isProblematic": false,
+            "duration": [
+                1676,
+                2514
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can achieve world peace",
+            "successRate": 0.9771,
+            "isProblematic": false,
+            "duration": [
+                1490,
+                2235
+            ]
+        },
+        {
+            "name": "people that smoke can't take a bath",
+            "successRate": 0.9664,
+            "isProblematic": false,
+            "duration": [
+                1695,
+                2542
+            ]
+        },
+        {
+            "name": "computers can't wear sandals",
+            "successRate": 0.9863,
+            "isProblematic": false,
+            "duration": [
+                1413,
+                2119
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to run for president",
+            "successRate": 0.9642,
+            "isProblematic": false,
+            "duration": [
+                1650,
+                2475
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can take a bath",
+            "successRate": 0.9679,
+            "isProblematic": false,
+            "duration": [
+                741,
+                1111
+            ]
+        },
+        {
+            "name": "dogs must achieve world peace",
+            "successRate": 0.9547,
+            "isProblematic": false,
+            "duration": [
+                1783,
+                2674
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must do cardio",
+            "successRate": 0.954,
+            "isProblematic": false,
+            "duration": [
+                819,
+                1228
+            ]
+        },
+        {
+            "name": "hitler must conquer europe",
+            "successRate": 0.9539,
+            "isProblematic": false,
+            "duration": [
+                1490,
+                2235
+            ]
+        },
+        {
+            "name": "apples can achieve world peace",
+            "successRate": 0.989,
+            "isProblematic": false,
+            "duration": [
+                1664,
+                2496
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to wear sandals",
+            "successRate": 0.9738,
+            "isProblematic": false,
+            "duration": [
+                1964,
+                2946
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should kill nazis",
+            "successRate": 0.9826,
+            "isProblematic": false,
+            "duration": [
+                1844,
+                2766
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to kick ass",
+            "successRate": 0.979,
+            "isProblematic": false,
+            "duration": [
+                1022,
+                1533
+            ]
+        },
+        {
+            "name": "dogs should think about the future",
+            "successRate": 0.9509,
+            "isProblematic": false,
+            "duration": [
+                1587,
+                2380
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to write clean code",
+            "successRate": 0.9841,
+            "isProblematic": false,
+            "duration": [
+                1486,
+                2229
+            ]
+        },
+        {
+            "name": "scientists should take a bath",
+            "successRate": 0.9659,
+            "isProblematic": false,
+            "duration": [
+                1119,
+                1678
+            ]
+        },
+        {
+            "name": "people that smoke can't watch youtube videos",
+            "successRate": 0.9681,
+            "isProblematic": false,
+            "duration": [
+                1893,
+                2839
+            ]
+        },
+        {
+            "name": "hitler should achieve world peace",
+            "successRate": 0.9817,
+            "isProblematic": false,
+            "duration": [
+                1616,
+                2424
+            ]
+        },
+        {
+            "name": "computers should earn millions a year",
+            "successRate": 0.9684,
+            "isProblematic": false,
+            "duration": [
+                705,
+                1057
+            ]
+        },
+        {
+            "name": "people that smoke should achieve world peace",
+            "successRate": 0.9757,
+            "isProblematic": false,
+            "duration": [
+                1966,
+                2949
+            ]
+        },
+        {
+            "name": "dogs should smoke",
+            "successRate": 0.9534,
+            "isProblematic": false,
+            "duration": [
+                1759,
+                2638
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to wear sandals",
+            "successRate": 0.9526,
+            "isProblematic": false,
+            "duration": [
+                1340,
+                2010
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to be red",
+            "successRate": 0.9748,
+            "isProblematic": false,
+            "duration": [
+                421,
+                631
+            ]
+        },
+        {
+            "name": "scientists should earn millions a year",
+            "successRate": 0.9571,
+            "isProblematic": false,
+            "duration": [
+                368,
+                552
+            ]
+        },
+        {
+            "name": "captains can't take medicine",
+            "successRate": 0.976,
+            "isProblematic": false,
+            "duration": [
+                881,
+                1321
+            ]
+        },
+        {
+            "name": "cats can't cook pasta",
+            "successRate": 0.9765,
+            "isProblematic": false,
+            "duration": [
+                451,
+                676
+            ]
+        },
+        {
+            "name": "the realization that we are going to die must kill nazis",
+            "successRate": 0.9732,
+            "isProblematic": false,
+            "duration": [
+                126,
+                189
+            ]
+        },
+        {
+            "name": "apples must go shopping",
+            "successRate": 0.9685,
+            "isProblematic": false,
+            "duration": [
+                1016,
+                1524
+            ]
+        },
+        {
+            "name": "computers must do cardio",
+            "successRate": 0.9509,
+            "isProblematic": false,
+            "duration": [
+                1109,
+                1663
+            ]
+        },
+        {
+            "name": "people that smoke can befriend a star",
+            "successRate": 0.9791,
+            "isProblematic": false,
+            "duration": [
+                1203,
+                1804
+            ]
+        },
+        {
+            "name": "captains shouldn't be able to do cardio",
+            "successRate": 0.9678,
+            "isProblematic": false,
+            "duration": [
+                407,
+                610
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't start a revolution",
+            "successRate": 0.972,
+            "isProblematic": false,
+            "duration": [
+                251,
+                376
+            ]
+        },
+        {
+            "name": "a spartan warrior should be red",
+            "successRate": 0.9862,
+            "isProblematic": false,
+            "duration": [
+                602,
+                903
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't kick ass",
+            "successRate": 0.9546,
+            "isProblematic": false,
+            "duration": [
+                1724,
+                2586
+            ]
+        },
+        {
+            "name": "cats can be red",
+            "successRate": 0.9856,
+            "isProblematic": false,
+            "duration": [
+                1343,
+                2014
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to get along with squirrels",
+            "successRate": 0.9512,
+            "isProblematic": false,
+            "duration": [
+                361,
+                541
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should achieve world peace",
+            "successRate": 0.9863,
+            "isProblematic": false,
+            "duration": [
+                119,
+                178
+            ]
+        },
+        {
+            "name": "dogs can conquer europe",
+            "successRate": 0.976,
+            "isProblematic": false,
+            "duration": [
+                1304,
+                1956
+            ]
+        },
+        {
+            "name": "people that smoke should wear sandals",
+            "successRate": 0.9741,
+            "isProblematic": false,
+            "duration": [
+                1475,
+                2212
+            ]
+        },
+        {
+            "name": "scientists must explore the galaxy",
+            "successRate": 0.976,
+            "isProblematic": false,
+            "duration": [
+                1170,
+                1755
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can take a bath",
+            "successRate": 0.9736,
+            "isProblematic": false,
+            "duration": [
+                1161,
+                1741
+            ]
+        },
+        {
+            "name": "cats can't do cardio",
+            "successRate": 0.9514,
+            "isProblematic": false,
+            "duration": [
+                1482,
+                2223
+            ]
+        },
+        {
+            "name": "a spartan warrior can't get along with squirrels",
+            "successRate": 0.9697,
+            "isProblematic": false,
+            "duration": [
+                792,
+                1188
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can conquer europe",
+            "successRate": 0.9574,
+            "isProblematic": false,
+            "duration": [
+                1360,
+                2040
+            ]
+        },
+        {
+            "name": "cats can write clean code",
+            "successRate": 0.9671,
+            "isProblematic": false,
+            "duration": [
+                1733,
+                2599
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should start a war",
+            "successRate": 0.9509,
+            "isProblematic": false,
+            "duration": [
+                534,
+                801
+            ]
+        },
+        {
+            "name": "computers can conquer europe",
+            "successRate": 0.9539,
+            "isProblematic": false,
+            "duration": [
+                580,
+                870
+            ]
+        },
+        {
+            "name": "computers can take medicine",
+            "successRate": 0.9667,
+            "isProblematic": false,
+            "duration": [
+                1245,
+                1867
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to explore the galaxy",
+            "successRate": 0.956,
+            "isProblematic": false,
+            "duration": [
+                359,
+                538
+            ]
+        },
+        {
+            "name": "cats must take a bath",
+            "successRate": 0.983,
+            "isProblematic": false,
+            "duration": [
+                228,
+                342
+            ]
+        },
+        {
+            "name": "scientists can't do cardio",
+            "successRate": 0.9779,
+            "isProblematic": false,
+            "duration": [
+                405,
+                607
+            ]
+        },
+        {
+            "name": "apples must cook pasta",
+            "successRate": 0.9863,
+            "isProblematic": false,
+            "duration": [
+                1305,
+                1957
+            ]
+        },
+        {
+            "name": "the realization that we are going to die should go shopping",
+            "successRate": 0.9635,
+            "isProblematic": false,
+            "duration": [
+                1581,
+                2371
+            ]
+        },
+        {
+            "name": "cats can't befriend a star",
+            "successRate": 0.9557,
+            "isProblematic": false,
+            "duration": [
+                1872,
+                2808
+            ]
+        },
+        {
+            "name": "a spartan warrior should earn millions a year",
+            "successRate": 0.972,
+            "isProblematic": false,
+            "duration": [
+                376,
+                564
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to kill nazis",
+            "successRate": 0.959,
+            "isProblematic": false,
+            "duration": [
+                1147,
+                1720
+            ]
+        },
+        {
+            "name": "people that smoke should explore the galaxy",
+            "successRate": 0.9715,
+            "isProblematic": false,
+            "duration": [
+                1724,
+                2586
+            ]
+        },
+        {
+            "name": "cats must earn millions a year",
+            "successRate": 0.988,
+            "isProblematic": false,
+            "duration": [
+                914,
+                1371
+            ]
+        },
+        {
+            "name": "computers can't think about the future",
+            "successRate": 0.981,
+            "isProblematic": false,
+            "duration": [
+                498,
+                747
+            ]
+        },
+        {
+            "name": "hitler must write clean code",
+            "successRate": 0.9739,
+            "isProblematic": false,
+            "duration": [
+                1605,
+                2407
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can't smoke",
+            "successRate": 0.9569,
+            "isProblematic": false,
+            "duration": [
+                1855,
+                2782
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to befriend a star",
+            "successRate": 0.9725,
+            "isProblematic": false,
+            "duration": [
+                332,
+                498
+            ]
+        },
+        {
+            "name": "cats should conquer europe",
+            "successRate": 0.9695,
+            "isProblematic": false,
+            "duration": [
+                761,
+                1141
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to start a war",
+            "successRate": 0.9793,
+            "isProblematic": false,
+            "duration": [
+                1819,
+                2728
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can earn millions a year",
+            "successRate": 0.9662,
+            "isProblematic": false,
+            "duration": [
+                1436,
+                2154
+            ]
+        },
+        {
+            "name": "birds should get along with squirrels",
+            "successRate": 0.9567,
+            "isProblematic": false,
+            "duration": [
+                970,
+                1455
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to earn millions a year",
+            "successRate": 0.9557,
+            "isProblematic": false,
+            "duration": [
+                1001,
+                1501
+            ]
+        },
+        {
+            "name": "scientists can't achieve world peace",
+            "successRate": 0.9708,
+            "isProblematic": false,
+            "duration": [
+                252,
+                378
+            ]
+        },
+        {
+            "name": "hitler should kick ass",
+            "successRate": 0.9782,
+            "isProblematic": false,
+            "duration": [
+                1539,
+                2308
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to kick ass",
+            "successRate": 0.9708,
+            "isProblematic": false,
+            "duration": [
+                1054,
+                1581
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must start a revolution",
+            "successRate": 0.9723,
+            "isProblematic": false,
+            "duration": [
+                946,
+                1419
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to conquer europe",
+            "successRate": 0.9733,
+            "isProblematic": false,
+            "duration": [
+                265,
+                397
+            ]
+        },
+        {
+            "name": "apples should wear sandals",
+            "successRate": 0.9565,
+            "isProblematic": false,
+            "duration": [
+                1173,
+                1759
+            ]
+        },
+        {
+            "name": "computers should explore the galaxy",
+            "successRate": 0.9535,
+            "isProblematic": false,
+            "duration": [
+                1554,
+                2331
+            ]
+        },
+        {
+            "name": "birds can't take a bath",
+            "successRate": 0.9596,
+            "isProblematic": false,
+            "duration": [
+                1311,
+                1966
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should go shopping",
+            "successRate": 0.9867,
+            "isProblematic": false,
+            "duration": [
+                279,
+                418
+            ]
+        },
+        {
+            "name": "computers can take a bath",
+            "successRate": 0.9799,
+            "isProblematic": false,
+            "duration": [
+                1509,
+                2263
+            ]
+        },
+        {
+            "name": "birds can run for president",
+            "successRate": 0.5118,
+            "isProblematic": true,
+            "duration": [
+                1608,
+                2412
+            ]
+        },
+        {
+            "name": "computers can run for president",
+            "successRate": 0.9761,
+            "isProblematic": false,
+            "duration": [
+                206,
+                309
+            ]
+        },
+        {
+            "name": "birds can't run for president",
+            "successRate": 0.9856,
+            "isProblematic": false,
+            "duration": [
+                1181,
+                1771
+            ]
+        },
+        {
+            "name": "hitler should cook pasta",
+            "successRate": 0.9645,
+            "isProblematic": false,
+            "duration": [
+                1475,
+                2212
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should kick ass",
+            "successRate": 0.9839,
+            "isProblematic": false,
+            "duration": [
+                178,
+                267
+            ]
+        },
+        {
+            "name": "dogs must be red",
+            "successRate": 0.9577,
+            "isProblematic": false,
+            "duration": [
+                1506,
+                2259
+            ]
+        },
+        {
+            "name": "cats must befriend a star",
+            "successRate": 0.9601,
+            "isProblematic": false,
+            "duration": [
+                657,
+                985
+            ]
+        },
+        {
+            "name": "dogs can't explore the galaxy",
+            "successRate": 0.9616,
+            "isProblematic": false,
+            "duration": [
+                1346,
+                2019
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to start a revolution",
+            "successRate": 0.5462,
+            "isProblematic": true,
+            "duration": [
+                1319,
+                1978
+            ]
+        },
+        {
+            "name": "hitler can't get along with squirrels",
+            "successRate": 0.9716,
+            "isProblematic": false,
+            "duration": [
+                1504,
+                2256
+            ]
+        },
+        {
+            "name": "people that smoke should befriend a star",
+            "successRate": 0.9865,
+            "isProblematic": false,
+            "duration": [
+                742,
+                1113
+            ]
+        },
+        {
+            "name": "dogs can't smoke",
+            "successRate": 0.9599,
+            "isProblematic": false,
+            "duration": [
+                1979,
+                2968
+            ]
+        },
+        {
+            "name": "cats should kick ass",
+            "successRate": 0.9737,
+            "isProblematic": false,
+            "duration": [
+                1220,
+                1830
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to achieve world peace",
+            "successRate": 0.9644,
+            "isProblematic": false,
+            "duration": [
+                1164,
+                1746
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to achieve world peace",
+            "successRate": 0.9615,
+            "isProblematic": false,
+            "duration": [
+                550,
+                825
+            ]
+        },
+        {
+            "name": "hitler can smoke",
+            "successRate": 0.9657,
+            "isProblematic": false,
+            "duration": [
+                1601,
+                2401
+            ]
+        },
+        {
+            "name": "computers can't kill nazis",
+            "successRate": 0.9721,
+            "isProblematic": false,
+            "duration": [
+                577,
+                865
+            ]
+        },
+        {
+            "name": "scientists can't run for president",
+            "successRate": 0.9672,
+            "isProblematic": false,
+            "duration": [
+                779,
+                1168
+            ]
+        },
+        {
+            "name": "dogs must conquer europe",
+            "successRate": 0.963,
+            "isProblematic": false,
+            "duration": [
+                957,
+                1435
+            ]
+        },
+        {
+            "name": "hitler can't do cardio",
+            "successRate": 0.9826,
+            "isProblematic": false,
+            "duration": [
+                517,
+                775
+            ]
+        },
+        {
+            "name": "cats shouldn't be able to do cardio",
+            "successRate": 0.9787,
+            "isProblematic": false,
+            "duration": [
+                580,
+                870
+            ]
+        },
+        {
+            "name": "a spartan warrior should do cardio",
+            "successRate": 0.9521,
+            "isProblematic": false,
+            "duration": [
+                1491,
+                2236
+            ]
+        },
+        {
+            "name": "captains should conquer europe",
+            "successRate": 0.9778,
+            "isProblematic": false,
+            "duration": [
+                111,
+                166
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time shouldn't be able to smoke",
+            "successRate": 0.9572,
+            "isProblematic": false,
+            "duration": [
+                1165,
+                1747
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't kill nazis",
+            "successRate": 0.9728,
+            "isProblematic": false,
+            "duration": [
+                730,
+                1095
+            ]
+        },
+        {
+            "name": "apples can take medicine",
+            "successRate": 0.955,
+            "isProblematic": false,
+            "duration": [
+                1025,
+                1537
+            ]
+        },
+        {
+            "name": "the realization that we are going to die can't achieve world peace",
+            "successRate": 0.9718,
+            "isProblematic": false,
+            "duration": [
+                519,
+                778
+            ]
+        },
+        {
+            "name": "computers shouldn't be able to take medicine",
+            "successRate": 0.9718,
+            "isProblematic": false,
+            "duration": [
+                1448,
+                2172
+            ]
+        },
+        {
+            "name": "apples can befriend a star",
+            "successRate": 0.9501,
+            "isProblematic": false,
+            "duration": [
+                1659,
+                2488
+            ]
+        },
+        {
+            "name": "scientists should explore the galaxy",
+            "successRate": 0.9567,
+            "isProblematic": false,
+            "duration": [
+                1920,
+                2880
+            ]
+        },
+        {
+            "name": "hitler can explore the galaxy",
+            "successRate": 0.9827,
+            "isProblematic": false,
+            "duration": [
+                1428,
+                2142
+            ]
+        },
+        {
+            "name": "dogs can befriend a star",
+            "successRate": 0.9745,
+            "isProblematic": false,
+            "duration": [
+                1596,
+                2394
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must get along with squirrels",
+            "successRate": 0.496,
+            "isProblematic": true,
+            "duration": [
+                1711,
+                2566
+            ]
+        },
+        {
+            "name": "birds must watch youtube videos",
+            "successRate": 0.9661,
+            "isProblematic": false,
+            "duration": [
+                1577,
+                2365
+            ]
+        },
+        {
+            "name": "birds must smoke",
+            "successRate": 0.9723,
+            "isProblematic": false,
+            "duration": [
+                222,
+                333
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should go shopping",
+            "successRate": 0.9806,
+            "isProblematic": false,
+            "duration": [
+                1896,
+                2844
+            ]
+        },
+        {
+            "name": "hitler must smoke",
+            "successRate": 0.9675,
+            "isProblematic": false,
+            "duration": [
+                568,
+                852
+            ]
+        },
+        {
+            "name": "computers must start a war",
+            "successRate": 0.9675,
+            "isProblematic": false,
+            "duration": [
+                993,
+                1489
+            ]
+        },
+        {
+            "name": "apples shouldn't be able to get along with squirrels",
+            "successRate": 0.9531,
+            "isProblematic": false,
+            "duration": [
+                491,
+                736
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should be red",
+            "successRate": 0.9584,
+            "isProblematic": false,
+            "duration": [
+                1068,
+                1602
+            ]
+        },
+        {
+            "name": "scientists can think about the future",
+            "successRate": 0.4923,
+            "isProblematic": true,
+            "duration": [
+                559,
+                838
+            ]
+        },
+        {
+            "name": "captains can think about the future",
+            "successRate": 0.6149,
+            "isProblematic": true,
+            "duration": [
+                983,
+                1474
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to think about the future",
+            "successRate": 0.9723,
+            "isProblematic": false,
+            "duration": [
+                576,
+                864
+            ]
+        },
+        {
+            "name": "scientists must be red",
+            "successRate": 0.962,
+            "isProblematic": false,
+            "duration": [
+                1829,
+                2743
+            ]
+        },
+        {
+            "name": "hitler can't take a bath",
+            "successRate": 0.9889,
+            "isProblematic": false,
+            "duration": [
+                624,
+                936
+            ]
+        },
+        {
+            "name": "dogs must watch youtube videos",
+            "successRate": 0.9611,
+            "isProblematic": false,
+            "duration": [
+                361,
+                541
+            ]
+        },
+        {
+            "name": "people that smoke must run for president",
+            "successRate": 0.9895,
+            "isProblematic": false,
+            "duration": [
+                512,
+                768
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to explore the galaxy",
+            "successRate": 0.9537,
+            "isProblematic": false,
+            "duration": [
+                1018,
+                1527
+            ]
+        },
+        {
+            "name": "people that smoke should cook pasta",
+            "successRate": 0.9829,
+            "isProblematic": false,
+            "duration": [
+                612,
+                918
+            ]
+        },
+        {
+            "name": "a spartan warrior can smoke",
+            "successRate": 0.956,
+            "isProblematic": false,
+            "duration": [
+                1639,
+                2458
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can kill nazis",
+            "successRate": 0.4256,
+            "isProblematic": true,
+            "duration": [
+                1970,
+                2955
+            ]
+        },
+        {
+            "name": "apples must watch youtube videos",
+            "successRate": 0.959,
+            "isProblematic": false,
+            "duration": [
+                952,
+                1428
+            ]
+        },
+        {
+            "name": "a spartan warrior can't watch youtube videos",
+            "successRate": 0.9727,
+            "isProblematic": false,
+            "duration": [
+                754,
+                1131
+            ]
+        },
+        {
+            "name": "a spartan warrior can't smoke",
+            "successRate": 0.9565,
+            "isProblematic": false,
+            "duration": [
+                1675,
+                2512
+            ]
+        },
+        {
+            "name": "dogs must cook pasta",
+            "successRate": 0.9611,
+            "isProblematic": false,
+            "duration": [
+                201,
+                301
+            ]
+        },
+        {
+            "name": "apples can start a war",
+            "successRate": 0.9785,
+            "isProblematic": false,
+            "duration": [
+                501,
+                751
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can wear sandals",
+            "successRate": 0.9755,
+            "isProblematic": false,
+            "duration": [
+                476,
+                714
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should start a revolution",
+            "successRate": 0.9868,
+            "isProblematic": false,
+            "duration": [
+                826,
+                1239
+            ]
+        },
+        {
+            "name": "captains can't think about the future",
+            "successRate": 0.9587,
+            "isProblematic": false,
+            "duration": [
+                822,
+                1233
+            ]
+        },
+        {
+            "name": "computers must wear sandals",
+            "successRate": 0.9819,
+            "isProblematic": false,
+            "duration": [
+                1583,
+                2374
+            ]
+        },
+        {
+            "name": "scientists must start a war",
+            "successRate": 0.9688,
+            "isProblematic": false,
+            "duration": [
+                1390,
+                2085
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to run for president",
+            "successRate": 0.9585,
+            "isProblematic": false,
+            "duration": [
+                1446,
+                2169
+            ]
+        },
+        {
+            "name": "apples can't take a bath",
+            "successRate": 0.9848,
+            "isProblematic": false,
+            "duration": [
+                1461,
+                2191
+            ]
+        },
+        {
+            "name": "captains must write clean code",
+            "successRate": 0.9861,
+            "isProblematic": false,
+            "duration": [
+                1068,
+                1602
+            ]
+        },
+        {
+            "name": "apples can't conquer europe",
+            "successRate": 0.986,
+            "isProblematic": false,
+            "duration": [
+                1233,
+                1849
+            ]
+        },
+        {
+            "name": "hitler can't start a revolution",
+            "successRate": 0.9763,
+            "isProblematic": false,
+            "duration": [
+                424,
+                636
+            ]
+        },
+        {
+            "name": "birds must write clean code",
+            "successRate": 0.9758,
+            "isProblematic": false,
+            "duration": [
+                1498,
+                2247
+            ]
+        },
+        {
+            "name": "hitler can't write clean code",
+            "successRate": 0.9565,
+            "isProblematic": false,
+            "duration": [
+                1428,
+                2142
+            ]
+        },
+        {
+            "name": "a spartan warrior should take a bath",
+            "successRate": 0.9838,
+            "isProblematic": false,
+            "duration": [
+                1364,
+                2046
+            ]
+        },
+        {
+            "name": "apples must do cardio",
+            "successRate": 0.9734,
+            "isProblematic": false,
+            "duration": [
+                1525,
+                2287
+            ]
+        },
+        {
+            "name": "cats can't get along with squirrels",
+            "successRate": 0.9742,
+            "isProblematic": false,
+            "duration": [
+                1333,
+                1999
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should think about the future",
+            "successRate": 0.9756,
+            "isProblematic": false,
+            "duration": [
+                1910,
+                2865
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings can take a bath",
+            "successRate": 0.9833,
+            "isProblematic": false,
+            "duration": [
+                1216,
+                1824
+            ]
+        },
+        {
+            "name": "scientists can't be red",
+            "successRate": 0.9615,
+            "isProblematic": false,
+            "duration": [
+                448,
+                672
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to get along with squirrels",
+            "successRate": 0.9754,
+            "isProblematic": false,
+            "duration": [
+                306,
+                459
+            ]
+        },
+        {
+            "name": "dogs shouldn't be able to take a bath",
+            "successRate": 0.9568,
+            "isProblematic": false,
+            "duration": [
+                1406,
+                2109
+            ]
+        },
+        {
+            "name": "people that smoke shouldn't be able to go shopping",
+            "successRate": 0.9529,
+            "isProblematic": false,
+            "duration": [
+                1254,
+                1881
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must cook pasta",
+            "successRate": 0.967,
+            "isProblematic": false,
+            "duration": [
+                914,
+                1371
+            ]
+        },
+        {
+            "name": "birds can't explore the galaxy",
+            "successRate": 0.7134,
+            "isProblematic": true,
+            "duration": [
+                1912,
+                2868
+            ]
+        },
+        {
+            "name": "a spartan warrior shouldn't be able to conquer europe",
+            "successRate": 0.9757,
+            "isProblematic": false,
+            "duration": [
+                618,
+                927
+            ]
+        },
+        {
+            "name": "dogs can kill nazis",
+            "successRate": 0.9681,
+            "isProblematic": false,
+            "duration": [
+                728,
+                1092
+            ]
+        },
+        {
+            "name": "a spartan warrior can write clean code",
+            "successRate": 0.9867,
+            "isProblematic": false,
+            "duration": [
+                1315,
+                1972
+            ]
+        },
+        {
+            "name": "birds shouldn't be able to take medicine",
+            "successRate": 0.9605,
+            "isProblematic": false,
+            "duration": [
+                1657,
+                2485
+            ]
+        },
+        {
+            "name": "scientists can't take a bath",
+            "successRate": 0.9575,
+            "isProblematic": false,
+            "duration": [
+                1827,
+                2740
+            ]
+        },
+        {
+            "name": "apples should start a war",
+            "successRate": 0.9558,
+            "isProblematic": false,
+            "duration": [
+                315,
+                472
+            ]
+        },
+        {
+            "name": "people that smoke must kick ass",
+            "successRate": 0.9756,
+            "isProblematic": false,
+            "duration": [
+                596,
+                894
+            ]
+        },
+        {
+            "name": "apples must think about the future",
+            "successRate": 0.9753,
+            "isProblematic": false,
+            "duration": [
+                1013,
+                1519
+            ]
+        },
+        {
+            "name": "scientists shouldn't be able to smoke",
+            "successRate": 0.97,
+            "isProblematic": false,
+            "duration": [
+                1722,
+                2583
+            ]
+        },
+        {
+            "name": "captains can be red",
+            "successRate": 0.9562,
+            "isProblematic": false,
+            "duration": [
+                1418,
+                2127
+            ]
+        },
+        {
+            "name": "the realization that we are going to die must wear sandals",
+            "successRate": 0.9873,
+            "isProblematic": false,
+            "duration": [
+                1730,
+                2595
+            ]
+        },
+        {
+            "name": "computers must think about the future",
+            "successRate": 0.9755,
+            "isProblematic": false,
+            "duration": [
+                1620,
+                2430
+            ]
+        },
+        {
+            "name": "apples can't earn millions a year",
+            "successRate": 0.961,
+            "isProblematic": false,
+            "duration": [
+                111,
+                166
+            ]
+        },
+        {
+            "name": "cats can't write clean code",
+            "successRate": 0.9733,
+            "isProblematic": false,
+            "duration": [
+                569,
+                853
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't start a war",
+            "successRate": 0.9722,
+            "isProblematic": false,
+            "duration": [
+                439,
+                658
+            ]
+        },
+        {
+            "name": "birds must get along with squirrels",
+            "successRate": 0.9616,
+            "isProblematic": false,
+            "duration": [
+                1070,
+                1605
+            ]
+        },
+        {
+            "name": "a spartan warrior should think about the future",
+            "successRate": 0.9757,
+            "isProblematic": false,
+            "duration": [
+                788,
+                1182
+            ]
+        },
+        {
+            "name": "birds can earn millions a year",
+            "successRate": 0.9888,
+            "isProblematic": false,
+            "duration": [
+                1851,
+                2776
+            ]
+        },
+        {
+            "name": "people that smoke can't explore the galaxy",
+            "successRate": 0.9843,
+            "isProblematic": false,
+            "duration": [
+                1791,
+                2686
+            ]
+        },
+        {
+            "name": "cats must run for president",
+            "successRate": 0.9716,
+            "isProblematic": false,
+            "duration": [
+                218,
+                327
+            ]
+        }
+    ],
+    "metadata": {
+        "browser": [
+            "chrome",
+            "ie",
+            "firefox",
+            "safari"
+        ],
+        "jdk": [
+            "jdk8",
+            "jdk11"
+        ],
+        "selenium": [
+            "v1",
+            "v2",
+            "v3"
+        ],
+        "datacenter": [
+            "denver",
+            "sc4"
+        ],
+        "branch": [
+            "master",
+            "v1.2",
+            "v1.3",
+            "v1.4",
+            "v1.5"
+        ],
+        "shard": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "color": [
+            "blue",
+            "green",
+            "red",
+            "yellow",
+            "orange",
+            "pink"
+        ],
+        "repository": [
+            "https://github.com/nachogutierrez/testo"
+        ]
+    },
+    "chosenMetadata": [
+        "jdk",
+        "browser",
+        "repository",
+        "shard",
+        "color",
+        "branch",
+        "selenium",
+        "datacenter"
+    ],
+    "kind": "big test suite"
+}

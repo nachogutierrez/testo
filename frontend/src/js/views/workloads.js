@@ -15,6 +15,7 @@ const Workloads = (function() {
         firstRender()
         initComponents()
         await fetchWorkloads()
+        await fetchInsights()
 
         syncState({}, true)
     }
@@ -75,6 +76,12 @@ const Workloads = (function() {
         state.workloads = await testo.queryWorkloads(filters)
     }
 
+    async function fetchInsights() {
+        state.insights = await testo.queryWorkloadInsights({
+            ...state.filters
+        })
+    }
+
     function firstRender() {
         const { TableView, WorkloadsTableHead } = Components
         bindings.app.innerHTML = TableView({
@@ -127,6 +134,7 @@ const Workloads = (function() {
                             state.filters.metadata[key] = value
                             Components.closeModal()
                             await fetchWorkloads()
+                            await fetchInsights()
                             syncState({ filters: true, body: true })
                         }
                     })
@@ -137,6 +145,7 @@ const Workloads = (function() {
                     input.value = ''
                     input.dispatchEvent(new CustomEvent('input', {}))
                     await fetchWorkloads()
+                    await fetchInsights()
                     syncState({ filters: true, body: true })
                     input.focus()
                 }
@@ -156,11 +165,14 @@ const Workloads = (function() {
         const { filters=false||all, body=false||all } = opts
 
         if (filters) {
-            bindings.app.querySelector('.filters').innerHTML = Components.WorkloadFilters({
+            const { WorkloadFilters, Insights } = Components
+            bindings.app.querySelector('.filters').innerHTML = WorkloadFilters({
                 filters: state.filters,
                 onKindClick: `Workloads.onKindFilterClick(event)`,
                 onMetadataClick: `Workloads.onMetadataFilterClick(event)`
             })
+            bindings.app.querySelector('.insights').innerHTML = Insights(state.insights)
+            Insights.init(bindings.app, state.insights)
         }
 
         if (body) {
@@ -181,6 +193,7 @@ const Workloads = (function() {
         const value = e.target.getAttribute('data-value')
         state.filters.metadata[key] = value
         await fetchWorkloads()
+        await fetchInsights()
         syncState({ filters: true, body: true })
     }
 
@@ -188,6 +201,7 @@ const Workloads = (function() {
         state.page = 1
         state.filters.kind = e.target.getAttribute('data-kind')
         await fetchWorkloads()
+        await fetchInsights()
         syncState({ filters: true, body: true })
     }
 
@@ -195,6 +209,7 @@ const Workloads = (function() {
         state.page = 1
         state.filters.kind = undefined
         await fetchWorkloads()
+        await fetchInsights()
         syncState({ filters: true, body: true })
     }
 
@@ -203,6 +218,7 @@ const Workloads = (function() {
         const key = e.target.getAttribute('data-key')
         delete state.filters.metadata[key]
         await fetchWorkloads()
+        await fetchInsights()
         syncState({ filters: true, body: true })
     }
 

@@ -51,6 +51,7 @@ services:
       - ./grafana.ini:/etc/grafana/grafana.ini
     depends_on:
       - db
+    restart: always
 
 volumes:
   my-postgres:

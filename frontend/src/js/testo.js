@@ -19,6 +19,21 @@ const Testo = function({ api }) {
         return workloads
     }
 
+    async function queryWorkloadInsights(payload = {}) {
+        if (!payload.limit) payload.limit = 1000
+        if (!payload.page) payload.page = 1
+        if (!payload.since) payload.since = moment().subtract(30, 'days').format('YYYY/MM/DD')
+        payload.skip = (payload.page - 1) * payload.limit
+
+        const response = await fetch(`${api}/query/workload/insights`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        const insights = await response.json()
+        return insights
+    }
+
     async function queryResults(payload = {}) {
         if (!payload.limit) payload.limit = 20
         if (!payload.page) payload.page = 1
@@ -109,6 +124,7 @@ const Testo = function({ api }) {
 
     return {
         queryWorkloads,
+        queryWorkloadInsights,
         queryResults,
         getFiles,
         getStacktraces,

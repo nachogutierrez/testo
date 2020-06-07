@@ -53,10 +53,35 @@ table tr td {
 .flex-justify-center { justify-content: center; }
 .flex-space-between { justify-content: space-between;}
 .flex-expand { flex: 1; }
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cells */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.cell.column {
+  flex-direction: column;
+}
+
+.cell.column > .cell {
+  width: 100%;
+}
+
+.cell.row > .cell {
+  height: 100%;
+}
 
 /* COLORS */
 .brown { background-color: #ff9966; }
 .white { background-color: white; }
+.blue { background: rgba(0, 0, 200, 0.8); }
 .fail { background-color: #FFB5A5; }
 .pass { background-color: #ACFFA5; }
 .skip { background-color: #e6e600; }
@@ -66,6 +91,12 @@ table tr td {
 .key-color { background-color: violet; }
 .filter-color { background-color: gray; }
 .tag-color { background-color: lightblue; }
+
+.border-box {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 .button:hover {
     cursor: pointer;

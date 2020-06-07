@@ -1,0 +1,1413 @@
+{
+    "amountTestCases": 150,
+    "testCases": [
+        {
+            "name": "guidance shouldn't be able to think about the future with news",
+            "successRate": 0.9954,
+            "isProblematic": false,
+            "duration": [
+                1773,
+                2659
+            ]
+        },
+        {
+            "name": "maps can't befriend a star with computers",
+            "successRate": 0.9978,
+            "isProblematic": false,
+            "duration": [
+                1169,
+                1753
+            ]
+        },
+        {
+            "name": "wood should conquer europe with revenue",
+            "successRate": 0.9958,
+            "isProblematic": false,
+            "duration": [
+                1013,
+                1519
+            ]
+        },
+        {
+            "name": "cheeks shouldn't be able to do cardio with maps",
+            "successRate": 0.9956,
+            "isProblematic": false,
+            "duration": [
+                712,
+                1068
+            ]
+        },
+        {
+            "name": "airports must run for president with wood",
+            "successRate": 0.9963,
+            "isProblematic": false,
+            "duration": [
+                1220,
+                1830
+            ]
+        },
+        {
+            "name": "youth can't explore the galaxy with writers",
+            "successRate": 0.9936,
+            "isProblematic": false,
+            "duration": [
+                382,
+                573
+            ]
+        },
+        {
+            "name": "possessions can't go shopping with buyers",
+            "successRate": 0.9984,
+            "isProblematic": false,
+            "duration": [
+                911,
+                1366
+            ]
+        },
+        {
+            "name": "birds can't start a revolution with garbage",
+            "successRate": 0.9989,
+            "isProblematic": false,
+            "duration": [
+                374,
+                561
+            ]
+        },
+        {
+            "name": "cheeks should wear sandals with knowledge",
+            "successRate": 0.9971,
+            "isProblematic": false,
+            "duration": [
+                1273,
+                1909
+            ]
+        },
+        {
+            "name": "directors must be red with apples",
+            "successRate": 0.9902,
+            "isProblematic": false,
+            "duration": [
+                1107,
+                1660
+            ]
+        },
+        {
+            "name": "cheeks can watch youtube videos with facts",
+            "successRate": 0.9924,
+            "isProblematic": false,
+            "duration": [
+                1672,
+                2508
+            ]
+        },
+        {
+            "name": "birthdays can run for president with revenue",
+            "successRate": 0.9962,
+            "isProblematic": false,
+            "duration": [
+                414,
+                621
+            ]
+        },
+        {
+            "name": "fortunes should earn millions a year with apples",
+            "successRate": 0.9915,
+            "isProblematic": false,
+            "duration": [
+                1996,
+                2994
+            ]
+        },
+        {
+            "name": "revenue can take medicine with teachers",
+            "successRate": 0.9936,
+            "isProblematic": false,
+            "duration": [
+                1835,
+                2752
+            ]
+        },
+        {
+            "name": "writers can wear sandals with dogs",
+            "successRate": 0.9915,
+            "isProblematic": false,
+            "duration": [
+                214,
+                321
+            ]
+        },
+        {
+            "name": "writers shouldn't be able to get along with squirrels with ambition",
+            "successRate": 0.74,
+            "isProblematic": true,
+            "duration": [
+                978,
+                1467
+            ]
+        },
+        {
+            "name": "collections shouldn't be able to write clean code with tales",
+            "successRate": 0.9969,
+            "isProblematic": false,
+            "duration": [
+                1992,
+                2988
+            ]
+        },
+        {
+            "name": "context shouldn't be able to earn millions a year with the unstoppable marching of time",
+            "successRate": 0.9932,
+            "isProblematic": false,
+            "duration": [
+                1446,
+                2169
+            ]
+        },
+        {
+            "name": "computers should think about the future with offices",
+            "successRate": 0.9927,
+            "isProblematic": false,
+            "duration": [
+                1077,
+                1615
+            ]
+        },
+        {
+            "name": "fortunes shouldn't be able to get along with squirrels with feedback",
+            "successRate": 0.9955,
+            "isProblematic": false,
+            "duration": [
+                1085,
+                1627
+            ]
+        },
+        {
+            "name": "writers shouldn't be able to run for president with actors",
+            "successRate": 0.9957,
+            "isProblematic": false,
+            "duration": [
+                146,
+                219
+            ]
+        },
+        {
+            "name": "professors can't be red with bathrooms",
+            "successRate": 0.9905,
+            "isProblematic": false,
+            "duration": [
+                501,
+                751
+            ]
+        },
+        {
+            "name": "income can achieve world peace with garbage",
+            "successRate": 0.9905,
+            "isProblematic": false,
+            "duration": [
+                808,
+                1212
+            ]
+        },
+        {
+            "name": "professors can't take medicine with revenue",
+            "successRate": 0.9904,
+            "isProblematic": false,
+            "duration": [
+                1118,
+                1677
+            ]
+        },
+        {
+            "name": "artisans can go shopping with teachers",
+            "successRate": 0.9927,
+            "isProblematic": false,
+            "duration": [
+                1656,
+                2484
+            ]
+        },
+        {
+            "name": "youth can't go shopping with computers",
+            "successRate": 0.9958,
+            "isProblematic": false,
+            "duration": [
+                1009,
+                1513
+            ]
+        },
+        {
+            "name": "ambition shouldn't be able to watch youtube videos with computers",
+            "successRate": 0.9967,
+            "isProblematic": false,
+            "duration": [
+                1279,
+                1918
+            ]
+        },
+        {
+            "name": "computers should start a revolution with directors",
+            "successRate": 0.9929,
+            "isProblematic": false,
+            "duration": [
+                1281,
+                1921
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time must kick ass with fortunes",
+            "successRate": 0.9962,
+            "isProblematic": false,
+            "duration": [
+                1533,
+                2299
+            ]
+        },
+        {
+            "name": "tales should achieve world peace with revenue",
+            "successRate": 0.9962,
+            "isProblematic": false,
+            "duration": [
+                1779,
+                2668
+            ]
+        },
+        {
+            "name": "birthdays can't explore the galaxy with singers",
+            "successRate": 0.9949,
+            "isProblematic": false,
+            "duration": [
+                1281,
+                1921
+            ]
+        },
+        {
+            "name": "resolution can cook pasta with possessions",
+            "successRate": 0.9913,
+            "isProblematic": false,
+            "duration": [
+                1177,
+                1765
+            ]
+        },
+        {
+            "name": "birthdays should kill nazis with revenue",
+            "successRate": 0.9979,
+            "isProblematic": false,
+            "duration": [
+                1443,
+                2164
+            ]
+        },
+        {
+            "name": "youth can't start a war with dinner",
+            "successRate": 0.992,
+            "isProblematic": false,
+            "duration": [
+                984,
+                1476
+            ]
+        },
+        {
+            "name": "directors must befriend a star with collections",
+            "successRate": 0.9912,
+            "isProblematic": false,
+            "duration": [
+                282,
+                423
+            ]
+        },
+        {
+            "name": "maps can earn millions a year with drivers",
+            "successRate": 0.9932,
+            "isProblematic": false,
+            "duration": [
+                963,
+                1444
+            ]
+        },
+        {
+            "name": "maps can achieve world peace with feedback",
+            "successRate": 0.9927,
+            "isProblematic": false,
+            "duration": [
+                329,
+                493
+            ]
+        },
+        {
+            "name": "maps can go shopping with dinner",
+            "successRate": 0.9967,
+            "isProblematic": false,
+            "duration": [
+                892,
+                1338
+            ]
+        },
+        {
+            "name": "actors can't explore the galaxy with actors",
+            "successRate": 0.9928,
+            "isProblematic": false,
+            "duration": [
+                433,
+                649
+            ]
+        },
+        {
+            "name": "birthdays can take medicine with girls",
+            "successRate": 0.9986,
+            "isProblematic": false,
+            "duration": [
+                1162,
+                1743
+            ]
+        },
+        {
+            "name": "families should kill nazis with drivers",
+            "successRate": 0.994,
+            "isProblematic": false,
+            "duration": [
+                981,
+                1471
+            ]
+        },
+        {
+            "name": "possessions must take medicine with girls",
+            "successRate": 0.9926,
+            "isProblematic": false,
+            "duration": [
+                1156,
+                1734
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should be red with messages",
+            "successRate": 0.9916,
+            "isProblematic": false,
+            "duration": [
+                1025,
+                1537
+            ]
+        },
+        {
+            "name": "teaching shouldn't be able to write clean code with people that smoke",
+            "successRate": 0.9982,
+            "isProblematic": false,
+            "duration": [
+                463,
+                694
+            ]
+        },
+        {
+            "name": "revenue must befriend a star with teachers",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                1732,
+                2598
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time can't explore the galaxy with the realization that we are going to die",
+            "successRate": 0.991,
+            "isProblematic": false,
+            "duration": [
+                1888,
+                2832
+            ]
+        },
+        {
+            "name": "news should watch youtube videos with cats",
+            "successRate": 0.9983,
+            "isProblematic": false,
+            "duration": [
+                488,
+                732
+            ]
+        },
+        {
+            "name": "dinner can do cardio with instructions",
+            "successRate": 0.9908,
+            "isProblematic": false,
+            "duration": [
+                1753,
+                2629
+            ]
+        },
+        {
+            "name": "drivers can't cook pasta with revenue",
+            "successRate": 0.993,
+            "isProblematic": false,
+            "duration": [
+                1291,
+                1936
+            ]
+        },
+        {
+            "name": "buyers shouldn't be able to think about the future with knowledge",
+            "successRate": 0.9926,
+            "isProblematic": false,
+            "duration": [
+                1390,
+                2085
+            ]
+        },
+        {
+            "name": "teachers can't conquer europe with cheeks",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                568,
+                852
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should explore the galaxy with birds",
+            "successRate": 0.9925,
+            "isProblematic": false,
+            "duration": [
+                1629,
+                2443
+            ]
+        },
+        {
+            "name": "wood can watch youtube videos with affairs",
+            "successRate": 0.9925,
+            "isProblematic": false,
+            "duration": [
+                1119,
+                1678
+            ]
+        },
+        {
+            "name": "people that smoke must start a revolution with messages",
+            "successRate": 0.9946,
+            "isProblematic": false,
+            "duration": [
+                1172,
+                1758
+            ]
+        },
+        {
+            "name": "instructions must befriend a star with cheeks",
+            "successRate": 0.9909,
+            "isProblematic": false,
+            "duration": [
+                1191,
+                1786
+            ]
+        },
+        {
+            "name": "tales can't run for president with actors",
+            "successRate": 0.9904,
+            "isProblematic": false,
+            "duration": [
+                1100,
+                1650
+            ]
+        },
+        {
+            "name": "revenue should earn millions a year with preparation",
+            "successRate": 0.9952,
+            "isProblematic": false,
+            "duration": [
+                1958,
+                2937
+            ]
+        },
+        {
+            "name": "wood must watch youtube videos with resolution",
+            "successRate": 0.9963,
+            "isProblematic": false,
+            "duration": [
+                1801,
+                2701
+            ]
+        },
+        {
+            "name": "bathrooms shouldn't be able to run for president with artisans",
+            "successRate": 0.9925,
+            "isProblematic": false,
+            "duration": [
+                601,
+                901
+            ]
+        },
+        {
+            "name": "guidance must go shopping with messages",
+            "successRate": 0.9927,
+            "isProblematic": false,
+            "duration": [
+                985,
+                1477
+            ]
+        },
+        {
+            "name": "directors can't take a bath with garbage",
+            "successRate": 0.9958,
+            "isProblematic": false,
+            "duration": [
+                1864,
+                2796
+            ]
+        },
+        {
+            "name": "instructions can start a war with ambition",
+            "successRate": 0.991,
+            "isProblematic": false,
+            "duration": [
+                1052,
+                1578
+            ]
+        },
+        {
+            "name": "knowledge can't kill nazis with investments",
+            "successRate": 0.9951,
+            "isProblematic": false,
+            "duration": [
+                1134,
+                1701
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings should go shopping with context",
+            "successRate": 0.9934,
+            "isProblematic": false,
+            "duration": [
+                1337,
+                2005
+            ]
+        },
+        {
+            "name": "scientists must think about the future with versions",
+            "successRate": 0.9921,
+            "isProblematic": false,
+            "duration": [
+                1660,
+                2490
+            ]
+        },
+        {
+            "name": "birthdays can't earn millions a year with offices",
+            "successRate": 0.9948,
+            "isProblematic": false,
+            "duration": [
+                529,
+                793
+            ]
+        },
+        {
+            "name": "instructions can't take a bath with bathrooms",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                1936,
+                2904
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings must befriend a star with wood",
+            "successRate": 0.9904,
+            "isProblematic": false,
+            "duration": [
+                312,
+                468
+            ]
+        },
+        {
+            "name": "fortunes can write clean code with the realization that we are going to die",
+            "successRate": 0.9901,
+            "isProblematic": false,
+            "duration": [
+                1941,
+                2911
+            ]
+        },
+        {
+            "name": "hitler shouldn't be able to explore the galaxy with resolution",
+            "successRate": 0.9941,
+            "isProblematic": false,
+            "duration": [
+                634,
+                951
+            ]
+        },
+        {
+            "name": "income can be red with artisans",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                890,
+                1335
+            ]
+        },
+        {
+            "name": "girls can't take medicine with the realization that we are going to die",
+            "successRate": 0.9913,
+            "isProblematic": false,
+            "duration": [
+                899,
+                1348
+            ]
+        },
+        {
+            "name": "context can cook pasta with affairs",
+            "successRate": 0.9967,
+            "isProblematic": false,
+            "duration": [
+                1709,
+                2563
+            ]
+        },
+        {
+            "name": "birthdays can't write clean code with knowledge",
+            "successRate": 0.9922,
+            "isProblematic": false,
+            "duration": [
+                1895,
+                2842
+            ]
+        },
+        {
+            "name": "writers must start a war with drivers",
+            "successRate": 0.9985,
+            "isProblematic": false,
+            "duration": [
+                422,
+                633
+            ]
+        },
+        {
+            "name": "desks must kick ass with dogs",
+            "successRate": 0.9947,
+            "isProblematic": false,
+            "duration": [
+                1121,
+                1681
+            ]
+        },
+        {
+            "name": "that feeling of soggyness in the mornings shouldn't be able to kill nazis with tales",
+            "successRate": 0.9975,
+            "isProblematic": false,
+            "duration": [
+                1668,
+                2502
+            ]
+        },
+        {
+            "name": "instructions can't watch youtube videos with fortunes",
+            "successRate": 0.991,
+            "isProblematic": false,
+            "duration": [
+                699,
+                1048
+            ]
+        },
+        {
+            "name": "arguments should take medicine with desks",
+            "successRate": 0.9953,
+            "isProblematic": false,
+            "duration": [
+                1833,
+                2749
+            ]
+        },
+        {
+            "name": "actors must explore the galaxy with maps",
+            "successRate": 0.9921,
+            "isProblematic": false,
+            "duration": [
+                381,
+                571
+            ]
+        },
+        {
+            "name": "tales can't get along with squirrels with bathrooms",
+            "successRate": 0.9945,
+            "isProblematic": false,
+            "duration": [
+                1159,
+                1738
+            ]
+        },
+        {
+            "name": "affairs must get along with squirrels with artisans",
+            "successRate": 0.9931,
+            "isProblematic": false,
+            "duration": [
+                1910,
+                2865
+            ]
+        },
+        {
+            "name": "birds can't earn millions a year with birthdays",
+            "successRate": 0.9971,
+            "isProblematic": false,
+            "duration": [
+                1781,
+                2671
+            ]
+        },
+        {
+            "name": "dogs can explore the galaxy with dogs",
+            "successRate": 0.9971,
+            "isProblematic": false,
+            "duration": [
+                319,
+                478
+            ]
+        },
+        {
+            "name": "artisans should do cardio with people that smoke",
+            "successRate": 0.9982,
+            "isProblematic": false,
+            "duration": [
+                500,
+                750
+            ]
+        },
+        {
+            "name": "possessions must think about the future with singers",
+            "successRate": 0.9915,
+            "isProblematic": false,
+            "duration": [
+                828,
+                1242
+            ]
+        },
+        {
+            "name": "fortunes can't watch youtube videos with teachers",
+            "successRate": 0.9957,
+            "isProblematic": false,
+            "duration": [
+                385,
+                577
+            ]
+        },
+        {
+            "name": "writers should kick ass with affairs",
+            "successRate": 0.9987,
+            "isProblematic": false,
+            "duration": [
+                783,
+                1174
+            ]
+        },
+        {
+            "name": "fortunes shouldn't be able to go shopping with birthdays",
+            "successRate": 0.9911,
+            "isProblematic": false,
+            "duration": [
+                1853,
+                2779
+            ]
+        },
+        {
+            "name": "birds must befriend a star with garbage",
+            "successRate": 0.9935,
+            "isProblematic": false,
+            "duration": [
+                296,
+                444
+            ]
+        },
+        {
+            "name": "feedback must conquer europe with arguments",
+            "successRate": 0.9935,
+            "isProblematic": false,
+            "duration": [
+                352,
+                528
+            ]
+        },
+        {
+            "name": "ambition can take medicine with the realization that we are going to die",
+            "successRate": 0.9949,
+            "isProblematic": false,
+            "duration": [
+                1130,
+                1695
+            ]
+        },
+        {
+            "name": "drivers must wear sandals with dinner",
+            "successRate": 0.997,
+            "isProblematic": false,
+            "duration": [
+                1729,
+                2593
+            ]
+        },
+        {
+            "name": "offices can't conquer europe with the realization that we are going to die",
+            "successRate": 0.9928,
+            "isProblematic": false,
+            "duration": [
+                1591,
+                2386
+            ]
+        },
+        {
+            "name": "teachers shouldn't be able to achieve world peace with birthdays",
+            "successRate": 0.9912,
+            "isProblematic": false,
+            "duration": [
+                632,
+                948
+            ]
+        },
+        {
+            "name": "facts shouldn't be able to think about the future with bathrooms",
+            "successRate": 0.9941,
+            "isProblematic": false,
+            "duration": [
+                1983,
+                2974
+            ]
+        },
+        {
+            "name": "directors shouldn't be able to be red with buyers",
+            "successRate": 0.9946,
+            "isProblematic": false,
+            "duration": [
+                1210,
+                1815
+            ]
+        },
+        {
+            "name": "instructions can kick ass with context",
+            "successRate": 0.9903,
+            "isProblematic": false,
+            "duration": [
+                1288,
+                1932
+            ]
+        },
+        {
+            "name": "preparation can wear sandals with directors",
+            "successRate": 0.9916,
+            "isProblematic": false,
+            "duration": [
+                645,
+                967
+            ]
+        },
+        {
+            "name": "captains must take medicine with preparation",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                1202,
+                1803
+            ]
+        },
+        {
+            "name": "artisans can't get along with squirrels with income",
+            "successRate": 0.9949,
+            "isProblematic": false,
+            "duration": [
+                778,
+                1167
+            ]
+        },
+        {
+            "name": "singers can start a war with the realization that we are going to die",
+            "successRate": 0.9947,
+            "isProblematic": false,
+            "duration": [
+                1019,
+                1528
+            ]
+        },
+        {
+            "name": "messages can be red with knowledge",
+            "successRate": 0.9922,
+            "isProblematic": false,
+            "duration": [
+                369,
+                553
+            ]
+        },
+        {
+            "name": "actors must do cardio with messages",
+            "successRate": 0.9901,
+            "isProblematic": false,
+            "duration": [
+                1717,
+                2575
+            ]
+        },
+        {
+            "name": "maps can't smoke with messages",
+            "successRate": 0.9955,
+            "isProblematic": false,
+            "duration": [
+                1355,
+                2032
+            ]
+        },
+        {
+            "name": "tales must earn millions a year with apples",
+            "successRate": 0.9963,
+            "isProblematic": false,
+            "duration": [
+                211,
+                316
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should take medicine with families",
+            "successRate": 0.9949,
+            "isProblematic": false,
+            "duration": [
+                1032,
+                1548
+            ]
+        },
+        {
+            "name": "the unstoppable marching of time should do cardio with winners",
+            "successRate": 0.9985,
+            "isProblematic": false,
+            "duration": [
+                1734,
+                2601
+            ]
+        },
+        {
+            "name": "instructions should earn millions a year with apples",
+            "successRate": 0.9907,
+            "isProblematic": false,
+            "duration": [
+                1353,
+                2029
+            ]
+        },
+        {
+            "name": "scientists should start a war with arguments",
+            "successRate": 0.9944,
+            "isProblematic": false,
+            "duration": [
+                1118,
+                1677
+            ]
+        },
+        {
+            "name": "ambition must start a revolution with context",
+            "successRate": 0.994,
+            "isProblematic": false,
+            "duration": [
+                1476,
+                2214
+            ]
+        },
+        {
+            "name": "context shouldn't be able to achieve world peace with girls",
+            "successRate": 0.9917,
+            "isProblematic": false,
+            "duration": [
+                355,
+                532
+            ]
+        },
+        {
+            "name": "families must think about the future with investments",
+            "successRate": 0.9918,
+            "isProblematic": false,
+            "duration": [
+                800,
+                1200
+            ]
+        },
+        {
+            "name": "singers can't run for president with the realization that we are going to die",
+            "successRate": 0.9941,
+            "isProblematic": false,
+            "duration": [
+                327,
+                490
+            ]
+        },
+        {
+            "name": "drivers should go shopping with families",
+            "successRate": 0.9931,
+            "isProblematic": false,
+            "duration": [
+                1495,
+                2242
+            ]
+        },
+        {
+            "name": "actors shouldn't be able to take a bath with scientists",
+            "successRate": 0.9913,
+            "isProblematic": false,
+            "duration": [
+                922,
+                1383
+            ]
+        },
+        {
+            "name": "families shouldn't be able to cook pasta with youth",
+            "successRate": 0.9933,
+            "isProblematic": false,
+            "duration": [
+                827,
+                1240
+            ]
+        },
+        {
+            "name": "maps should write clean code with actors",
+            "successRate": 0.9941,
+            "isProblematic": false,
+            "duration": [
+                1011,
+                1516
+            ]
+        },
+        {
+            "name": "news shouldn't be able to explore the galaxy with versions",
+            "successRate": 0.9967,
+            "isProblematic": false,
+            "duration": [
+                354,
+                531
+            ]
+        },
+        {
+            "name": "captains can't kill nazis with investments",
+            "successRate": 0.9901,
+            "isProblematic": false,
+            "duration": [
+                1547,
+                2320
+            ]
+        },
+        {
+            "name": "girls can write clean code with ambition",
+            "successRate": 0.9954,
+            "isProblematic": false,
+            "duration": [
+                1597,
+                2395
+            ]
+        },
+        {
+            "name": "income can achieve world peace with preparation",
+            "successRate": 0.992,
+            "isProblematic": false,
+            "duration": [
+                133,
+                199
+            ]
+        },
+        {
+            "name": "girls shouldn't be able to kill nazis with investments",
+            "successRate": 0.996,
+            "isProblematic": false,
+            "duration": [
+                842,
+                1263
+            ]
+        },
+        {
+            "name": "the realization that we are going to die shouldn't be able to start a revolution with cheeks",
+            "successRate": 0.993,
+            "isProblematic": false,
+            "duration": [
+                1664,
+                2496
+            ]
+        },
+        {
+            "name": "professors should kill nazis with maps",
+            "successRate": 0.9911,
+            "isProblematic": false,
+            "duration": [
+                873,
+                1309
+            ]
+        },
+        {
+            "name": "girls can't be red with the realization that we are going to die",
+            "successRate": 0.9939,
+            "isProblematic": false,
+            "duration": [
+                1368,
+                2052
+            ]
+        },
+        {
+            "name": "preparation can't do cardio with the unstoppable marching of time",
+            "successRate": 0.9982,
+            "isProblematic": false,
+            "duration": [
+                1241,
+                1861
+            ]
+        },
+        {
+            "name": "birds can wear sandals with versions",
+            "successRate": 0.9984,
+            "isProblematic": false,
+            "duration": [
+                269,
+                403
+            ]
+        },
+        {
+            "name": "dogs should befriend a star with birds",
+            "successRate": 0.9916,
+            "isProblematic": false,
+            "duration": [
+                1970,
+                2955
+            ]
+        },
+        {
+            "name": "writers must smoke with affairs",
+            "successRate": 0.9934,
+            "isProblematic": false,
+            "duration": [
+                199,
+                298
+            ]
+        },
+        {
+            "name": "girls should do cardio with context",
+            "successRate": 0.9927,
+            "isProblematic": false,
+            "duration": [
+                750,
+                1125
+            ]
+        },
+        {
+            "name": "garbage must cook pasta with affairs",
+            "successRate": 0.9907,
+            "isProblematic": false,
+            "duration": [
+                1373,
+                2059
+            ]
+        },
+        {
+            "name": "resolution can get along with squirrels with actors",
+            "successRate": 0.9901,
+            "isProblematic": false,
+            "duration": [
+                481,
+                721
+            ]
+        },
+        {
+            "name": "feedback shouldn't be able to run for president with teachers",
+            "successRate": 0.9969,
+            "isProblematic": false,
+            "duration": [
+                175,
+                262
+            ]
+        },
+        {
+            "name": "singers can't cook pasta with messages",
+            "successRate": 0.9959,
+            "isProblematic": false,
+            "duration": [
+                1890,
+                2835
+            ]
+        },
+        {
+            "name": "context can run for president with teaching",
+            "successRate": 0.9985,
+            "isProblematic": false,
+            "duration": [
+                884,
+                1326
+            ]
+        },
+        {
+            "name": "news can't run for president with teachers",
+            "successRate": 0.9947,
+            "isProblematic": false,
+            "duration": [
+                148,
+                222
+            ]
+        },
+        {
+            "name": "a spartan warrior can't get along with squirrels with people that smoke",
+            "successRate": 0.9947,
+            "isProblematic": false,
+            "duration": [
+                444,
+                666
+            ]
+        },
+        {
+            "name": "teaching must think about the future with airports",
+            "successRate": 0.9988,
+            "isProblematic": false,
+            "duration": [
+                549,
+                823
+            ]
+        },
+        {
+            "name": "artisans must go shopping with income",
+            "successRate": 0.9953,
+            "isProblematic": false,
+            "duration": [
+                1306,
+                1959
+            ]
+        },
+        {
+            "name": "facts should go shopping with wood",
+            "successRate": 0.9928,
+            "isProblematic": false,
+            "duration": [
+                1475,
+                2212
+            ]
+        },
+        {
+            "name": "messages can't wear sandals with cheeks",
+            "successRate": 0.996,
+            "isProblematic": false,
+            "duration": [
+                1616,
+                2424
+            ]
+        },
+        {
+            "name": "messages can take medicine with versions",
+            "successRate": 0.9971,
+            "isProblematic": false,
+            "duration": [
+                1683,
+                2524
+            ]
+        },
+        {
+            "name": "facts shouldn't be able to cook pasta with birthdays",
+            "successRate": 0.9945,
+            "isProblematic": false,
+            "duration": [
+                1817,
+                2725
+            ]
+        },
+        {
+            "name": "garbage shouldn't be able to earn millions a year with buyers",
+            "successRate": 0.9914,
+            "isProblematic": false,
+            "duration": [
+                906,
+                1359
+            ]
+        },
+        {
+            "name": "apples can't think about the future with professors",
+            "successRate": 0.9975,
+            "isProblematic": false,
+            "duration": [
+                1549,
+                2323
+            ]
+        },
+        {
+            "name": "messages must explore the galaxy with people that smoke",
+            "successRate": 0.9982,
+            "isProblematic": false,
+            "duration": [
+                1301,
+                1951
+            ]
+        },
+        {
+            "name": "guidance can kick ass with apples",
+            "successRate": 0.9924,
+            "isProblematic": false,
+            "duration": [
+                749,
+                1123
+            ]
+        },
+        {
+            "name": "cheeks should watch youtube videos with birthdays",
+            "successRate": 0.9965,
+            "isProblematic": false,
+            "duration": [
+                1780,
+                2670
+            ]
+        },
+        {
+            "name": "messages can start a war with collections",
+            "successRate": 0.9918,
+            "isProblematic": false,
+            "duration": [
+                1102,
+                1653
+            ]
+        }
+    ],
+    "metadata": {
+        "browser": [
+            "chrome",
+            "ie",
+            "firefox",
+            "safari"
+        ],
+        "jdk": [
+            "jdk8",
+            "jdk11"
+        ],
+        "selenium": [
+            "v1",
+            "v2",
+            "v3"
+        ],
+        "datacenter": [
+            "denver",
+            "sc4"
+        ],
+        "branch": [
+            "master",
+            "v1.2",
+            "v1.3",
+            "v1.4",
+            "v1.5"
+        ],
+        "shard": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "color": [
+            "blue",
+            "green",
+            "red",
+            "yellow",
+            "orange",
+            "pink"
+        ],
+        "repository": [
+            "https://github.com/nachogutierrez/testo"
+        ]
+    },
+    "chosenMetadata": [
+        "browser",
+        "branch",
+        "selenium",
+        "repository"
+    ],
+    "kind": "small test suite"
+}

@@ -33,8 +33,7 @@ const Server = function({ resultService, metricService, searchService, firebase 
         const emptyCount = () => ({
             pass: 0,
             fail: 0,
-            skip: 0,
-            error: 0
+            skip: 0
         })
 
         const insights = {
@@ -47,7 +46,7 @@ const Server = function({ resultService, metricService, searchService, firebase 
         }
 
         for (const workload of workloads) {
-            const date = moment(workload.created_at).format('YYYY-MM-DD')
+            const date = moment(workload.created_at).format('YYYY/MM/DD')
             if (!insights.byDate[date]) insights.byDate[date] = {
                 totalWorkloads: 0,
                 totalResults: 0,
@@ -59,22 +58,19 @@ const Server = function({ resultService, metricService, searchService, firebase 
             insights.totalWorkloads++
             insights.byDate[date].totalWorkloads++
 
-            insights.count.pass += workload.pass
-            insights.byDate[date].count.pass += workload.pass
+            insights.count.pass += workload.count.pass
+            insights.byDate[date].count.pass += workload.count.pass
 
-            insights.count.fail += workload.fail
-            insights.byDate[date].count.fail += workload.fail
+            insights.count.fail += workload.count.fail
+            insights.byDate[date].count.fail += workload.count.fail
 
-            insights.count.skip += workload.skip
-            insights.byDate[date].count.skip += workload.skip
+            insights.count.skip += workload.count.skip
+            insights.byDate[date].count.skip += workload.count.skip
 
-            insights.count.error += workload.error
-            insights.byDate[date].count.error += workload.error
+            insights.totalResults += workload.count.pass + workload.count.fail + workload.count.skip
+            insights.byDate[date].totalResults += workload.count.pass + workload.count.fail + workload.count.skip
 
-            insights.totalResults += workload.pass + workload.fail + workload.skip + workload.error
-            insights.byDate[date].totalResults += workload.pass + workload.fail + workload.skip + workload.error
-
-            if (workload.fail > 0 || workload.error > 0) {
+            if (workload.count.fail > 0) {
                 insights.fail++
                 insights.byDate[date].fail++
             } else {

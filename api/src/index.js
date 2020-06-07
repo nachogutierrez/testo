@@ -24,7 +24,9 @@ async function main() {
 
     const app = Server({
         // resultService: PostgresResultService({ uri: process.env.TESTO_DB_URI || 'postgresql://postgres:postgres@localhost:8888/testo2' }),
-        resultService: ElasticsearchResultService({ uri: 'http://elasticsearch:9200' }),
+        resultService: ElasticsearchResultService({
+            elasticUri: process.env.ELASTICSEARCH_URI || 'http://localhost:9200'
+        }),
         metricService: PostgresMetricService({ uri: process.env.METRICS_DB_URI }),
         searchService: SearchService({ client: new elasticsearch.Client({ node: process.env.ELASTICSEARCH_URI || 'http://localhost:9200' }) }),
         firebase

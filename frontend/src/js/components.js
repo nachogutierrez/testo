@@ -31,6 +31,91 @@ const Components = (function() {
         </div>
     `)
 
+    const Insights = props => (`
+        <div class='cell row' style='height: 256px;'>
+            <div class='cell row'>
+                <div class='cell column'>
+                    <div class='cell row'>${InfographicNumber({ number: props.totalWorkloads, title: 'total workloads', textColor: 'white' })}</div>
+                    <div class='cell row'>${InfographicNumber({ number: props.totalResults, title: 'total results', textColor: 'white' })}</div>
+                </div>
+                <div class='cell column'>
+                    <div class='cell row'>${InfographicNumber({ number: props.pass, title: 'workloads passed', color: 'pass' })}</div>
+                    <div class='cell row'>${InfographicNumber({ number: props.fail, title: 'workloads failed', color: 'fail' })}</div>
+                </div>
+                <div class='cell column'>
+                    <div class='cell row'>${InfographicNumber({ number: props.count.pass, title: 'results passed', color: 'pass', size: '24px' })}</div>
+                    <div class='cell row'>${InfographicNumber({ number: props.count.fail, title: 'results failed', color: 'fail', size: '24px' })}</div>
+                    <div class='cell row'>${InfographicNumber({ number: props.count.skip, title: 'results skipped', color: 'skip', size: '24px' })}</div>
+                </div>
+            </div>
+
+
+            <div class='cell row'>
+                ${InsightsChart()}
+            </div>
+        </div>
+    `)
+    Insights.init = (el, opts = {}) => {
+        InsightsChart.init(el, opts)
+    }
+
+    const InsightsChart = props => (`
+        <div class='border-box' style='width: 100%; height: 100%; padding: 8px;'>
+            <canvas></canvas>
+        </div>
+    `)
+    InsightsChart.init = (el, opts = {}) => {
+        const canvas = el.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        const labels = Object.keys(opts.byDate).sort((a, b) => moment(a, 'YYYY/MM/DD').unix() - moment(b, 'YYYY/MM/DD').unix())
+        const datasets = [
+            {
+                label: 'passed',
+                data: [],
+                backgroundColor: '#ACFFA5'
+            },
+            {
+                label: 'failed',
+                data: [],
+                backgroundColor: '#FFB5A5'
+            }
+        ]
+        for (const label of labels) {
+            datasets[0].data.push(opts.byDate[label].fail)
+            datasets[1].data.push(opts.byDate[label].pass)
+        }
+        const stackedBar = new Chart(ctx, {
+            type: 'bar',
+
+            data: {
+                labels,
+                datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        })
+    }
+
+    const InfographicNumber = props => (`
+        <div class='width100 height100 border-box flex flex-center' style='padding: 8px;'>
+            <div class='width100 height100 flex flex-column flex-center ${props.color || 'blue'}' style='border: 1px solid black; border-radius: 2px; color: ${props.textColor || 'black'};'>
+                <p style='font-size: ${props.size || '42px'};'>${props.number}</p>
+                <p style='font-size: 14px;'>${props.title}</p>
+            </div>
+        </div>
+    `)
+
     const TableView = props => (`
         <div class='flex flex-column height100'>
 
@@ -43,6 +128,8 @@ const Components = (function() {
                     right: `<div style='margin-left: 16px;'>${ExploreButton()}</div>`
                 })
             })}
+
+            <div class='insights'></div>
 
             <h1>${props.title || 'No Title'}</h1>
             <div class="detail"></div>
@@ -134,8 +221,8 @@ const Components = (function() {
     `)
 
     const WorkloadsRow = props => (`
-        <tr class="${props.workload.fail > 0 ? "fail" : "pass"}">
-            <td><a href="results?workloadId=${props.workload.id}">${truncate(props.workload.id, 8)}</a></td>
+        <tr class="${props.workload.count.fail > 0 ? "fail" : "pass"}">
+            <td class='oneline'><a href="results?workloadId=${props.workload.id}">${truncate(props.workload.id, 8)}</a></td>
             <td>${Summary(props.workload)}</td>
             <td>${moment.utc(props.workload.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()}</td>
             <td><a href="javascript:;" onclick=${props.onKindClick} data-kind='${props.workload.kind}'>${truncate(props.workload.kind, 8)}</a></td>
@@ -152,9 +239,10 @@ const Components = (function() {
 
     const Summary = props => (`
         <div class='oneline'>
-            <span>Passed: ${props.pass}</span><br>
-            <span>Failed: ${props.fail}</span><br>
-            <span>Total: ${props.pass + props.fail}</span>
+            <span>Passed: ${props.count.pass}</span><br>
+            <span>Failed: ${props.count.fail}</span><br>
+            <span>Skipped: ${props.count.skip}</span><br>
+            <span>Total: ${props.count.pass + props.count.fail + props.count.skip}</span>
         </div>
     `)
 
@@ -561,6 +649,7 @@ const Components = (function() {
         ExploreView,
         openModal,
         closeModal,
-        openExploreView
+        openExploreView,
+        Insights
     }
 })()

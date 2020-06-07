@@ -19,9 +19,9 @@ const generateTemplate = (props = {}) => {
         const durationRight = Math.floor(1.5 * durationLeft)
 
         const isProblematic = generator() > problematicP
-        let successRate = randomBetweenF(generator, 0.95, 0.99)
+        let successRate = randomBetweenF(generator, 0.99, 0.999)
         if (isProblematic) {
-            successRate = randomBetweenF(generator, 0.4, 0.75)
+            successRate = randomBetweenF(generator, 0.6, 0.75)
         }
 
         testCases.push({

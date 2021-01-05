@@ -11,7 +11,7 @@
     "wclean": "del /F /Q results\\*"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "seedrandom": "^3.0.5"
   }
 }
